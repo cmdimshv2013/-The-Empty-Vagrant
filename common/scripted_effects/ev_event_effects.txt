@@ -1,0 +1,2396 @@
+
+#轨道站被建立
+
+ev_habitats_bulid = {
+	spawn_planet = {
+		class = "pc_habitat"
+		location = event_target:ev_capital_scope
+		orbit_location = yes
+		orbit_angle_offset = 45
+		orbit_distance_offset = 9.899
+		size = 6
+		has_ring = no
+	}
+}
+
+ev_habitats_effect = {
+	set_name = "HABITAT_PLANET_NAME"
+	set_planet_entity = {
+		entity = "orbital_habitat_entity"
+		graphical_culture = fromfrom
+	}
+	surveyed = {
+		set_surveyed = yes
+		surveyor = FROM
+	}
+	set_owner = FROM
+	
+	while = {
+		count = 4
+		create_pop = {
+			species = owner_main_species
+		}
+	}		
+	set_all_comms_surveyed = yes
+	clear_blockers = yes
+	if = {
+		limit = {
+			from = { has_ascension_perk = ap_voidborn }
+			NOT = { has_modifier = master_builders_habitats }
+		}
+		add_modifier = {
+			modifier = master_builders_habitats
+			days = -1
+		}
+	}
+	set_planet_flag = megastructure
+	set_planet_flag = habitat
+
+}
+
+#轨道轰炸随机获取一产
+steal_ev_random_1th_resources = {
+	hidden_effect = {
+		random_list = {
+			20 = {
+				modifier = {
+					factor = 0
+					AND = {					
+						num_districts = { type = district_generator value < 1 }
+						num_districts = { type = district_farming value < 1 }
+						num_districts = { type = district_mining value < 1 }
+					}
+				}			
+				modifier = {
+					factor = 1
+					OR = {						
+						num_districts = { type = district_generator value > 0 }
+						num_districts = { type = district_farming value > 0 }
+						num_districts = { type = district_mining value > 0 }
+					}
+				}
+				FROM = { 
+					add_resource = { 
+						energy = 12
+						minerals = 12
+						food = 12
+					} 
+				}
+			}
+			40 = {							
+				modifier = {
+					factor = 0
+					AND = {						
+						num_districts = { type = district_generator value < 2 }
+					}
+				}
+				FROM = { 
+					add_resource = { 
+						energy = 25
+					} 
+				}
+			}
+			40 = {							
+				modifier = {
+					factor = 0
+					AND = {	
+						num_districts = { type = district_farming value value < 2 }
+					}
+				}
+				modifier = {
+					factor = 0
+					AND = {		
+						FROM = {				
+							OR = {
+								is_lithoid_empire = yes
+								has_authority = auth_machine_intelligence
+							}
+						}
+					}
+				}
+				FROM = { 
+					add_resource = { 
+						food = 25
+					} 
+				}
+			}
+			40 = {							
+				modifier = {
+					factor = 0
+					AND = {						
+						num_districts = { type = district_mining value value < 2 }
+					}
+				}
+				modifier = {
+					factor = 1.5
+					AND = {		
+						FROM = {				
+							is_lithoid_empire = yes
+						}
+					}
+				}
+				FROM = { 
+					add_resource = { 					
+						minerals = 25
+					} 
+				}
+			}
+			120 = {							
+				modifier = {
+					factor = 0
+					AND = {						
+						num_districts = { type = district_generator value < 4 }
+					}
+				}
+				FROM = { 
+					add_resource = { 
+						energy = 45
+					} 
+				}
+			}
+			120 = {							
+				modifier = {
+					factor = 0
+					AND = {						
+						num_districts = { type = district_farming value value < 4 }
+					}
+				}
+				modifier = {
+					factor = 0
+					AND = {		
+						FROM = {				
+							OR = {
+								is_lithoid_empire = yes
+								has_authority = auth_machine_intelligence
+							}
+						}
+					}
+				}
+				FROM = { 
+					add_resource = { 
+						food = 45
+					} 
+				}
+			}
+			120 = {							
+				modifier = {
+					factor = 0
+					AND = {						
+						num_districts = { type = district_mining value value < 4 }
+					}
+				}
+				modifier = {
+					factor = 1.5
+					AND = {		
+						FROM = {				
+							is_lithoid_empire = yes
+						}
+					}
+				}
+				FROM = { 
+					add_resource = { 					
+						minerals = 45
+					} 
+				}
+			}
+			300 = {							
+				modifier = {
+					factor = 0
+					AND = {						
+						num_districts = { type = district_generator value < 6 }
+					}
+				}
+				FROM = { 
+					add_resource = { 
+						energy = 65
+					} 
+				}
+			}
+			300 = {							
+				modifier = {
+					factor = 0
+					AND = {						
+						num_districts = { type = district_farming value value < 6 }
+					}
+				}
+				modifier = {
+					factor = 0
+					AND = {		
+						FROM = {				
+							OR = {
+								is_lithoid_empire = yes
+								has_authority = auth_machine_intelligence
+							}
+						}
+					}
+				}
+				FROM = { 
+					add_resource = { 
+						food = 65
+					} 
+				}
+			}
+			300 = {							
+				modifier = {
+					factor = 0
+					AND = {						
+						num_districts = { type = district_mining value value < 6 }
+					}
+				}
+				modifier = {
+					factor = 1.5
+					AND = {		
+						FROM = {				
+							is_lithoid_empire = yes
+						}
+					}
+				}
+				FROM = { 
+					add_resource = { 					
+						minerals = 65
+					} 
+				}
+			}
+			1000 = {							
+				modifier = {
+					factor = 0
+					AND = {						
+						num_districts = { type = district_generator value < 8 }
+					}
+				}
+				FROM = { 
+					add_resource = { 
+						energy = 85
+					} 
+				}
+			}	
+			1000 = {							
+				modifier = {
+					factor = 0
+					AND = {						
+						num_districts = { type = district_farming value value < 8 }
+					}
+				}
+				modifier = {
+					factor = 0
+					AND = {		
+						FROM = {				
+							OR = {
+								is_lithoid_empire = yes
+								has_authority = auth_machine_intelligence
+							}
+						}
+					}
+				}
+				FROM = { 
+					add_resource = { 
+						food = 85
+					} 
+				}
+			}
+			1000 = {							
+				modifier = {
+					factor = 0
+					AND = {						
+						num_districts = { type = district_mining value value < 8 }
+					}
+				}
+				modifier = {
+					factor = 1.5
+					AND = {		
+						FROM = {				
+							is_lithoid_empire = yes
+						}
+					}
+				}
+				FROM = { 
+					add_resource = { 					
+						minerals = 85
+					} 
+				}
+			}	
+			3000 = {							
+				modifier = {
+					factor = 0
+					AND = {						
+						num_districts = { type = district_generator value < 11 }
+					}
+				}
+				FROM = { 
+					add_resource = { 
+						energy = 105
+					} 
+				}
+			}	
+			3000 = {							
+				modifier = {
+					factor = 0
+					AND = {						
+						num_districts = { type = district_farming value value < 11 }
+					}
+				}
+				modifier = {
+					factor = 0
+					AND = {		
+						FROM = {				
+							OR = {
+								is_lithoid_empire = yes
+								has_authority = auth_machine_intelligence
+							}
+						}
+					}
+				}
+				FROM = { 
+					add_resource = { 
+						food = 105
+					} 
+				}
+			}
+			3000 = {							
+				modifier = {
+					factor = 0
+					AND = {						
+						num_districts = { type = district_mining value value < 11 }
+					}
+				}
+				modifier = {
+					factor = 1.5
+					AND = {		
+						FROM = {				
+							is_lithoid_empire = yes
+						}
+					}
+				}
+				FROM = { 
+					add_resource = { 					
+						minerals = 105
+					} 
+				}
+			}
+			1 = {						
+				FROM = { 
+					add_resource = { 					
+						minerals = 5
+					} 
+				}
+			}
+		}	
+	}
+}
+#轨道轰炸随机获取二产
+steal_ev_random_2th_resources = {
+	hidden_effect = {
+		random_list = {
+			20 = {
+				modifier = {
+					factor = 0
+					AND = {					
+						num_buildings = { type = building_foundry_1 value < 1 }
+						num_buildings = { type = building_foundry_2 value < 1 }
+						num_buildings = { type = building_foundry_3 value < 1 }
+					}
+				}			
+				modifier = {
+					factor = 1
+					OR = {						
+						num_buildings = { type = building_foundry_1 value > 0 }
+					}
+				}
+				FROM = { add_resource = { alloys = 7 } }
+			}
+			40 = {
+				modifier = {
+					factor = 0
+					AND = {
+						num_buildings = { type = building_foundry_1 value < 3 }
+					}
+				}
+				FROM = { add_resource = { alloys = 16 } }
+			}
+			100 = {							
+				modifier = {
+					factor = 0
+					AND = {
+						num_buildings = { type = building_foundry_1 value < 5 }
+					}
+				}
+				FROM = { add_resource = { alloys = 25 } }
+			}
+			200 = {							
+				modifier = {
+					factor = 0
+					AND = {
+						num_buildings = { type = building_foundry_2 value < 2 }
+					}
+				}
+				FROM = { add_resource = { alloys = 28 } }
+			}
+			500 = {							
+				modifier = {
+					factor = 0
+					AND = {
+						num_buildings = { type = building_foundry_1 value < 10 }
+					}
+				}
+				FROM = { add_resource = { alloys = 42 } }
+			}	
+			1000 = {							
+				modifier = {
+					factor = 0
+					AND = {
+						num_buildings = { type = building_foundry_3 value < 2 }
+					}
+				}
+				FROM = { add_resource = { alloys = 45 } }
+			}
+			2200 = {							
+				modifier = {
+					factor = 0
+					AND = {
+						num_buildings = { type = building_foundry_2 value < 4 }
+					}
+				}
+				FROM = { add_resource = { alloys = 50 } }
+			}
+			4500 = {							
+				modifier = {
+					factor = 0
+					AND = {
+						num_buildings = { type = building_foundry_2 value < 7 }
+					}
+				}
+				FROM = { add_resource = { alloys = 70 } }
+			}
+			10000 = {							
+				modifier = {
+					factor = 0
+					AND = {
+						num_buildings = { type = building_foundry_3 value < 3 }
+					}
+				}
+				FROM = { add_resource = { alloys = 75 } }
+			}
+			20000 = {							
+				modifier = {
+					factor = 0
+					AND = {
+						num_buildings = { type = building_foundry_3 value < 5 }
+					}
+				}
+				FROM = { add_resource = { alloys = 80 } }
+			}
+			50000 = {							
+				modifier = {
+					factor = 0
+					AND = {
+						num_buildings = { type = building_foundry_3 value < 6 }
+						num_buildings = { type = building_foundry_2 value < 8 }
+						num_buildings = { type = building_foundry_1 value < 11 }
+					}
+				}
+				FROM = { add_resource = { alloys = 100 } }
+			}
+			
+			10 = {
+				modifier = {
+					factor = 0
+					AND = {					
+						num_buildings = { type = building_factory_1 value < 1 }
+						num_buildings = { type = building_factory_2 value < 1 }
+						num_buildings = { type = building_factory_3 value < 1 }
+					}
+				}			
+				modifier = {
+					factor = 0
+					FROM = {
+						OR = {
+							has_authority = auth_machine_intelligence
+							has_authority = auth_hive_mind
+						}
+					}
+				}		
+						
+				modifier = {
+					factor = 1
+					OR = {						
+						num_buildings = { type = building_foundry_1 value > 0 }
+					}
+				}
+				FROM = { add_resource = { consumer_goods = 12 } }
+			}
+			20 = {							
+				modifier = {
+					factor = 0
+					AND = {
+						num_buildings = { type = building_factory_1 value < 3 }
+					}
+				}
+				modifier = {
+					factor = 0
+					FROM = {
+						OR = {
+							has_authority = auth_machine_intelligence
+							has_authority = auth_hive_mind
+						}
+					}
+				}		
+				FROM = { add_resource = { consumer_goods = 30 } }
+			}
+			40 = {							
+				modifier = {
+					factor = 0
+					AND = {
+						num_buildings = { type = building_factory_1 value < 5 }
+					}
+				}
+				modifier = {
+					factor = 0
+					FROM = {
+						OR = {
+							has_authority = auth_machine_intelligence
+							has_authority = auth_hive_mind
+						}
+					}
+				}		
+				FROM = { add_resource = { consumer_goods = 46 } }
+			}
+			100 = {							
+				modifier = {
+					factor = 0
+					AND = {
+						num_buildings = { type = building_factory_2 value < 2 }
+					}
+				}
+				modifier = {
+					factor = 0
+					FROM = {
+						OR = {
+							has_authority = auth_machine_intelligence
+							has_authority = auth_hive_mind
+						}
+					}
+				}		
+				FROM = { add_resource = { consumer_goods = 50 } }
+			}
+			200 = {							
+				modifier = {
+					factor = 0
+					AND = {
+						num_buildings = { type = building_factory_1 value < 10 }
+					}
+				}
+				modifier = {
+					factor = 0
+					FROM = {
+						OR = {
+							has_authority = auth_machine_intelligence
+							has_authority = auth_hive_mind
+						}
+					}
+				}		
+				FROM = { add_resource = { consumer_goods = 65 } }
+			}
+			500 = {							
+				modifier = {
+					factor = 0
+					AND = {
+						num_buildings = { type = building_factory_3 value < 2 }
+					}
+				}
+				modifier = {
+					factor = 0
+					FROM = {
+						OR = {
+							has_authority = auth_machine_intelligence
+							has_authority = auth_hive_mind
+						}
+					}
+				}		
+				FROM = { add_resource = { consumer_goods = 70 } }
+			}			
+			1000 = {							
+				modifier = {
+					factor = 0
+					AND = {
+						num_buildings = { type = building_factory_2 value < 4 }
+					}
+				}
+				modifier = {
+					factor = 0
+					FROM = {
+						OR = {
+							has_authority = auth_machine_intelligence
+							has_authority = auth_hive_mind
+						}
+					}
+				}		
+				FROM = { add_resource = { consumer_goods = 80 } }
+			}
+			
+			2000 = {							
+				modifier = {
+					factor = 0
+					AND = {
+						num_buildings = { type = building_factory_2 value < 7 }
+					}
+				}
+				modifier = {
+					factor = 0
+					FROM = {
+						OR = {
+							has_authority = auth_machine_intelligence
+							has_authority = auth_hive_mind
+						}
+					}
+				}		
+				FROM = { add_resource = { consumer_goods = 90 } }
+			}
+			
+			5000 = {							
+				modifier = {
+					factor = 0
+					AND = {
+						num_buildings = { type = building_factory_3 value < 4 }
+					}
+				}
+				modifier = {
+					factor = 0
+					FROM = {
+						OR = {
+							has_authority = auth_machine_intelligence
+							has_authority = auth_hive_mind
+						}
+					}
+				}		
+				FROM = { add_resource = { consumer_goods = 105 } }
+			}
+			10000 = {							
+				modifier = {
+					factor = 0
+					AND = {
+						num_buildings = { type = building_factory_3 value < 5 }
+					}
+				}
+				modifier = {
+					factor = 0
+					FROM = {
+						OR = {
+							has_authority = auth_machine_intelligence
+							has_authority = auth_hive_mind
+						}
+					}
+				}		
+				FROM = { add_resource = { consumer_goods = 125 } }
+			}
+			12000 = {							
+				modifier = {
+					factor = 0
+					OR = {
+						num_buildings = { type = building_factory_3 value < 6 }
+						num_buildings = { type = building_factory_2 value < 8 }
+						num_buildings = { type = building_factory_1 value < 11 }
+					}
+				}
+				modifier = {
+					factor = 0
+					FROM = {
+						OR = {
+							has_authority = auth_machine_intelligence
+							has_authority = auth_hive_mind
+						}
+					}
+				}		
+				FROM = { add_resource = { consumer_goods = 145 } }
+			}
+			1 = {
+				FROM = { add_resource = { alloys = 5 } }
+			}
+		}	
+	}
+}
+
+
+#轨道轰炸随机获取社会学
+steal_ev_random_soc_resources = {
+	hidden_effect = {
+		random_list = {
+			1 = {		
+				FROM = { 
+					add_monthly_resource_mult = {
+						resource = society_research
+						value = 2
+						min = 1
+						max = 10
+					} 
+				}
+			}
+			5 = {
+				modifier = {
+					factor = 0
+					AND = {					
+						This = { num_pops < 3 }
+					}
+				}				
+				FROM = { 
+					add_monthly_resource_mult = {
+						resource = society_research
+						value = 2
+						min = 2
+						max = 20
+					} 
+				}
+			}
+			30 = {							
+				modifier = {
+					factor = 0
+					AND = {						
+						This = { num_pops < 10 }
+					}
+				}
+				FROM = { 
+					add_monthly_resource_mult = {
+						resource = society_research
+						value = 2
+						min = 4
+						max = 30
+					} 
+				}
+			}
+			120 = {							
+				modifier = {
+					factor = 0
+					AND = {						
+						This = { num_pops < 15 }
+					}
+				}
+				FROM = { 
+					add_monthly_resource_mult = {
+						resource = society_research
+						value = 2
+						min = 6
+						max = 40
+					} 
+				}
+			}
+			500 = {							
+				modifier = {
+					factor = 0
+					AND = {						
+						This = { num_pops < 20 }
+					}
+				}
+				FROM = { 
+					add_monthly_resource_mult = {
+						resource = society_research
+						value = 2
+						min = 8
+						max = 50
+					}  
+				}
+			}
+			2000 = {							
+				modifier = {
+					factor = 0
+					AND = {						
+						This = { num_pops < 30 }
+					}
+				}
+				FROM = { 
+					add_monthly_resource_mult = {
+						resource = society_research
+						value = 2
+						min = 10
+						max = 65
+					} 
+				}
+			}
+			8000 = {							
+				modifier = {
+					factor = 0
+					AND = {						
+						This = { num_pops < 40 }
+					}
+				}
+				FROM = { 
+					add_monthly_resource_mult = {
+						resource = society_research
+						value = 2
+						min = 10
+						max = 80
+					} 
+				}
+			}
+			25000 = {							
+				modifier = {
+					factor = 0
+					AND = {						
+						This = { num_pops < 50 }
+					}
+				}
+				FROM = { 
+					add_monthly_resource_mult = {
+						resource = society_research
+						value = 2
+						min = 10
+						max = 90
+					} 
+				}
+			}
+			100000 = {							
+				modifier = {
+					factor = 0
+					AND = {						
+						This = { num_pops < 75 }
+					}
+				}
+				FROM = { 
+					add_monthly_resource_mult = {
+						resource = society_research
+						value = 2
+						min = 10
+						max = 110
+					}  
+				}
+			}
+			400000 = {							
+				modifier = {
+					factor = 0
+					AND = {						
+						This = { num_pops < 100 }
+					}
+				}
+				FROM = { 
+					add_monthly_resource_mult = {
+						resource = society_research
+						value = 2
+						min = 10
+						max = 140
+					} 
+				}
+			}
+			800000 = {							
+				modifier = {
+					factor = 0
+					AND = {						
+						This = { num_pops < 150 }
+					}
+				}
+				FROM = { 
+					add_monthly_resource_mult = {
+						resource = society_research
+						value = 2
+						min = 10
+						max = 200
+					} 
+				}
+			}
+			1600000 = {							
+				modifier = {
+					factor = 0
+					AND = {						
+						This = { num_pops < 200 }
+					}
+				}
+				FROM = { 
+					add_monthly_resource_mult = {
+						resource = society_research
+						value = 2
+						min = 20
+						max = 300
+					} 
+				}
+			}
+			3000000 = {							
+				modifier = {
+					factor = 0
+					AND = {
+						This = { num_pops < 300 }
+					}
+				}
+				FROM = { 
+					add_monthly_resource_mult = {
+						resource = society_research
+						value = 2
+						min = 20
+						max = 400
+					} 
+				}
+			}
+			
+		}	
+	}
+}
+
+#被轨道轰炸随机失去资源
+lose_steal_ev_2th_random_resources = {
+	any_owned_planet = { 
+		limit = { 
+			has_orbital_bombardment_stance = steal_ev
+		} 
+		random_list = {
+			20 = {
+				modifier = {
+					factor = 0
+					AND = {					
+						num_buildings = { type = building_foundry_1 value < 1 }
+						num_buildings = { type = building_foundry_2 value < 1 }
+						num_buildings = { type = building_foundry_3 value < 1 }
+					}
+				}			
+				modifier = {
+					factor = 1
+					OR = {						
+						num_buildings = { type = building_foundry_1 value > 0 }
+					}
+				}
+				owner = { add_resource = { alloys = -7 } }
+			}
+			40 = {							
+				modifier = {
+					factor = 0
+					AND = {
+						num_buildings = { type = building_foundry_1 value < 3 }
+					}
+				}
+				owner = { add_resource = { alloys = -16 } }
+			}
+			100 = {							
+				modifier = {
+					factor = 0
+					AND = {
+						num_buildings = { type = building_foundry_1 value < 5 }
+					}
+				}
+				owner = { add_resource = { alloys = -25 } }
+			}
+			200 = {							
+				modifier = {
+					factor = 0
+					AND = {
+						num_buildings = { type = building_foundry_2 value < 2 }
+					}
+				}
+				owner = { add_resource = { alloys = -28 } }
+			}
+			500 = {							
+				modifier = {
+					factor = 0
+					AND = {
+						num_buildings = { type = building_foundry_1 value < 10 }
+					}
+				}
+				owner = { add_resource = { alloys = -42 } }
+			}	
+			1000 = {							
+				modifier = {
+					factor = 0
+					AND = {
+						num_buildings = { type = building_foundry_3 value < 2 }
+					}
+				}
+				owner = { add_resource = { alloys = -45 } }
+			}
+			2200 = {							
+				modifier = {
+					factor = 0
+					AND = {
+						num_buildings = { type = building_foundry_2 value < 4 }
+					}
+				}
+				owner = { add_resource = { alloys = -50 } }
+			}
+			4500 = {							
+				modifier = {
+					factor = 0
+					AND = {
+						num_buildings = { type = building_foundry_2 value < 7 }
+					}
+				}
+				owner = { add_resource = { alloys = -70 } }
+			}
+			10000 = {							
+				modifier = {
+					factor = 0
+					AND = {
+						num_buildings = { type = building_foundry_3 value < 3 }
+					}
+				}
+				owner = { add_resource = { alloys = -75 } }
+			}
+			20000 = {							
+				modifier = {
+					factor = 0
+					AND = {
+						num_buildings = { type = building_foundry_3 value < 5 }
+					}
+				}
+				owner = { add_resource = { alloys = -80 } }
+			}
+			50000 = {							
+				modifier = {
+					factor = 0
+					AND = {
+						num_buildings = { type = building_foundry_3 value < 6 }
+						num_buildings = { type = building_foundry_2 value < 8 }
+						num_buildings = { type = building_foundry_1 value < 11 }
+					}
+				}
+				owner = { add_resource = { alloys = -100 } }
+			}
+			
+			10 = {
+				modifier = {
+					factor = 0
+					AND = {					
+						num_buildings = { type = building_factory_1 value < 1 }
+						num_buildings = { type = building_factory_2 value < 1 }
+						num_buildings = { type = building_factory_3 value < 1 }
+					}
+				}			
+				modifier = {
+					factor = 1
+					OR = {						
+						num_buildings = { type = building_foundry_1 value > 0 }
+					}
+				}
+				owner = { add_resource = { consumer_goods = -12 } }
+			}
+			20 = {							
+				modifier = {
+					factor = 0
+					AND = {
+						num_buildings = { type = building_factory_1 value < 3 }
+					}
+				}
+				owner = { add_resource = { consumer_goods = -30 } }
+			}
+			40 = {							
+				modifier = {
+					factor = 0
+					AND = {
+						num_buildings = { type = building_factory_1 value < 5 }
+					}
+				}
+				owner = { add_resource = { consumer_goods = -46 } }
+			}
+			100 = {							
+				modifier = {
+					factor = 0
+					AND = {
+						num_buildings = { type = building_factory_2 value < 2 }
+					}
+				}
+				owner = { add_resource = { consumer_goods = -50 } }
+			}
+			200 = {							
+				modifier = {
+					factor = 0
+					AND = {
+						num_buildings = { type = building_factory_1 value < 10 }
+					}
+				}
+				owner = { add_resource = { consumer_goods = -65 } }
+			}
+			500 = {							
+				modifier = {
+					factor = 0
+					AND = {
+						num_buildings = { type = building_factory_3 value < 2 }
+					}
+				}
+				owner = { add_resource = { consumer_goods = -70 } }
+			}			
+			1000 = {							
+				modifier = {
+					factor = 0
+					AND = {
+						num_buildings = { type = building_factory_2 value < 4 }
+					}
+				}
+				owner = { add_resource = { consumer_goods = -80 } }
+			}
+			
+			2000 = {							
+				modifier = {
+					factor = 0
+					AND = {
+						num_buildings = { type = building_factory_2 value < 7 }
+					}
+				}
+				owner = { add_resource = { consumer_goods = -90 } }
+			}
+			
+			5000 = {							
+				modifier = {
+					factor = 0
+					AND = {
+						num_buildings = { type = building_factory_3 value < 4 }
+					}
+				}
+				owner = { add_resource = { consumer_goods = -105 } }
+			}
+			10000 = {							
+				modifier = {
+					factor = 0
+					AND = {
+						num_buildings = { type = building_factory_3 value < 5 }
+					}
+				}
+				owner = { add_resource = { consumer_goods = -125 } }
+			}
+			12000 = {							
+				modifier = {
+					factor = 0
+					OR = {
+						num_buildings = { type = building_factory_3 value < 6 }
+						num_buildings = { type = building_factory_2 value < 8 }
+						num_buildings = { type = building_factory_1 value < 11 }
+					}
+				}
+				owner = { add_resource = { consumer_goods = -145 } }
+			}
+			1 = {
+				owner = { add_resource = { alloys = -5 } }
+			}
+		}
+	}	
+}
+
+
+#战争胜利-掠夺能源
+wg_steal_ev_energy_resources_win= {
+	if = {
+		limit = { 
+			from = {
+				AND = {
+					has_resource = { type = energy amount < 200 }
+				}
+			}
+		}	
+		hidden_effect = {
+			FROM = { add_resource = { energy = -100 } }		
+			add_resource = { energy = 100 }
+		}
+	}
+	else_if = {
+		limit = { 
+			from = {
+				AND = {
+					has_resource = { type = energy amount >= 200 }
+					has_resource = { type = energy amount < 500 }
+				}
+			}
+		}	
+		hidden_effect = {
+			FROM = { add_resource = { energy = -200 } }
+			add_resource = { energy = 300 }
+		}
+	}	
+	else_if = {
+		limit = { 
+			from = {
+				AND = {
+					has_resource = { type = energy amount >= 500 }
+					has_resource = { type = energy amount < 1000 }
+				}
+			}
+		}		
+		hidden_effect = {
+			FROM = { add_resource = { energy = -500 } }
+			add_resource = { energy = 600 }
+		}
+	}
+	else_if = {
+		limit = { 
+			from = {
+				AND = {
+					has_resource = { type = energy amount >= 1000 }
+					has_resource = { type = energy amount < 2000 }
+				}
+			}
+		}	
+		hidden_effect = {	
+		FROM = { add_resource = { energy = -800 } }
+		add_resource = { energy = 1000 }
+		}
+	}
+	else_if = {
+		limit = { 
+			from = {
+				AND = {
+					has_resource = { type = energy amount >= 2000 }
+					has_resource = { type = energy amount < 5000 }
+				}
+			}
+		}	
+		hidden_effect = {	
+		FROM = { add_resource = { energy = -1500 } }
+		add_resource = { energy = 3000 } 
+		}
+	}
+	else_if = {
+		limit = { 
+			from = {
+				AND = {
+					has_resource = { type = energy amount >= 5000 }
+					has_resource = { type = energy amount < 10000 }
+				}
+			}
+		}	
+		hidden_effect = {	
+		FROM = { add_resource = { energy = -4000 } }
+		add_resource = { energy = 6000 } 
+		}
+	}
+	else_if = {
+		limit = { 
+			from = {
+				AND = {
+					has_resource = { type = energy amount >= 10000 }
+					has_resource = { type = energy amount < 20000 }
+				}
+			}
+		}	
+		hidden_effect = {
+		FROM = { add_resource = { energy = -7000 } }		
+		add_resource = { energy = 12000 } 
+		}
+	}
+	else_if = {
+		limit = { 
+			from = {
+				AND = {
+					has_resource = { type = energy amount < 40000 }
+					has_resource = { type = energy amount >= 20000 }
+				}
+			}
+		}	
+		hidden_effect = {
+		FROM = { add_resource = { energy = -15000 } }	
+		add_resource = { energy = 24000 } 
+		}
+	}
+	else_if = {
+		limit = { 
+			from = {
+				AND = {
+					has_resource = { type = energy amount > 40000 }				
+				}
+			}
+		}	
+		hidden_effect = {	
+		FROM = { add_resource = { energy = -30000 } }	
+		add_resource = { energy = 40000 } 
+		}
+	}
+}
+
+#战争胜利-掠夺矿物
+
+wg_steal_ev_minerals_resources_win= {
+	if = {
+		limit = { 
+			from = {
+				AND = {
+					has_resource = { type = minerals amount < 200 }
+				}
+			}
+		}	
+		hidden_effect = {
+		FROM = { add_resource = { minerals = -100 } }
+		add_resource = { minerals = 100 }
+		}
+	}
+	else_if = {
+		limit = { 
+			from = {
+				AND = {
+					has_resource = { type = minerals amount >= 200 }
+					has_resource = { type = minerals amount < 500 }
+				}
+			}
+		}	
+		hidden_effect = {	
+		FROM = { add_resource = { minerals = -200 } }
+		add_resource = { minerals = 300 }
+		}
+	}	
+	else_if = {
+		limit = { 
+			from = {
+				AND = {
+					has_resource = { type = minerals amount >= 500 }
+					has_resource = { type = minerals amount < 1000 }
+				}
+			}
+		}	
+		hidden_effect = {	
+		FROM = { add_resource = { minerals = -500 } }
+		add_resource = { minerals = 600 }
+		}
+	}
+	else_if = {
+		limit = { 
+			from = {
+				AND = {
+					has_resource = { type = minerals amount >= 1000 }
+					has_resource = { type = minerals amount < 2000 }
+				}
+			}
+		}	
+		hidden_effect = {	
+		FROM = { add_resource = { minerals = -800 } }
+		add_resource = { minerals = 1000 }
+		}
+	}
+	else_if = {
+		limit = { 
+			from = {
+				AND = {
+					has_resource = { type = minerals amount >= 2000 }
+					has_resource = { type = minerals amount < 5000 }
+				}
+			}
+		}	
+		hidden_effect = {	
+		FROM = { add_resource = { minerals = -1500 } }
+		add_resource = { minerals = 3000 } 
+		}
+	}
+	else_if = {
+		limit = { 
+			from = {
+				AND = {
+					has_resource = { type = minerals amount >= 5000 }
+					has_resource = { type = minerals amount < 10000 }
+				}
+			}
+		}	
+		hidden_effect = {	
+		FROM = { add_resource = { minerals = -4000 } }
+		add_resource = { minerals = 6000 } 
+		}
+	}
+	else_if = {
+		limit = { 
+			from = {
+				AND = {
+					has_resource = { type = minerals amount >= 10000 }
+					has_resource = { type = minerals amount < 20000 }
+				}
+			}
+		}	
+		hidden_effect = {
+		FROM = { add_resource = { minerals = -7000 } }		
+		add_resource = { minerals = 12000 } 
+		}
+	}
+	else_if = {
+		limit = { 
+			from = {
+				AND = {
+					has_resource = { type = minerals amount < 40000 }
+					has_resource = { type = minerals amount >= 20000 }
+				}
+			}
+		}	
+		hidden_effect = {
+		FROM = { add_resource = { minerals = -15000 } }	
+		add_resource = { minerals = 24000 }
+		} 
+	}
+	else_if = {
+		limit = { 
+			from = {
+				AND = {
+					has_resource = { type = minerals amount > 40000 }				
+				}
+			}
+		}	
+		hidden_effect = {	
+		FROM = { add_resource = { minerals = -30000 } }	
+		add_resource = { minerals = 40000 } 
+		}
+	}
+}
+
+#战争胜利-掠夺食物
+wg_steal_ev_food_resources_win= {
+	if = {
+		limit = { 
+			from = {
+				AND = {
+					has_resource = { type = food amount < 200 }
+				}
+			}
+		}	
+		hidden_effect = {
+		FROM = { add_resource = { food = -100 } }
+		add_resource = { food = 100 }
+		}
+	}
+	else_if = {
+		limit = { 
+			from = {
+				AND = {
+					has_resource = { type = food amount >= 200 }
+					has_resource = { type = food amount < 500 }
+				}
+			}
+		}	
+		hidden_effect = {	
+		FROM = { add_resource = { food = -200 } }
+		add_resource = { food = 300 }
+		}
+	}	
+	else_if = {
+		limit = { 
+			from = {
+				AND = {
+					has_resource = { type = food amount >= 500 }
+					has_resource = { type = food amount < 1000 }
+				}
+			}
+		}	
+		hidden_effect = {	
+		FROM = { add_resource = { food = -500 } }
+		add_resource = { food = 600 }
+		}
+	}
+	else_if = {
+		limit = { 
+			from = {
+				AND = {
+					has_resource = { type = food amount >= 1000 }
+					has_resource = { type = food amount < 2000 }
+				}
+			}
+		}	
+		hidden_effect = {	
+		FROM = { add_resource = { food = -800 } }
+		add_resource = { food = 1000 }
+		}
+	}
+	else_if = {
+		limit = { 
+			from = {
+				AND = {
+					has_resource = { type = food amount >= 2000 }
+					has_resource = { type = food amount < 5000 }
+				}
+			}
+		}	
+		hidden_effect = {	
+		FROM = { add_resource = { food = -1500 } }
+		add_resource = { food = 3000 }
+		} 
+	}
+	else_if = {
+		limit = { 
+			from = {
+				AND = {
+					has_resource = { type = food amount >= 5000 }
+					has_resource = { type = food amount < 10000 }
+				}
+			}
+		}	
+		hidden_effect = {	
+		FROM = { add_resource = { food = -4000 } }
+		add_resource = { food = 6000 } 
+		}
+	}
+	else_if = {
+		limit = { 
+			from = {
+				AND = {
+					has_resource = { type = food amount >= 10000 }
+					has_resource = { type = food amount < 20000 }
+				}
+			}
+		}	
+		hidden_effect = {
+		FROM = { add_resource = { food = -7000 } }		
+		add_resource = { food = 12000 } 
+		}
+	}
+	else_if = {
+		limit = { 
+			from = {
+				AND = {
+					has_resource = { type = food amount < 40000 }
+					has_resource = { type = food amount >= 20000 }
+				}
+			}
+		}	
+		hidden_effect = {
+		FROM = { add_resource = { food = -15000 } }	
+		add_resource = { food = 24000 }
+		} 
+	}
+	else_if = {
+		limit = { 
+			from = {
+				AND = {
+					has_resource = { type = food amount > 40000 }				
+				}
+			}
+		}	
+		hidden_effect = {	
+		FROM = { add_resource = { food = -30000 } }	
+		 add_resource = { food = 40000 } 
+		 }
+	}
+}
+
+
+#战争胜利-掠夺消费品
+
+wg_steal_ev_consumer_goods_resources_win= {
+	if = {
+		limit = { 
+			from = {
+				AND = {
+					has_resource = { type = consumer_goods amount < 200 }
+				}
+			}
+		}	
+		hidden_effect = {
+		FROM = { add_resource = { consumer_goods = -100 } }
+		add_resource = { consumer_goods = 100 }
+		}
+	}
+	else_if = {
+		limit = { 
+			from = {
+				AND = {
+					has_resource = { type = consumer_goods amount >= 200 }
+					has_resource = { type = consumer_goods amount < 500 }
+				}
+			}
+		}	
+		hidden_effect = {	
+		FROM = { add_resource = { consumer_goods = -200 } }
+		add_resource = { consumer_goods = 300 }
+		}
+	}	
+	else_if = {
+		limit = { 
+			from = {
+				AND = {
+					has_resource = { type = consumer_goods amount >= 500 }
+					has_resource = { type = consumer_goods amount < 1000 }
+				}
+			}
+		}	
+		hidden_effect = {	
+		FROM = { add_resource = { consumer_goods = -500 } }
+		add_resource = { consumer_goods = 600 }
+		}
+	}
+	else_if = {
+		limit = { 
+			from = {
+				AND = {
+					has_resource = { type = consumer_goods amount >= 1000 }
+					has_resource = { type = consumer_goods amount < 2000 }
+				}
+			}
+		}	
+		hidden_effect = {	
+		FROM = { add_resource = { consumer_goods = -800 } }
+		add_resource = { consumer_goods = 1000 }
+		}
+	}
+	else_if = {
+		limit = { 
+			from = {
+				AND = {
+					has_resource = { type = consumer_goods amount >= 2000 }
+					has_resource = { type = consumer_goods amount < 5000 }
+				}
+			}
+		}	
+		hidden_effect = {	
+		FROM = { add_resource = { consumer_goods = -1500 } }
+		add_resource = { consumer_goods = 3000 } 
+		}
+	}
+	else_if = {
+		limit = { 
+			from = {
+				AND = {
+					has_resource = { type = consumer_goods amount >= 5000 }
+					has_resource = { type = consumer_goods amount < 10000 }
+				}
+			}
+		}	
+		hidden_effect = {	
+		FROM = { add_resource = { consumer_goods = -4000 } }
+		add_resource = { consumer_goods = 6000 } 
+		}
+	}
+	else_if = {
+		limit = { 
+			from = {
+				AND = {
+					has_resource = { type = consumer_goods amount >= 10000 }
+					has_resource = { type = consumer_goods amount < 20000 }
+				}
+			}
+		}	
+		hidden_effect = {
+		FROM = { add_resource = { consumer_goods = -7000 } }		
+		add_resource = { consumer_goods = 12000 } 
+		}
+	}
+	else_if = {
+		limit = { 
+			from = {
+				AND = {
+					has_resource = { type = consumer_goods amount < 40000 }
+					has_resource = { type = consumer_goods amount >= 20000 }
+				}
+			}
+		}	
+		hidden_effect = {
+		FROM = { add_resource = { consumer_goods = -15000 } }	
+		add_resource = { consumer_goods = 24000 } 
+		}
+	}
+	else_if = {
+		limit = { 
+			from = {
+				AND = {
+					has_resource = { type = consumer_goods amount > 40000 }				
+				}
+			}
+		}	
+		hidden_effect = {	
+		FROM = { add_resource = { consumer_goods = -30000 } }	
+		 add_resource = { consumer_goods = 40000 } 
+		}
+	}
+}
+
+#战争胜利-掠夺合金
+
+wg_steal_ev_alloys_resources_win= {
+	if = {
+		limit = { 
+			from = {
+				AND = {
+					has_resource = { type = alloys amount < 200 }
+				}
+			}
+		}	
+		hidden_effect = {
+		FROM = { add_resource = { alloys = -100 } }
+		add_resource = { alloys = 100 }
+		}
+	}
+	else_if = {
+		limit = { 
+			from = {
+				AND = {
+					has_resource = { type = alloys amount >= 200 }
+					has_resource = { type = alloys amount < 500 }
+				}
+			}
+		}	
+		hidden_effect = {	
+		FROM = { add_resource = { alloys = -200 } }
+		add_resource = { alloys = 300 }
+		}
+	}	
+	else_if = {
+		limit = { 
+			from = {
+				AND = {
+					has_resource = { type = alloys amount >= 500 }
+					has_resource = { type = alloys amount < 1000 }
+				}
+			}
+		}	
+		hidden_effect = {	
+		FROM = { add_resource = { alloys = -500 } }
+		add_resource = { alloys = 600 }
+		}
+	}
+	else_if = {
+		limit = { 
+			from = {
+				AND = {
+					has_resource = { type = alloys amount >= 1000 }
+					has_resource = { type = alloys amount < 2000 }
+				}
+			}
+		}	
+		hidden_effect = {	
+		FROM = { add_resource = { alloys = -800 } }
+		add_resource = { alloys = 1000 }
+		}
+	}
+	else_if = {
+		limit = { 
+			from = {
+				AND = {
+					has_resource = { type = alloys amount >= 2000 }
+					has_resource = { type = alloys amount < 5000 }
+				}
+			}
+		}	
+		hidden_effect = {	
+		FROM = { add_resource = { alloys = -1500 } }
+		add_resource = { alloys = 3000 } 
+		}
+	}
+	else_if = {
+		limit = { 
+			from = {
+				AND = {
+					has_resource = { type = alloys amount >= 5000 }
+					has_resource = { type = alloys amount < 10000 }
+				}
+			}
+		}	
+		hidden_effect = {	
+		FROM = { add_resource = { alloys = -4000 } }
+		add_resource = { alloys = 6000 } 
+		}
+	}
+	else_if = {
+		limit = { 
+			from = {
+				AND = {
+					has_resource = { type = alloys amount >= 10000 }
+					has_resource = { type = alloys amount < 20000 }
+				}
+			}
+		}	
+		hidden_effect = {
+		FROM = { add_resource = { alloys = -7000 } }		
+		add_resource = { alloys = 12000 }
+		} 
+	}
+	else_if = {
+		limit = { 
+			from = {
+				AND = {
+					has_resource = { type = alloys amount < 40000 }
+					has_resource = { type = alloys amount >= 20000 }
+				}
+			}
+		}	
+		hidden_effect = {
+		FROM = { add_resource = { alloys = -15000 } }	
+		add_resource = { alloys = 24000 } 
+		}
+	}
+	else_if = {
+		limit = { 
+			from = {
+				AND = {
+					has_resource = { type = alloys amount > 40000 }				
+				}
+			}
+		}	
+		hidden_effect = {	
+		FROM = { add_resource = { alloys = -30000 } }	
+		 add_resource = { alloys = 40000 }
+	 }
+	}
+}
+
+
+#探测奖励
+give_survey_resource_ev = {
+	owner = {
+			add_monthly_resource_mult = {
+				resource = physics_research
+				value = 0.25
+				min = 0
+				max = 30
+			} 
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = 0.25
+				min = 0
+				max = 30
+			} 
+			add_monthly_resource_mult = {
+				resource = engineering_research
+				value = 1
+				min = 0
+				max = 30
+			} 
+		} 
+	random_list = {
+		20 = { 
+			owner = {
+				add_monthly_resource_mult = {
+					resource = energy
+					value = 0.25
+					min = 0
+					max = 25
+				} 
+			} 
+		}
+		
+		20 = { 
+			owner = {
+				add_monthly_resource_mult = {
+					resource = minerals
+					value = 0.25
+					min = 0
+					max = 25
+				} 
+			} 
+		}
+		20 = { 
+			owner = {
+				add_monthly_resource_mult = {
+					resource = food
+					value = 0.25
+					min = 0
+					max = 25
+				} 
+			} 
+		}
+		20 = { 
+			owner = {
+				add_monthly_resource_mult = {
+					resource = unity
+					value = 0.25
+					min = 0
+					max = 20
+				} 
+			} 
+		}
+		20 = { 
+			owner = {
+				add_monthly_resource_mult = {
+					resource = influence
+					value = 0.25
+					min = 0
+					max = 2
+				} 
+			} 
+		}
+	}
+}
+
+give_survey_resource_ev_2 = {
+	owner = {
+			add_monthly_resource_mult = {
+				resource = physics_research
+				value = 0.5
+				min = 0
+				max = 40
+			} 
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = 0.5
+				min = 0
+				max = 40
+			} 
+			add_monthly_resource_mult = {
+				resource = engineering_research
+				value = 0.5
+				min = 0
+				max = 40
+			} 
+		} 
+	random_list = {
+		20 = { 
+			owner = {
+				add_monthly_resource_mult = {
+					resource = energy
+					value = 0.5
+					min = 0
+					max = 50
+				} 
+			} 
+		}
+		
+		20 = { 
+			owner = {
+				add_monthly_resource_mult = {
+					resource = minerals
+					value = 0.5
+					min = 0
+					max = 50
+				} 
+			} 
+		}
+		20 = { 
+			owner = {
+				add_monthly_resource_mult = {
+					resource = food
+					value = 0.5
+					min = 0
+					max = 50
+				} 
+			} 
+		}
+		20 = { 
+			owner = {
+				add_monthly_resource_mult = {
+					resource = unity
+					value = 0.5
+					min = 0
+					max = 40
+				} 
+			} 
+		}
+		20 = { 
+			owner = {
+				add_monthly_resource_mult = {
+					resource = influence
+					value = 0.5
+					min = 0
+					max = 3
+				} 
+			} 
+		}
+	}
+}
+
+
+#仅用于测试，不做正式触发
+ev_luck_draw = {
+	change_variable = {
+		which = ev_maintenance_value
+		value = -1
+	}
+	#0.5%遗物
+	#49.5%普通资源
+	#10%高级资源
+	#2%暗物质/卓气
+	#38%啥都没有
+	random_list = {
+		#0.5%遗物
+		1 = {
+			modifier = {
+				factor = 0
+				has_country_flag = ev_has_r_ev_fleet_influence_mult
+			}	
+			add_relic = r_ev_fleet_influence_mult
+			set_country_flag = ev_has_r_ev_fleet_influence_mult
+		}
+		#2%暗物质/卓气
+		2 = {
+			add_resource = { sr_dark_matter = 50 }
+		}
+		2 = {
+			add_resource = { sr_zro = 50 }
+		}
+		#10%高级资源
+		5 = {
+			add_resource = { volatile_motes = 400 }
+		}
+		5 = {
+			add_resource = { exotic_gases = 400 }
+		}
+		5 = {
+			add_resource = { rare_crystals = 400 }
+		}
+		5 = {
+			add_resource = { volatile_motes = 400 }
+			add_resource = { exotic_gases = 400 }
+			add_resource = { rare_crystals = 400 }
+		}
+		#49.5%普通资源
+		#需要99权重
+		1 = {
+			add_resource = { 
+				energy = 1000
+				minerals = 1000
+				food = 1000
+				physics_research = 1000
+				society_research = 1000
+				engineering_research = 1000
+				unity = 1000
+				alloys = 1000
+				consumer_goods = 1000
+			}
+		}
+		#一共54权重
+		6 = { add_resource = { energy = 1000 } }
+		6 = { add_resource = { minerals = 1000 } }
+		6 = { add_resource = { food = 1000 } }
+		6 = { add_resource = { physics_research = 1000 } }
+		6 = { add_resource = { society_research = 1000 } }
+		6 = { add_resource = { engineering_research = 1000 } }
+		6 = { add_resource = { unity = 1000 } }
+		6 = { add_resource = { alloys = 1000 } }
+		6 = { add_resource = { consumer_goods = 1000 } }
+		
+		#一共15权重
+		5 = { 
+			add_resource = { 
+				consumer_goods = 1000 
+				alloys = 1000
+			} 
+		}
+		5 = { 
+			add_resource = { 
+				physics_research = 1000 
+				society_research = 1000
+				engineering_research = 1000
+			} 
+		}
+		5 = { 
+			add_resource = { 
+				energy = 1000
+				minerals = 100
+				food = 1000
+			} 
+		}
+		#29权重
+		4 = { add_resource = { energy = 2000 } }
+		4 = { add_resource = { minerals = 2000 } }
+		4 = { add_resource = { food = 2000 } }
+		4 = { add_resource = { alloys = 2000 } }
+		4 = { add_resource = { consumer_goods = 2000 } }
+		3 = { add_resource = { physics_research = 2000 } }
+		3 = { add_resource = { society_research = 2000 } }
+		3 = { add_resource = { engineering_research = 2000 } }
+		#38%啥都没有
+		76 = {}
+	}
+}
+#仅用于测试，不做正式触发
+ev_special_luck_draw = {
+	change_variable = {
+		which = ev_maintenance_value
+		value = -1
+	}
+	random_list = {
+		2 = {
+			modifier = {
+				factor = 0
+				has_country_flag = ev_has_r_ev_fleet_influence_mult
+			}	
+			add_relic = r_ev_fleet_influence_mult
+			set_country_flag = ev_has_r_ev_fleet_influence_mult
+		}
+		#2%暗物质/卓气
+		2 = {
+			add_resource = { sr_dark_matter = 50 }
+		}
+		2 = {
+			add_resource = { sr_zro = 50 }
+		}
+		#10%高级资源
+		5 = {
+			add_resource = { volatile_motes = 400 }
+		}
+		5 = {
+			add_resource = { exotic_gases = 400 }
+		}
+		5 = {
+			add_resource = { rare_crystals = 400 }
+		}
+		5 = {
+			add_resource = { volatile_motes = 400 }
+			add_resource = { exotic_gases = 400 }
+			add_resource = { rare_crystals = 400 }
+		}
+		#49.5%普通资源
+		#需要99权重
+		1 = {
+			add_resource = { 
+				energy = 1000
+				minerals = 1000
+				food = 1000
+				physics_research = 1000
+				society_research = 1000
+				engineering_research = 1000
+				unity = 1000
+				alloys = 1000
+				consumer_goods = 1000
+			}
+		}
+		#一共54权重
+		6 = { add_resource = { energy = 1000 } }
+		6 = { add_resource = { minerals = 1000 } }
+		6 = { add_resource = { food = 1000 } }
+		6 = { add_resource = { physics_research = 1000 } }
+		6 = { add_resource = { society_research = 1000 } }
+		6 = { add_resource = { engineering_research = 1000 } }
+		6 = { add_resource = { unity = 1000 } }
+		6 = { add_resource = { alloys = 1000 } }
+		6 = { add_resource = { consumer_goods = 1000 } }
+		
+		#一共15权重
+		5 = { 
+			add_resource = { 
+				consumer_goods = 1000 
+				alloys = 1000
+			} 
+		}
+		5 = { 
+			add_resource = { 
+				physics_research = 1000 
+				society_research = 1000
+				engineering_research = 1000
+			} 
+		}
+		5 = { 
+			add_resource = { 
+				energy = 1000
+				minerals = 1000
+				food = 1000
+			} 
+		}
+		#29权重
+		4 = { add_resource = { energy = 2000 } }
+		4 = { add_resource = { minerals = 2000 } }
+		4 = { add_resource = { food = 2000 } }
+		4 = { add_resource = { alloys = 2000 } }
+		4 = { add_resource = { consumer_goods = 2000 } }
+		3 = { add_resource = { physics_research = 2000 } }
+		3 = { add_resource = { society_research = 2000 } }
+		3 = { add_resource = { engineering_research = 2000 } }
+		
+		6 = { add_resource = { energy = 500 } }
+		6 = { add_resource = { minerals = 500 } }
+		6 = { add_resource = { food = 500 } }
+		6 = { add_resource = { physics_research = 500 } }
+		6 = { add_resource = { society_research = 500 } }
+		6 = { add_resource = { engineering_research = 500 } }
+		6 = { add_resource = { unity = 500 } }
+		6 = { add_resource = { alloys = 500 } }
+		6 = { add_resource = { consumer_goods = 500 } }
+	}
+}
+
+
+#真正触发的
+#ev_resource.100-200
+ev_luck_draw_event = {
+	change_variable = {
+		which = ev_maintenance_value
+		value = -1
+	}
+	#0.5%遗物
+	#49.5%普通资源
+	#10%高级资源
+	#2%暗物质/卓气
+	#38%啥都没有
+	random_list = {
+		#0.5%遗物
+		1 = {
+			modifier = {
+				factor = 0
+				has_country_flag = ev_has_r_ev_fleet_influence_mult
+			}	
+			modifier = {
+				factor = 1.5
+				has_ethic = ethic_spiritualist
+			}	
+			modifier = {
+				factor = 2
+				has_ethic = ethic_fanatic_spiritualist
+			}	
+			country_event = { id = ev_resource.100 }
+		}
+		#2%暗物质/卓气
+		2 = {
+			country_event = { id = ev_resource.101 }
+		}
+		
+		2 = {
+			country_event = { id = ev_resource.102 }
+		}
+		#10%高级资源
+		5 = {
+			country_event = { id = ev_resource.103 }
+		}
+		5 = {
+			country_event = { id = ev_resource.104 }
+		}
+		5 = {
+			country_event = { id = ev_resource.105 }
+		}
+		5 = {
+			country_event = { id = ev_resource.106 }
+		}
+		#49.5%普通资源
+		#需要99权重
+		1 = {
+			country_event = { id = ev_resource.107 }
+		}
+		#一共54权重
+		6 = { country_event = { id = ev_resource.108 } }
+		6 = { country_event = { id = ev_resource.109 } }
+		6 = { country_event = { id = ev_resource.110 } }
+		6 = { country_event = { id = ev_resource.111 } }
+		6 = { country_event = { id = ev_resource.112 } }
+		6 = { country_event = { id = ev_resource.113 } }
+		6 = { country_event = { id = ev_resource.114 } }
+		6 = { country_event = { id = ev_resource.115 } }
+		6 = { country_event = { id = ev_resource.116 } }
+		
+		#一共15权重
+		5 = { 
+			country_event = { id = ev_resource.117 }
+		}
+		5 = { 
+			country_event = { id = ev_resource.118 }
+		}
+		5 = { 
+			country_event = { id = ev_resource.119 }
+		}
+		#29权重
+		4 = { country_event = { id = ev_resource.120 } }
+		4 = { country_event = { id = ev_resource.121 } }
+		4 = { country_event = { id = ev_resource.122 } }
+		4 = { country_event = { id = ev_resource.123 } }
+		4 = { country_event = { id = ev_resource.124 } }
+		3 = { country_event = { id = ev_resource.125 } }
+		3 = { country_event = { id = ev_resource.126 } }
+		3 = { country_event = { id = ev_resource.127 } }
+		#30%啥都没有
+		60 = { country_event = { id = ev_resource.128 } }
+		#5%遗物
+		5 = { country_event = { id = ev_resource.129 } }
+		3 = { country_event = { id = ev_resource.130 } }
+		2 = { country_event = { id = ev_resource.131 } }
+		#3%加成
+		2 = { 
+			modifier = {
+				factor = 0
+				has_modifier = ev_has_maintenance_change_resources_add_01
+			}	
+			country_event = { id = ev_resource.132 } 
+		}
+		2 = { 
+			modifier = {
+				factor = 0
+				has_modifier = ev_has_maintenance_change_resources_add_02
+			}	
+			country_event = { id = ev_resource.133 }
+		}
+		2 = { 
+			modifier = {
+				factor = 0
+				has_modifier = ev_has_maintenance_change_resources_add_03
+			}	
+			country_event = { id = ev_resource.134 }
+		}
+	}
+}
+
+ev_special_luck_draw_event = {
+	change_variable = {
+		which = ev_maintenance_value
+		value = -1
+	}
+	#0.5%遗物
+	#49.5%普通资源
+	#10%高级资源
+	#2%暗物质/卓气
+	#38%啥都没有
+	random_list = {
+		#0.5%遗物
+		1 = {
+			modifier = {
+				factor = 0
+				has_country_flag = ev_has_r_ev_fleet_influence_mult
+			}	
+			modifier = {
+				factor = 2
+				has_ethic = ethic_spiritualist
+			}	
+			modifier = {
+				factor = 3
+				has_ethic = ethic_fanatic_spiritualist
+			}	
+			country_event = { id = ev_resource.100 }
+		}
+		#2%暗物质/卓气
+		2 = {
+			country_event = { id = ev_resource.101 }
+		}
+		2 = {
+			country_event = { id = ev_resource.102 }
+		}
+		#10%高级资源
+		5 = {
+			country_event = { id = ev_resource.103 }
+		}
+		5 = {
+			country_event = { id = ev_resource.104 }
+		}
+		5 = {
+			country_event = { id = ev_resource.105 }
+		}
+		5 = {
+			country_event = { id = ev_resource.106 }
+		}
+		#49.5%普通资源
+		#需要99权重
+		1 = {
+			country_event = { id = ev_resource.107 }
+		}
+		#一共54权重
+		6 = { country_event = { id = ev_resource.108 } }
+		6 = { country_event = { id = ev_resource.109 } }
+		6 = { country_event = { id = ev_resource.110 } }
+		6 = { country_event = { id = ev_resource.111 } }
+		6 = { country_event = { id = ev_resource.112 } }
+		6 = { country_event = { id = ev_resource.113 } }
+		6 = { country_event = { id = ev_resource.114 } }
+		6 = { country_event = { id = ev_resource.115 } }
+		6 = { country_event = { id = ev_resource.116 } }
+		
+		#一共15权重
+		5 = { 
+			country_event = { id = ev_resource.117 }
+		}
+		5 = { 
+			country_event = { id = ev_resource.118 }
+		}
+		5 = { 
+			country_event = { id = ev_resource.119 }
+		}
+		#29权重
+		4 = { country_event = { id = ev_resource.120 } }
+		4 = { country_event = { id = ev_resource.121 } }
+		4 = { country_event = { id = ev_resource.122 } }
+		4 = { country_event = { id = ev_resource.123 } }
+		4 = { country_event = { id = ev_resource.124 } }
+		3 = { country_event = { id = ev_resource.125 } }
+		3 = { country_event = { id = ev_resource.126 } }
+		3 = { country_event = { id = ev_resource.127 } }
+		
+		#5%遗物
+		5 = { country_event = { id = ev_resource.129 } }
+		3 = { country_event = { id = ev_resource.130 } }
+		2 = { country_event = { id = ev_resource.131 } }
+		#3%加成
+		#3%加成
+		2 = { 
+			modifier = {
+				factor = 0
+				has_modifier = ev_has_maintenance_change_resources_add_01
+			}	
+			country_event = { id = ev_resource.132 } 
+		}
+		2 = { 
+			modifier = {
+				factor = 0
+				has_modifier = ev_has_maintenance_change_resources_add_02
+			}	
+			country_event = { id = ev_resource.133 }
+		}
+		2 = { 
+			modifier = {
+				factor = 0
+				has_modifier = ev_has_maintenance_change_resources_add_03
+			}	
+			country_event = { id = ev_resource.134 }
+		}
+	}
+}

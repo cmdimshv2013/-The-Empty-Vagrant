@@ -1,0 +1,35 @@
+#	Example:
+#
+#	example_trigger = {
+#		is_country_type = default
+#		num_communications > 0
+#	}
+#
+#
+#	In a script file:
+#
+#	trigger = {
+#		example_trigger = yes
+#	}
+#
+
+can_be_ev_trade_fleet_trade = {
+ is_robot_pop = no
+}
+
+can_be_ev_investment_country = {
+	is_country_type = default 
+	is_hive_empire = no
+	is_machine_empire = no
+	num_owned_planets > 0
+	opinion = { who = root value > -99 } 
+	NOR = {
+		has_ethic = ethic_fanatic_xenophobe
+		has_civic = civic_fanatic_purifiers
+		has_civic = civic_hive_devouring_swarm
+		has_civic = civic_machine_terminator
+	}
+	has_communications = ROOT
+	NOT  = { has_country_flag = ev_received_an_investment }
+	is_ai = yes
+}

@@ -1,0 +1,472 @@
+############################
+#
+# Spread of communications
+#
+# Written by Martin Anward
+#
+############################
+
+namespace = ev_ancient_relics
+
+# Stage 1 - 
+fleet_event = {
+	id = ev_ancient_relics.1
+	title = "ev_ancient_relics.1.name"
+	desc = "ev_ancient_relics.1.desc"
+	picture = GFX_evt_ev_load_13_small
+	show_sound = event_drilling
+	
+	archaeology = yes
+
+	is_triggered_only = yes
+	
+	immediate = {
+		from = { set_site_progress_locked = yes }
+	}
+
+	after = { 
+		from = { set_site_progress_locked = no } 
+	}
+	
+	option = {
+		name = ev_ancient_relics.1.a
+		small_artifact_reward = yes
+	}
+}
+
+# Stage 2 - 
+fleet_event = {
+	id = ev_ancient_relics.2
+	title = "ev_ancient_relics.2.name"
+	desc = "ev_ancient_relics.2.desc"
+	picture = GFX_evt_ev_load_13_small
+	show_sound = event_drilling
+	
+	archaeology = yes
+
+	is_triggered_only = yes
+	
+	immediate = {
+		from = { set_site_progress_locked = yes }
+		owner = { set_country_flag = earth_laboratory_finding }
+	}
+
+	after = { 
+		from = { set_site_progress_locked = no } 
+	}
+	
+	option = {
+		name = ev_ancient_relics.2.a
+		small_artifact_reward = yes
+		owner = {
+			add_monthly_resource_mult = {
+				resource = engineering_research
+				value = 15
+				min = 50
+				max = 1000
+			}
+		}
+	}
+}
+
+# Stage 3 -
+fleet_event = {
+	id = ev_ancient_relics.3
+	title = "ev_ancient_relics.3.name"
+	desc = "ev_ancient_relics.3.desc"
+	picture = GFX_evt_ev_load_13_small
+	show_sound = event_drilling
+	
+	archaeology = yes
+
+	is_triggered_only = yes
+	
+	immediate = {
+		from = { set_site_progress_locked = yes }
+	}
+
+	after = { 
+		from = { set_site_progress_locked = no } 
+	}
+	
+	option = {
+		name = CURIOUS
+		medium_artifact_reward = yes
+		leader = { add_experience = 100 }
+	}
+}
+
+# Stage 4 - 
+fleet_event = {
+	id = ev_ancient_relics.4
+	title = "ev_ancient_relics.4.name"
+	desc = "ev_ancient_relics.4.desc"
+	picture = GFX_evt_ev_load_13_small
+	show_sound = event_drilling
+	
+	archaeology = yes
+
+	is_triggered_only = yes
+	
+	immediate = {
+		from = { set_site_progress_locked = yes }
+	}
+
+	after = { 
+		from = { set_site_progress_locked = no } 
+	}
+	
+	option = {
+		name = ev_ancient_relics.4.a
+		medium_artifact_reward = yes
+		owner = {
+			add_monthly_resource_mult = {
+				resource = engineering_research
+				value = 15
+				min = 500
+				max = 3000
+			}
+		}
+		leader = { add_experience = 200 }
+	}
+}
+
+
+
+# Stage 5 - 
+fleet_event = {
+	id = ev_ancient_relics.5
+	title = "ev_ancient_relics.5.name"
+	desc = "ev_ancient_relics.5.desc"
+	picture = GFX_evt_ev_load_13_small
+	show_sound = event_drilling
+	
+	archaeology = yes
+
+	is_triggered_only = yes
+	
+	immediate = {
+		from = { set_site_progress_locked = yes }
+	}
+
+	after = { 
+		from = { set_site_progress_locked = no } 
+	}
+	
+	option = {
+		name = ev_ancient_relics.5.a
+		medium_artifact_reward = yes
+		owner = {
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = 15
+				min = 500
+				max = 2000
+			}
+			add_monthly_resource_mult = {
+				resource = engineering_research
+				value = 15
+				min = 500
+				max = 2000
+			}
+		}
+		leader = { add_experience = 200 }
+	}
+}
+
+# Stage 6 - 
+
+fleet_event = {
+	id = ev_ancient_relics.6
+	title = "ev_ancient_relics.6.name"
+	desc = "ev_ancient_relics.6.desc"
+	picture = GFX_evt_ev_load_13_small
+	show_sound = event_drilling
+	
+	archaeology = yes
+
+	is_triggered_only = yes
+	
+	immediate = {
+		from = { set_site_progress_locked = yes }
+		hidden_effect = {
+			owner = { country_event = { id = ev_ancient_relics.100 } }
+		}
+	}
+
+	after = { 
+		from = { set_site_progress_locked = no } 
+	}
+	
+	option = {
+		name = ev_ancient_relics.6.a
+		medium_artifact_reward = yes
+		
+		leader = { add_experience = 400 }
+	}
+}
+
+
+### Archaeology: big homeless ship
+
+# Spawning Event (HIDDEN)
+event = {
+	id = ev_ancient_relics.10
+	hide_window = yes
+	
+	is_triggered_only = yes
+
+	trigger = {
+		mid_game_years_passed >= 30
+		NOT = { has_global_flag = big_homeless_spawned }
+	}
+
+	immediate = {
+		random_list = {
+			25 = {}
+			5 = {
+			set_global_flag = big_homeless_spawned
+				random_playable_country = {
+					limit = {
+						is_ai = no
+						#is_country_type = default_ev
+					}
+					country_event = { id = ev_ancient_relics.11 days = 1 random = 350 }
+				}
+			}
+		}
+	}
+}
+  
+# Spawning Event
+country_event = {
+	id = ev_ancient_relics.11
+	title = "ev_ancient_relics.11.name"
+	desc = "ev_ancient_relics.11.desc"
+	picture = GFX_evt_cargoship_caravan
+	show_sound = event_power_down
+	location = event_target:ev_tomb_planet
+	is_triggered_only = yes
+	
+	immediate = {
+		random_planet_within_border = {
+			limit = {
+				OR = {
+					is_planet_class = pc_molten
+					is_planet_class = pc_barren
+					is_planet_class = pc_barren_cold
+					is_planet_class = pc_frozen
+				}
+				NOT = { exists = archaeological_site }
+			}
+			save_global_event_target_as = ev_tomb_planet
+		}
+	}
+
+	option = {
+		name = ev_ancient_relics.11.a
+		event_target:ev_tomb_planet = {
+			create_archaeological_site = site_ruins_of_big_homeless_ship
+		}
+	}
+}
+
+
+#test for spwan
+
+country_event = {
+	id = ev_ancient_relics.100
+	title = "ev_ancient_relics.100.name"
+	desc = "ev_ancient_relics.100.desc"
+	picture = GFX_evt_star_chart
+	show_sound = event_alien_signal
+	is_triggered_only = yes
+	
+	trigger = {
+		OR = {
+			is_country_type = default_ev
+		}
+	}
+	
+	immediate = {
+		create_fleet = {
+			name = "NAME_ev_xing_cha" 
+			effect = {
+				set_owner = root
+					while = {
+						count = 1 is best
+						create_ship = {
+							name = "NAME_ev_xing_cha"
+							design = "NAME_event_homeless_ship"
+						}	
+						while = {
+							count = 2
+							add_modifier = { modifier = empty_vagrant_homeless_ship_ai_3 days = -1	}
+						}
+					}	
+				
+				set_location = event_target:ev_tomb_planet
+			}		
+		}
+		create_species = {
+			class = "HUM"					
+			traits = {
+				trait = "trait_agrarian"
+				trait = "trait_adaptive"	
+				trait = "trait_wasteful"						
+			}
+		}
+		create_country = {
+			authority = random
+			day_zero_contact = no
+			civics = random
+			species = last_created
+			ethos = random
+			flag = random	
+		}
+					
+		last_created_country = {
+			save_event_target_as = hate_homeless_ship
+			set_country_type = pirate
+			set_country_flag = is_ev_ship_ancient_country
+		}
+		event_target:hate_homeless_ship = {
+			set_faction_hostility = { set_hostile = yes }
+		}
+		create_fleet = {
+			effect = {
+				set_owner = last_created_country
+					while = {
+						count = 12 #is best
+						create_ship = {
+							name = "Ground_Doctrine"
+							design = "NAME_hate_homeless_ship_1"
+						}	
+						create_ship = {
+							name = "Ground_Doctrine"
+							design = "NAME_hate_homeless_ship_2"
+						}
+					}	
+				#set_location = event_target:sol_planet_jupiter
+				set_location = {
+					target = event_target:ev_tomb_planet
+					distance = 260
+					angle = random
+				}
+				set_fleet_stance = aggressive
+				set_aggro_range = 450	
+			}		
+		}
+		while = {
+			count = 4
+			create_fleet = {
+				effect = {
+					set_owner = last_created_country
+						while = {
+							count = 6 #is best
+							create_ship = {
+								name = "Ground_Doctrine"
+								design = "NAME_hate_homeless_ship_1"
+							}	
+							create_ship = {
+								name = "Ground_Doctrine"
+								design = "NAME_hate_homeless_ship_2"
+							}
+						}	
+					#set_location = event_target:sol_planet_jupiter
+					set_location = {
+						target = event_target:ev_tomb_planet
+						distance = 350
+						angle = random
+					}
+					set_fleet_stance = aggressive
+					set_aggro_range = 500	
+				}
+			}		
+		}
+	}
+
+	mean_time_to_happen = {
+				
+	}
+
+	option = {
+		name = ev_ancient_relics.100.a
+	}
+}
+
+# Pirate station spawns on disabled starbase (HIDDEN)
+ship_event = {
+	id = ev_ancient_relics.110
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		is_ship_class = shipclass_starbase
+		from = {
+			owner = { 
+				is_country_type = pirate 
+				has_country_flag = is_ev_ship_ancient_country
+			}
+			
+		}
+		solar_system = {
+			NOT = { 
+				any_ship_in_system = { is_ship_size = pirate_station }
+			}
+		}
+	}
+
+	immediate = {
+		solar_system = {
+			random_system_planet = { save_event_target_as = pirate_base_location }
+		}
+		while = {
+			count = 2
+			create_fleet = {
+				name = "NAME_Pirate_Station"
+				effect = {
+					set_owner = from.owner
+					create_ship = {
+						name = random
+						design = "NAME_Pirate_Nest_2"
+						graphical_culture = "pirate_01"
+					}
+					set_location = {
+						target = event_target:pirate_base_location
+						distance = 50
+						angle = random
+					}
+					
+				}
+			}
+		}
+		
+		while = {
+			count = 4
+			create_fleet = {
+				name = "NAME_Pirate_Station"
+				effect = {
+					set_owner = from.owner
+					create_ship = {
+						name = random
+						design = "NAME_Pirate_Nest"
+						graphical_culture = "pirate_01"
+					}
+					set_location = {
+						target = event_target:pirate_base_location
+						distance = 80
+						angle = random
+					}
+				}
+			}
+		}
+		
+	}
+}
+
+
+
+
+

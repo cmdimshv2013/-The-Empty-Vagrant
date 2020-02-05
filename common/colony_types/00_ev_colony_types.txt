@@ -1,0 +1,25 @@
+#root = planet
+
+
+# Capital Planet
+col_ev_capital = {
+	icon = 10
+
+	potential = {
+		is_capital = yes
+		#is_planet_class = pc_habitat
+		has_planet_flag = flag_ev_capital_scope_habitat
+		exists = owner
+		owner = { is_country_type = default_ev }
+	}
+	
+	planet_modifier = {
+		planet_stability_add = 10
+		planet_amenities_add = 20
+		pop_government_ethic_attraction = 1
+	}
+
+	weight_modifier = {
+		base = 50000
+	}
+}

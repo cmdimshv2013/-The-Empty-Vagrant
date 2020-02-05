@@ -1,0 +1,244 @@
+### 
+# FROM is the actor ie the initiator of the diplomatic action
+# ROOT is the recipient of the diplomatic action
+
+greetings = {
+	
+	# Ì«Ðé¶éÂä
+	#ÇáÊÓ-(Patronizing Attitude)
+	#·Ç¸ñÊ½Ëþ
+	EV_FALLEN_EMPIRE_PATRONIZING_GREETING_01 = {
+		trigger = {
+			is_country_type = fallen_empire_ev
+			NOT = { is_at_war_with = FROM }
+		}
+	}
+	
+	EV_FALLEN_EMPIRE_PATRONIZING_GREETING_02 = {
+		trigger = {
+			OR = {
+				is_country_type = fallen_empire_ev
+				is_country_type = awakened_fallen_empire_ev
+			}
+			NOR = { 
+				is_belligerent_to = FROM 
+				is_angry_to = FROM
+			}
+			NOT = { is_at_war_with = FROM }
+		}
+	}
+	
+	EV_FALLEN_EMPIRE_PATRONIZING_GREETING_03 = {
+		trigger = {
+			OR = {
+				is_country_type = fallen_empire_ev
+				is_country_type = awakened_fallen_empire_ev
+			}
+			NOR = { 
+				is_belligerent_to = FROM 
+				is_angry_to = FROM
+			}
+			NOT = { is_at_war_with = FROM }
+		}
+	}
+	
+	EV_FALLEN_EMPIRE_PATRONIZING_GREETING_04 = {		
+		trigger = {
+			is_country_type = fallen_empire_ev
+			NOT = { is_at_war_with = FROM }
+		}
+	}
+	
+	EV_FALLEN_EMPIRE_PATRONIZING_GREETING_05 = {
+		trigger = {
+			OR = {
+				is_country_type = fallen_empire_ev
+				is_country_type = awakened_fallen_empire_ev
+			}
+			NOR = { 
+				is_belligerent_to = FROM 
+				is_angry_to = FROM
+			}
+			NOT = { is_at_war_with = FROM }
+		}
+	}
+	
+	EV_FALLEN_EMPIRE_PATRONIZING_GREETING_06 = {
+		trigger = {
+			has_global_flag = ev_leviathans_arrives
+			OR = {
+				is_country_type = fallen_empire_ev
+				is_country_type = awakened_fallen_empire_ev
+			}
+			NOR = { 
+				is_belligerent_to = FROM 
+				is_angry_to = FROM
+			}
+			NOT = { is_at_war_with = FROM }
+		}
+	}
+	
+	EV_FALLEN_EMPIRE_PATRONIZING_GREETING_07 = {
+		trigger = {
+			has_global_flag = ev_leviathans_arrives
+			OR = {
+				is_country_type = fallen_empire_ev
+				is_country_type = awakened_fallen_empire_ev
+			}
+			NOR = { 
+				is_belligerent_to = FROM 
+				is_angry_to = FROM
+			}
+			NOT = { is_at_war_with = FROM }
+		}
+	}
+	
+	EV_FALLEN_EMPIRE_PATRONIZING_GREETING_08 = {
+		trigger = {
+			has_global_flag = ev_leviathans_arrives
+			OR = {
+				is_country_type = fallen_empire_ev
+				is_country_type = awakened_fallen_empire_ev
+			}
+			NOR = { 
+				is_belligerent_to = FROM 
+				is_angry_to = FROM
+			}
+			NOT = { is_at_war_with = FROM }
+		}
+	}
+	
+	# Ì«Ðé¶éÂä£¬·ßÅ­
+	EV_FALLEN_EMPIRE_ANGRY_GREETING_01 = {
+		trigger = {
+			OR = {
+				is_country_type = fallen_empire_ev
+				is_country_type = awakened_fallen_empire_ev
+			}
+			NOT = { is_at_war_with = FROM }
+			is_angry_to = FROM
+			FROM = { NOT = { has_authority = auth_machine_intelligence } }
+		}
+	}
+	
+	EV_FALLEN_EMPIRE_ANGRY_GREETING_02 = {
+		trigger = {
+			OR = {
+				is_country_type = fallen_empire_ev
+				is_country_type = awakened_fallen_empire_ev
+			}
+			NOT = { is_at_war_with = FROM }
+			is_angry_to = FROM
+			FROM = { NOT = { has_authority = auth_machine_intelligence } }
+		}
+	}
+	
+	EV_FALLEN_EMPIRE_ANGRY_GREETING_03 = {
+		trigger = {
+			OR = {
+				is_country_type = fallen_empire_ev
+				is_country_type = awakened_fallen_empire_ev
+			}
+			NOT = { is_at_war_with = FROM }
+			is_angry_to = FROM
+			FROM = { NOT = { has_authority = auth_machine_intelligence } }
+		}
+	}
+	#Ì«Ðé-Õ½Õù
+	EV_FALLEN_EMPIRE_DISMISSIVE_WAR_GREETING_01 = {
+		trigger = {
+			OR = {
+				is_country_type = fallen_empire_ev
+				is_country_type = awakened_fallen_empire_ev
+			}
+			is_at_war_with = FROM
+			#is_dismissive_to = FROM
+			FROM = { NOT = { has_authority = auth_machine_intelligence } }
+		}
+	}
+	
+	EV_FALLEN_EMPIRE_DISMISSIVE_WAR_GREETING_02 = {
+		trigger = {
+			OR = {
+				is_country_type = fallen_empire_ev
+				is_country_type = awakened_fallen_empire_ev
+			}
+			is_at_war_with = FROM
+			#is_dismissive_to = FROM
+			FROM = { NOT = { has_authority = auth_machine_intelligence } }
+		}
+	}
+	
+	EV_FALLEN_EMPIRE_DISMISSIVE_WAR_GREETING_03 = {
+		trigger = {
+			OR = {
+				is_country_type = fallen_empire_ev
+				is_country_type = awakened_fallen_empire_ev
+			}
+			is_at_war_with = FROM
+			#is_dismissive_to = FROM
+			FROM = { NOT = { has_authority = auth_machine_intelligence } }
+		}
+	}
+	
+	#¾õÐÑÌ«Ðé-Õ½Õù
+	EV_AWAKENED_EMPIRE_WAR_GREETING_01 = {
+		trigger = {
+			is_country_type = awakened_fallen_empire_ev
+			is_fallen_machine_empire = no
+			is_at_war_with = FROM
+		}
+	}
+	EV_AWAKENED_EMPIRE_WAR_GREETING_02 = {
+		trigger = {
+			is_country_type = awakened_fallen_empire_ev
+			is_fallen_machine_empire = no
+			is_at_war_with = FROM
+		}
+	}
+	
+	EV_AWAKENED_EMPIRE_PATRONIZING_GREETING_01 = {
+		trigger = {
+			is_country_type = awakened_fallen_empire_ev
+			NOT = { is_at_war_with = FROM }
+			is_dismissive_to = FROM
+		}
+	}
+	
+	EV_AWAKENED_EMPIRE_PATRONIZING_GREETING_02 = {
+		trigger = {
+			has_global_flag = ev_leviathans_arrives
+			is_country_type = awakened_fallen_empire_ev
+			NOT = { is_at_war_with = FROM }
+			is_dismissive_to = FROM
+		}
+	}
+	
+	
+	EV_AWAKENED_BELLIGERENT_GREETING_01 = {
+		trigger = {
+			is_country_type = awakened_fallen_empire_ev
+			NOT = { is_at_war_with = FROM }
+			is_belligerent_to = FROM
+		}
+	}
+	
+	EV_AWAKENED_BELLIGERENT_GREETING_02 = {
+		trigger = {
+			is_country_type = awakened_fallen_empire_ev
+			NOT = { is_at_war_with = FROM }
+			is_belligerent_to = FROM
+		}
+	}
+	
+	EV_AWAKENED_BELLIGERENT_GREETING_03 = {
+		trigger = {
+			is_country_type = awakened_fallen_empire_ev
+			NOT = { is_at_war_with = FROM }
+			is_belligerent_to = FROM
+		}
+	}
+
+
+
+}

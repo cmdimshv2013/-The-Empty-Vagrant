@@ -15,15 +15,21 @@ ship_event = {
 	}
 
 	immediate = {	
-		give_survey_resource_ev = yes
+		while = {
+			count = base_survey_resource_ev
+			give_survey_resource_ev = yes
+		}
 		if = {
 			limit = { 
 				owner = {
 					has_ascension_perk = ev_exploring_unknown
 				}
 			} 
-			give_survey_resource_ev = yes
-			give_survey_resource_ev = yes
+			while = {
+				count = base_survey_resource_ev
+				give_survey_resource_ev = yes
+				give_survey_resource_ev = yes
+			}
 		}
 	}
 }
@@ -42,15 +48,21 @@ ship_event = {
 	}
 
 	immediate = {
-		give_survey_resource_ev_2 = yes
+		while = {
+			count = base_survey_resource_ev
+			give_survey_resource_ev_2 = yes
+		}
 		if = {
 			limit = { 
 				owner = {
 					has_ascension_perk = ev_exploring_unknown
 				}
 			} 
-			give_survey_resource_ev_2 = yes
-			give_survey_resource_ev_2 = yes
+			while = {
+				count = base_survey_resource_ev
+				give_survey_resource_ev_2 = yes
+				give_survey_resource_ev_2 = yes
+			}
 		}
 	}	
 }

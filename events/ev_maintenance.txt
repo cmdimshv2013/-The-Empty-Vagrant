@@ -49,7 +49,33 @@ event = {
 		
 		#维持度检测
 		every_country = {
+			#根据附庸给加成
+			if = {
+				limit = {
+					has_origin = origin_ev_subjects_owner
+					NOT = { has_ascension_perk = ev_land_planets }
+					NOT = { has_ascension_perk = ev_become_da_khan }
+				}
+				set_variable = {
+					which = ev_subject_num
+					value = 0
+				}
+				every_subject = {
+					prev = { 
+						change_variable = {
+							which = ev_subject_num
+							value = 1
+						} 
+					}
+				}
+				ev_give_subject_owner_buff = yes
+			}
 			
+			
+
+			#补给船的buff
+			ev_give_fleet_ship_buff = yes
+
 			remove_ev_maintenance_buff = yes
 			if = {
 				limit = {
@@ -194,6 +220,7 @@ event = {
 			limit = { 
 				is_country_type = default_ev 
 				NOT = { is_country_type = fallen_empire_ev }
+				is_ai = no
 			}
 			if = {
 				limit = { 
@@ -201,6 +228,26 @@ event = {
 						has_authority = auth_machine_intelligence
 						has_authority = auth_hive_mind
 					}
+				}
+				#舰船维护事件
+				random_list = {
+					1 = { 
+						modifier = {
+							factor = 2
+							mid_game_years_passed > 10
+						}
+						modifier = {
+							factor = 2
+							end_game_years_passed > 10
+						}
+						random_owned_ship = {
+							limit = {
+								is_ship_size = homeless_ship
+							}
+							ship_event = { id = ev_maintenance.150 days = 1 random = 355 }
+						}
+					}
+					6 = {}
 				}
 				if = {
 					limit = { 
@@ -221,6 +268,29 @@ event = {
 						1 = { country_event = { id = ev_maintenance.102 days = 1 random = 340 } }
 						1 = { country_event = { id = ev_maintenance.103 days = 1 random = 340 } }
 						4 = {}
+					}
+					if = {
+						limit = {
+							years_passed > 60
+						}
+						random_list = {
+							2 = { country_event = { id = ev_maintenance.100 days = 1 random = 340 } }
+							1 = { country_event = { id = ev_maintenance.101 days = 1 random = 340 } }
+							1 = { country_event = { id = ev_maintenance.102 days = 1 random = 340 } }
+							1 = { country_event = { id = ev_maintenance.103 days = 1 random = 340 } }
+							4 = {}
+						}
+					}
+					if = {
+						limit = {
+							end_game_years_passed > 0
+						}
+						random_list = {
+							2 = { country_event = { id = ev_maintenance.100 days = 1 random = 340 } }
+							1 = { country_event = { id = ev_maintenance.101 days = 1 random = 340 } }
+							1 = { country_event = { id = ev_maintenance.102 days = 1 random = 340 } }
+							1 = { country_event = { id = ev_maintenance.103 days = 1 random = 340 } }
+						}
 					}
 				}
 				else_if = {
@@ -243,6 +313,29 @@ event = {
 						2 = { country_event = { id = ev_maintenance.113 days = 1 random = 340 } }
 						8 = {}
 					}
+					if = {
+						limit = {
+							years_passed > 60
+						}
+						random_list = {
+							2 = { country_event = { id = ev_maintenance.110 days = 1 random = 340 } }
+							2 = { country_event = { id = ev_maintenance.111 days = 1 random = 340 } }
+							2 = { country_event = { id = ev_maintenance.112 days = 1 random = 340 } }
+							2 = { country_event = { id = ev_maintenance.113 days = 1 random = 340 } }
+							8 = {}
+						}
+					}
+					if = {
+						limit = {
+							end_game_years_passed > 0
+						}
+						random_list = {
+							2 = { country_event = { id = ev_maintenance.100 days = 1 random = 340 } }
+							1 = { country_event = { id = ev_maintenance.101 days = 1 random = 340 } }
+							1 = { country_event = { id = ev_maintenance.102 days = 1 random = 340 } }
+							1 = { country_event = { id = ev_maintenance.103 days = 1 random = 340 } }
+						}
+					}
 				}			
 				else_if = {
 					limit = {
@@ -260,14 +353,53 @@ event = {
 						2 = { country_event = { id = ev_maintenance.123 days = 1 random = 340 } }
 						10 = {}
 					}
+					if = {
+						limit = {
+							years_passed > 60
+						}
+						random_list = {
+							2 = { country_event = { id = ev_maintenance.120 days = 1 random = 340 } }
+							3 = { country_event = { id = ev_maintenance.121 days = 1 random = 340 } }
+							4 = { country_event = { id = ev_maintenance.122 days = 1 random = 340 } }
+							2 = { country_event = { id = ev_maintenance.123 days = 1 random = 340 } }
+							10 = {}
+						}
+					}
+					if = {
+						limit = {
+							end_game_years_passed > 0
+						}
+						random_list = {
+							2 = { country_event = { id = ev_maintenance.100 days = 1 random = 340 } }
+							1 = { country_event = { id = ev_maintenance.101 days = 1 random = 340 } }
+							1 = { country_event = { id = ev_maintenance.102 days = 1 random = 340 } }
+							1 = { country_event = { id = ev_maintenance.103 days = 1 random = 340 } }
+						}
+					}
 				}
 				else = {
 					random_list = {
 						1 = { country_event = { id = ev_maintenance.123 days = 1 random = 340 } }
 						3 = {}
 					}
+					if = {
+						limit = {
+							end_game_years_passed > 0
+						}
+						while = {
+							count = 1
+							random_list = {
+								2 = { country_event = { id = ev_maintenance.120 days = 1 random = 340 } }
+								1 = { country_event = { id = ev_maintenance.121 days = 1 random = 340 } }
+								1 = { country_event = { id = ev_maintenance.122 days = 1 random = 340 } }
+								1 = { country_event = { id = ev_maintenance.123 days = 1 random = 340 } }
+							}
+						}
+						
+					}
 				}
 			}
+			
 		}
 	}		
 }
@@ -311,18 +443,65 @@ country_event = {
 		allow = { 
 			resource_stockpile_compare = {
 				resource = energy
-				value >= 5500
+				value >= 5000
+			}
+			resource_stockpile_compare = {
+				resource = alloys
+				value >= 1000
 			}
 		}
-	 owner = { add_resource = { energy = -5500 } }
+		owner = { add_resource = { energy = -5000  alloys = -1000 } }
+
+		add_monthly_resource_mult = {
+			resource = energy
+			max = -1000
+			value = -6
+		}
+		locked_random_list = {
+			1 = {
+				add_monthly_resource_mult = {
+					resource = energy
+					max = -800
+					value = -7
+				}
+			}
+			1 = {
+				add_monthly_resource_mult = {
+					resource = alloys
+					max = -500
+					value = -7
+				}
+			}
+			1 = {
+				add_monthly_resource_mult = {
+					resource = minerals
+					max = -800
+					value = -7
+				}
+			}
+		}
 	}
 	option = {
 		name = ev_maintenance.100.b
-	  owner = {
-	    change_variable = {
+		owner = {
+			change_variable = {
 				which = ev_maintenance_value
 				value = -4
 			}
+		}
+	}
+	option = {
+		name = ev_maintenance.100.c
+		trigger = {
+			has_civic = civic_ev_police_ship
+		}
+		ai_chance = {
+			factor = 10
+		}
+		add_monthly_resource_mult = {
+			resource = energy
+			max = -100
+			value = -1
 		}
 	}
 }
@@ -343,27 +522,62 @@ country_event = {
 	is_triggered_only = yes
 	option = {
 		name = ev_maintenance.101.a
-	  allow = { 
+		allow = { 
 			resource_stockpile_compare = {
 				resource = influence
 				value >= 200
 			}
 		}
-	  add_resource = { influence = -200 }
+		add_resource = { influence = -200 }
+		add_monthly_resource_mult = {
+			resource = energy
+			value = -10
+		}
+		locked_random_list = {
+			1 = {
+				add_monthly_resource_mult = {
+					resource = energy
+					max = -800
+					value = -7
+				}
+			}
+			1 = {
+				add_monthly_resource_mult = {
+					resource = alloys
+					max = -500
+					value = -7
+				}
+			}
+			1 = {
+				add_monthly_resource_mult = {
+					resource = minerals
+					max = -800
+					value = -7
+				}
+			}
+		}
 		change_variable = {
 			which = ev_maintenance_value
-			value = 3
+			value = 2
 		}
 	}
 	option = {
 		name = ev_maintenance.101.b
-	  allow = { 
+		allow = { 
 			resource_stockpile_compare = {
 				resource = influence
-				value >= 80
+				value >= 70
 			}
 		}
-	  add_resource = { influence = -80 }
+		add_resource = { influence = -70 }
+		add_monthly_resource_mult = {
+			resource = energy
+			value = -5
+		}
+		add_monthly_resource_mult = {
+			resource = alloys
+			value = -4
+		}
 		change_variable = {
 			which = ev_maintenance_value
 			value = 0.5
@@ -371,11 +585,23 @@ country_event = {
 	}
 	option = {
 		name = ev_maintenance.101.c
-	  owner = {
+		owner = {
 			change_variable = {
 				which = ev_maintenance_value
 				value = -4
 			}
+		}
+	}
+	option = {
+		name = ev_maintenance.101.d
+		trigger = {
+			has_civic = civic_ev_police_ship
+		}
+		add_resource = { influence = -10 } 
+		add_monthly_resource_mult = {
+			resource = energy
+			max = -100
+			value = -1
 		}
 	}
 }
@@ -403,9 +629,33 @@ country_event = {
 				value >= 4000
 			}
 		}
-	 owner = { add_resource = { energy = -4000 } }
-	 owner = {
-	    change_variable = {
+		owner = { add_resource = { energy = -4000 } }
+		locked_random_list = {
+			1 = {
+				add_monthly_resource_mult = {
+					resource = energy
+					max = -800
+					value = -7
+				}
+			}
+			1 = {
+				add_monthly_resource_mult = {
+					resource = alloys
+					max = -500
+					value = -7
+				}
+			}
+			1 = {
+				add_monthly_resource_mult = {
+					resource = minerals
+					max = -800
+					value = -7
+				}
+			}
+		}
+		
+		owner = {
+			change_variable = {
 				which = ev_maintenance_value
 				value = 2.5
 			}
@@ -413,15 +663,15 @@ country_event = {
 	}
 	option = {
 		name = ev_maintenance.112.b
-	  allow = { 
+		allow = { 
 			resource_stockpile_compare = {
 				resource = influence
-				value >= 150
+				value >= 80
 			}
 		}
-	 owner = { add_resource = { influence = -150 } }
-	 owner = {
-	    change_variable = {
+		owner = { add_resource = { influence = -80 } }
+		owner = {
+			change_variable = {
 				which = ev_maintenance_value
 				value = 1
 			}
@@ -430,10 +680,25 @@ country_event = {
 	option = {
 		name = ev_maintenance.112.c
 		owner = {
-	    change_variable = {
+			change_variable = {
 				which = ev_maintenance_value
 				value = -4
 			}
+		}
+	}
+	option = {
+		name = ev_maintenance.112.d
+		trigger = {
+			has_civic = civic_ev_police_ship
+		}
+		ai_chance = {
+			factor = 10
+		}
+		add_resource = { influence = -10 } 
+		add_monthly_resource_mult = {
+			resource = energy
+			max = -200
+			value = -1
 		}
 	}
 }
@@ -465,12 +730,27 @@ country_event = {
 					has_authority = auth_hive_mind
 				}
 			}
-			owner = { add_resource = { energy = -100 } }
+			owner = { add_resource = { energy = -500 } }
 		}
 		else = {
-			owner = { add_resource = { manpower = -20 } }
+			owner = { add_resource = { manpower = -50 } }
 		}
-		
+		locked_random_list = {
+			1 = {
+				add_monthly_resource_mult = {
+					resource = energy
+					max = -200
+					value = -4
+				}
+			}
+			1 = {
+				add_monthly_resource_mult = {
+					resource = food
+					max = -800
+					value = -4
+				}
+			}
+		}
 		owner = {
 			change_variable = {
 				which = ev_maintenance_value
@@ -483,7 +763,7 @@ country_event = {
 		allow = { 
 			resource_stockpile_compare = {
 				resource = energy
-				value >= 1250
+				value >= 1400
 			}
 		}
 		if = {
@@ -493,18 +773,49 @@ country_event = {
 					has_authority = auth_hive_mind
 				}
 			}
-			owner = { add_resource = { energy = -100 } }
+			owner = { add_resource = { energy = -500 } }
 		}
 		else = {
-			owner = { add_resource = { manpower = -20 } }
+			owner = { add_resource = { manpower = -50 } }
 		}
-		owner = { add_resource = { energy = -500 } }
+		add_monthly_resource_mult = {
+			resource = energy
+			max = -500
+			value = -6
+		}
+		locked_random_list = {
+			1 = {
+				add_monthly_resource_mult = {
+					resource = energy
+					max = -200
+					value = -7
+				}
+			}
+			1 = {
+				add_monthly_resource_mult = {
+					resource = food
+					max = -800
+					value = -7
+				}
+			}
+		}
+		owner = { add_resource = { energy = -1400 } }
 		owner = {
 			change_variable = {
 				which = ev_maintenance_value
 				value = -1
 			}
 		}
+	}
+	option = {
+		name = ev_maintenance.103.c
+		trigger = {
+			has_civic = civic_ev_police_ship
+		}
+		ai_chance = {
+			factor = 10
+		}
+		add_resource = { influence = -10 } 
 	}
 }
 
@@ -532,15 +843,57 @@ country_event = {
 				value >= 1250
 			}
 		}
-	 owner = { add_resource = { energy = -1250 } }
+		owner = { add_resource = { energy = -1250 } }
+		add_monthly_resource_mult = {
+			resource = energy
+			max = -500
+			value = -5
+		}
+		locked_random_list = {
+			1 = {
+				add_monthly_resource_mult = {
+					resource = energy
+					max = -800
+					value = -4
+				}
+			}
+			1 = {
+				add_monthly_resource_mult = {
+					resource = alloys
+					max = -500
+					value = -4
+				}
+			}
+			1 = {
+				add_monthly_resource_mult = {
+					resource = minerals
+					max = -800
+					value = -4
+				}
+			}
+		}
 	}
 	option = {
 		name = ev_maintenance.110.b
-	  owner = {
-	    change_variable = {
+		owner = {
+			change_variable = {
 				which = ev_maintenance_value
-				value = -3
+				value = -2
 			}
+		}
+	}
+	option = {
+		name = ev_maintenance.110.c
+		trigger = {
+			has_civic = civic_ev_police_ship
+		}
+		ai_chance = {
+			factor = 10
+		}
+		add_monthly_resource_mult = {
+			resource = energy
+			max = -100
+			value = -1
 		}
 	}
 }
@@ -564,10 +917,10 @@ country_event = {
 	  allow = { 
 			resource_stockpile_compare = {
 				resource = influence
-				value >= 120
+				value >= 80
 			}
 		}
-	  add_resource = { influence = -120 }
+		add_resource = { influence = -80 }
 		change_variable = {
 			which = ev_maintenance_value
 			value = 3
@@ -592,8 +945,23 @@ country_event = {
 	  owner = {
 			change_variable = {
 				which = ev_maintenance_value
-				value = -3
+				value = -2
 			}
+		}
+	}
+	option = {
+		name = ev_maintenance.101.d
+		trigger = {
+			has_civic = civic_ev_police_ship
+		}
+		ai_chance = {
+			factor = 10
+		}
+		add_resource = { influence = -10 } 
+		add_monthly_resource_mult = {
+			resource = energy
+			max = -100
+			value = -1
 		}
 	}
 }
@@ -621,9 +989,37 @@ country_event = {
 				value >= 1500
 			}
 		}
-	 owner = { add_resource = { energy = -1500 } }
-	 owner = {
-	    change_variable = {
+		add_monthly_resource_mult = {
+			resource = energy
+			max = -400
+			value = -4
+		}
+		locked_random_list = {
+			1 = {
+				add_monthly_resource_mult = {
+					resource = energy
+					max = -400
+					value = -3
+				}
+			}
+			1 = {
+				add_monthly_resource_mult = {
+					resource = alloys
+					max = -300
+					value = -3
+				}
+			}
+			1 = {
+				add_monthly_resource_mult = {
+					resource = minerals
+					max = -400
+					value = -3
+				}
+			}
+		}
+		owner = { add_resource = { energy = -1500 } }
+		owner = {
+		change_variable = {
 				which = ev_maintenance_value
 				value = 3
 			}
@@ -631,18 +1027,56 @@ country_event = {
 	}
 	option = {
 		name = ev_maintenance.112.b
-	  allow = { 
+		allow = { 
 			resource_stockpile_compare = {
 				resource = energy
 				value >= 100
 			}
 		}
-	 owner = { add_resource = { energy = -100 } }
-	 owner = {
-	    change_variable = {
+		owner = { add_resource = { energy = -100 } }
+		locked_random_list = {
+			1 = {
+				add_monthly_resource_mult = {
+					resource = energy
+					max = -300
+					value = -2
+				}
+			}
+			1 = {
+				add_monthly_resource_mult = {
+					resource = alloys
+					max = -200
+					value = -2
+				}
+			}
+			1 = {
+				add_monthly_resource_mult = {
+					resource = minerals
+					max = -200
+					value = -2
+				}
+			}
+		}
+		owner = {
+			change_variable = {
 				which = ev_maintenance_value
 				value = -2
 			}
+		}
+	}
+	option = {
+		name = ev_maintenance.112.d
+		trigger = {
+			has_civic = civic_ev_police_ship
+		}
+		ai_chance = {
+			factor = 10
+		}
+		add_resource = { influence = -10 } 
+		add_monthly_resource_mult = {
+			resource = energy
+			max = -100
+			value = -1
 		}
 	}
 }
@@ -670,7 +1104,7 @@ country_event = {
 		owner = {
 			change_variable = {
 				which = ev_maintenance_value
-				value = -3
+				value = -2
 			}
 		}
 	}
@@ -683,12 +1117,38 @@ country_event = {
 			}
 		}
 		owner = { add_resource = { energy = -750 } }
+		locked_random_list = {
+			1 = {
+				add_monthly_resource_mult = {
+					resource = energy
+					max = -400
+					value = -3
+				}
+			}
+			1 = {
+				add_monthly_resource_mult = {
+					resource = minerals
+					max = -400
+					value = -3
+				}
+			}
+		}
 		owner = {
 			change_variable = {
 				which = ev_maintenance_value
 				value = -1
 			}
 		}
+	}
+	option = {
+		name = ev_maintenance.103.c
+		trigger = {
+			has_civic = civic_ev_police_ship
+		}
+		ai_chance = {
+			factor = 10
+		}
+		add_resource = { influence = -10 } 
 	}
 }
 
@@ -716,9 +1176,25 @@ country_event = {
 				value >= 1000
 			}
 		}
-	 owner = { add_resource = { energy = -1000 } }
-	 owner = {
-	    change_variable = {
+		locked_random_list = {
+			1 = {
+				add_monthly_resource_mult = {
+					resource = alloys
+					max = -300
+					value = -3
+				}
+			}
+			1 = {
+				add_monthly_resource_mult = {
+					resource = minerals
+					max = -400
+					value = -3
+				}
+			}
+		}
+		owner = { add_resource = { energy = -1000 } }
+		owner = {
+		change_variable = {
 				which = ev_maintenance_value
 				value = 1
 			}
@@ -726,11 +1202,25 @@ country_event = {
 	}
 	option = {
 		name = ev_maintenance.110.b
-	  owner = {
-	    change_variable = {
+		owner = {
+		change_variable = {
 				which = ev_maintenance_value
 				value = -2
 			}
+		}
+	}
+	option = {
+		name = ev_maintenance.110.c
+		trigger = {
+			has_civic = civic_ev_police_ship
+		}
+		ai_chance = {
+			factor = 10
+		}
+		add_monthly_resource_mult = {
+			resource = energy
+			max = -100
+			value = -1
 		}
 	}
 }
@@ -757,7 +1247,7 @@ country_event = {
 				value >= 100
 			}
 		}
-	  add_resource = { influence = -100 }
+		add_resource = { influence = -100 }
 		change_variable = {
 			which = ev_maintenance_value
 			value = 4
@@ -768,22 +1258,37 @@ country_event = {
 	  allow = { 
 			resource_stockpile_compare = {
 				resource = influence
-				value >= 40
+				value >= 20
 			}
 		}
-	  add_resource = { influence = -40 }
+		add_resource = { influence = -20 }
 		change_variable = {
 			which = ev_maintenance_value
-			value = 2
+			value = 1
 		}
 	}
 	option = {
 		name = ev_maintenance.121.c
-	  owner = {
+		owner = {
 			change_variable = {
 				which = ev_maintenance_value
 				value = -2
 			}
+		}
+	}
+	option = {
+		name = ev_maintenance.101.d
+		trigger = {
+			has_civic = civic_ev_police_ship
+		}
+		ai_chance = {
+			factor = 10
+		}
+		add_resource = { influence = -10 } 
+		add_monthly_resource_mult = {
+			resource = energy
+			max = -100
+			value = -1
 		}
 	}
 }
@@ -811,9 +1316,32 @@ country_event = {
 				value >= 1500
 			}
 		}
-	 owner = { add_resource = { energy = -1200 } }
-	 owner = {
-	    change_variable = {
+		owner = { add_resource = { energy = -1200 } }
+		locked_random_list = {
+			1 = {
+				add_monthly_resource_mult = {
+					resource = energy
+					max = -400
+					value = -3
+				}
+			}
+			1 = {
+				add_monthly_resource_mult = {
+					resource = alloys
+					max = -300
+					value = -3
+				}
+			}
+			1 = {
+				add_monthly_resource_mult = {
+					resource = minerals
+					max = -400
+					value = -3
+				}
+			}
+		}
+		owner = {
+			change_variable = {
 				which = ev_maintenance_value
 				value = 3
 			}
@@ -821,18 +1349,56 @@ country_event = {
 	}
 	option = {
 		name = ev_maintenance.122.b
-	  allow = { 
+		allow = { 
 			resource_stockpile_compare = {
 				resource = energy
 				value >= 100
 			}
 		}
-	 owner = { add_resource = { energy = -100 } }
-	 owner = {
+		owner = { add_resource = { energy = -100 } }
+		locked_random_list = {
+			1 = {
+				add_monthly_resource_mult = {
+					resource = energy
+					max = -400
+					value = -2
+				}
+			}
+			1 = {
+				add_monthly_resource_mult = {
+					resource = alloys
+					max = -300
+					value = -2
+				}
+			}
+			1 = {
+				add_monthly_resource_mult = {
+					resource = minerals
+					max = -400
+					value = -2
+				}
+			}
+		}
+		owner = {
 	    change_variable = {
 				which = ev_maintenance_value
 				value = -2
 			}
+		}
+	}
+	option = {
+		name = ev_maintenance.112.d
+		trigger = {
+			has_civic = civic_ev_police_ship
+		}
+		ai_chance = {
+			factor = 10
+		}
+		add_resource = { influence = -10 } 
+		add_monthly_resource_mult = {
+			resource = energy
+			max = -100
+			value = -1
 		}
 	}
 }
@@ -872,6 +1438,29 @@ country_event = {
 				value >= 500
 			}
 		}
+		locked_random_list = {
+			1 = {
+				add_monthly_resource_mult = {
+					resource = energy
+					max = -400
+					value = -1
+				}
+			}
+			1 = {
+				add_monthly_resource_mult = {
+					resource = alloys
+					max = -300
+					value = -2
+				}
+			}
+			1 = {
+				add_monthly_resource_mult = {
+					resource = minerals
+					max = -400
+					value = -1
+				}
+			}
+		}
 		owner = { add_resource = { energy = -500 } }
 		owner = {
 			change_variable = {
@@ -880,7 +1469,158 @@ country_event = {
 			}
 		}
 	}
+	option = {
+		name = ev_maintenance.103.c
+		trigger = {
+			has_civic = civic_ev_police_ship
+		}
+		ai_chance = {
+			factor = 10
+		}
+		add_resource = { influence = -10 } 
+	}
 }
+
+
+ship_event = {
+	id = ev_maintenance.150
+	title = "ev_maintenance.100.title"
+	desc = {		
+		text = ev_maintenance.150.desc.1
+	}
+	picture = GFX_evt_space_station
+#	hide_window = yes
+	is_triggered_only = yes
+	
+	immediate = {
+		this = { save_event_target_as = ev_this_ship }
+	}
+
+	option = {
+		name = ev_maintenance.150.a
+		owner = {
+			locked_random_list = {
+				1 = {
+					add_monthly_resource_mult = {
+						resource = energy
+						max = -300
+						value = -5
+					}
+				}
+				1 = {
+					add_monthly_resource_mult = {
+						resource = minerals
+						max = -300
+						value = -5
+					}
+				}
+				1 = {
+					add_monthly_resource_mult = {
+						resource = alloys
+						max = -300
+						value = -5
+					}
+				}
+				1 = {
+					add_monthly_resource_mult = {
+						resource = consumer_goods
+						max = -300
+						value = -5
+					}
+				}
+			}
+			locked_random_list = {
+				1 = {
+					add_monthly_resource_mult = {
+						resource = energy
+						max = -300
+						value = -5
+					}
+				}
+				1 = {
+					add_monthly_resource_mult = {
+						resource = minerals
+						max = -300
+						value = -5
+					}
+				}
+				1 = {
+					add_monthly_resource_mult = {
+						resource = food
+						max = -300
+						value = -5
+					}
+				}
+				1 = {
+					add_monthly_resource_mult = {
+						resource = unity
+						max = -300
+						value = -5
+					}
+				}
+			}
+		}
+
+	}
+	option = {
+		name = ev_maintenance.150.b
+		
+		random_list = {
+			40 = {
+				custom_tooltip = custom_tooltip_ev_maintenance.150.b
+				destroy_ship = event_target:ev_this_ship
+			}
+			40 = { 
+				owner = {
+					add_monthly_resource_mult = {
+						resource = manpower
+						max = -50
+						value = -6
+					}
+				} 
+			}
+			20 = {}
+		}
+		
+	}
+	option = {
+		name = ev_maintenance.150.c
+		trigger = {
+			owner = {
+				has_civic = civic_ev_police_ship
+			}
+		}
+		owner = {
+			add_resource = {
+				influence = -10
+			}
+			locked_random_list = {
+				1 = {
+					add_monthly_resource_mult = {
+						resource = energy
+						max = -300
+						value = -2
+					}
+				}
+				1 = {
+					add_monthly_resource_mult = {
+						resource = minerals
+						max = -300
+						value = -2
+					}
+				}
+				1 = {
+					add_monthly_resource_mult = {
+						resource = food
+						max = -300
+						value = -2
+					}
+				}
+			}
+		}
+	}
+}
+
 #犯罪舰队获得加成
 country_event = {
 	id = ev_maintenance.300

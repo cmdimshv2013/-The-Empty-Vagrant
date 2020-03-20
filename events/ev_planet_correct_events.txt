@@ -67,7 +67,7 @@ planet_event = {
 	immediate = {
 		create_fleet = {
 			effect = {
-				set_owner = FROMFROMFROM
+				set_owner = fromfromfrom
 				while = {
 					count = 1 
 					create_ship = {
@@ -80,8 +80,21 @@ planet_event = {
 			}
 		}
 		owner = {
-#			country_event = { id = ev_planet_correct.4 days = 5 }
+			save_global_event_target_as = ev_this_planet_owner
 		}
+		if = {
+			limit = { owner = { is_country_type = default_ev } }
+		}
+		every_owned_pop = { 
+			limit = {				
+				always = yes
+			}
+			event_target:ev_this_planet_owner = {
+				add_resource = {
+					manpower = 100
+				}
+			}
+		} 
 		remove_modifier = modifier_temporary_residence
 		this = {
 			#change_pc = pc_molten
@@ -89,12 +102,14 @@ planet_event = {
 			remove_planet = yes 
 		}
 	}
+	after = {
+		clear_global_event_target = ev_this_planet_owner
+	}
 	option = {
 	name = ev_planet_correct.4.a
-	  owner = {
+	  event_target:ev_this_planet_owner = {
 	    add_resource = {
 	   	 minerals = 2000
-#	   	 alloys = 500
 			}
 		}
 	}
@@ -109,12 +124,17 @@ planet_event = {
 	location = ROOT
 #	hide_window = yes
 	is_triggered_only = yes
-
+	
+	trigger = {
+		has_modifier = modifier_temporary_residence
+		NOT = { has_planet_flag = temporary_residence_to_permanently }
+	}
+	
 	immediate = {
-		FROMFROM = { country_event = { id = ev_planet_correct.5 days = 3 } }
+		fromfrom = { country_event = { id = ev_planet_correct.5 days = 3 } }
 		create_fleet = {
 			effect = {
-				set_owner = FROMFROM
+				set_owner = fromfrom
 				while = {
 					count = 1 
 					create_ship = {
@@ -126,6 +146,22 @@ planet_event = {
 				set_location = ROOT
 			}
 		}
+		owner = {
+			save_global_event_target_as = ev_this_planet_owner
+		}
+		if = {
+			limit = { owner = { is_country_type = default_ev } }
+		}
+		every_owned_pop = { 
+			limit = {				
+				always = yes
+			}
+			event_target:ev_this_planet_owner = {
+				add_resource = {
+					manpower = 100
+				}
+			}
+		} 
 		remove_modifier = modifier_temporary_residence
 		this = {
 			#change_pc = pc_molten
@@ -133,12 +169,14 @@ planet_event = {
 			remove_planet = yes 
 		}
 	}
+	after = {
+		clear_global_event_target = ev_this_planet_owner
+	}
 	option = {
 	name = ev_planet_correct.4.a
-	  owner = {
+	  event_target:ev_this_planet_owner = {
 	    add_resource = {
 	   	 minerals = 2000
-#	   	 alloys = 500
 			}
 		}
 	}
@@ -156,14 +194,32 @@ country_event = {
 	is_triggered_only = yes
 
 	immediate = {
-		
+		owner = {
+			save_global_event_target_as = ev_this_planet_owner
+		}
+		if = {
+			limit = { owner = { is_country_type = default_ev } }
+		}
+		every_owned_pop = { 
+			limit = {				
+				always = yes
+			}
+			event_target:ev_this_planet_owner = {
+				add_resource = {
+					manpower = 100
+				}
+			}
+		} 
+	}
+	after = {
+		clear_global_event_target = ev_this_planet_owner
 	}
 	option = {
 		name = ev_planet_correct.4.a
-	  owner = {
+	  event_target:ev_this_planet_owner = {
 	    add_resource = {
 	   	 minerals = 2000
-#	   	 alloys = 500
+
 			}
 		}
 	}
@@ -177,7 +233,7 @@ planet_event = {
 	is_triggered_only = yes
 
 	immediate = {
-		set_owner = FROM
+		set_owner = from
 		while = {
 			count = 1
 			create_pop = {
@@ -187,6 +243,117 @@ planet_event = {
 	}
 }
 
+#修复巨型家园舰
+planet_event = {
+	id = ev_planet_correct.10
+	title = "ev_planet_correct.4.title"
+	desc = "ev_planet_correct.4.desc"
+	picture = GFX_evt_molten
+	show_sound = event_solar_fusion
+	location = ROOT
+#	hide_window = yes
+	is_triggered_only = yes
+	
+	trigger = {
+		
+	}
+	
+	immediate = {
+		fromfrom = { country_event = { id = ev_planet_correct.5 days = 3 } }
+		create_fleet = {
+			effect = {
+				set_owner = fromfrom
+				while = {
+					count = 1 
+					create_ship = {
+						name = random
+						class = colonizer
+					}
+				}
+#				set_fleet_stance = passive  
+				set_location = ROOT
+			}
+		}
+		owner = {
+			save_global_event_target_as = ev_this_planet_owner
+		}
+		root = {
+			owner = {
+				
+			}
+			from = {
+				save_event_target_as = megastructures_homeless_ship_position_1
+			}
+
+		}
+		create_fleet = {
+			effect = {
+				set_owner = event_target:ev_this_planet_owner
+				
+				while = {
+					count = 1
+					create_ship = {
+						name = random
+						random_existing_design = corvette
+					}
+				}
+				
+				set_fleet_stance = passive
+				set_location = event_target:megastructures_homeless_ship_position_1
+				save_event_target_as = megastructures_homeless_ship_position_2
+			}
+		}
+		create_fleet = {
+			effect = {
+				set_owner = event_target:ev_this_planet_owner
+				
+				while = {
+					count = 1
+					create_ship = {
+						name = random
+						random_existing_design = megastructures_homeless_ship
+					}
+				}
+				
+				set_fleet_stance = passive
+				set_location = event_target:megastructures_homeless_ship_position_2
+			}
+		}
+		if = {
+			limit = { owner = { is_country_type = default_ev } }
+		}
+		every_owned_pop = { 
+			limit = {				
+				always = yes
+			}
+			event_target:ev_this_planet_owner = {
+				add_resource = {
+					manpower = 100
+				}
+			}
+		} 
+		remove_modifier = modifier_temporary_residence
+		this = {
+			#change_pc = pc_molten
+			destroy_colony = yes
+			remove_planet = yes 
+		}
+	}
+	after = {
+		clear_global_event_target = ev_this_planet_owner
+	}
+	option = {
+	name = ev_planet_correct.4.a
+		event_target:ev_this_planet_owner = {
+			add_resource = {
+				minerals = 2000
+			}
+		}
+	}
+}
+
+
+
 #随机轰炸获得资源
 planet_event = {
 	id = ev_planet_correct.100
@@ -195,10 +362,10 @@ planet_event = {
 	is_triggered_only = yes
 	
 	trigger = {
-		FROM = {
-			OR = {
-				is_country_type = default_ev
-			}
+		from = {
+			#OR = {
+			#	is_country_type = default_ev
+			#}
 		}
 		planet_devastation >= 10
 		has_orbital_bombardment_stance = steal_ev
@@ -206,61 +373,80 @@ planet_event = {
 	}
 	
 	immediate = {
+		
+	
 		if = {
 			limit = { 
-				FROM = {
+				from = {
 					has_policy_flag = orbital_bombardment_steal_2th
 					NOT = { has_ascension_perk = ap_orbital_bombardment_steal }
 				}
 			} 
+			#随机获取2产
+
+
 			steal_ev_random_2th_resources = yes
+			
 		}
 		else_if = {
 			limit = { 
-				FROM = {
+				from = {
 					has_policy_flag = orbital_bombardment_steal_2th
 					has_ascension_perk = ap_orbital_bombardment_steal
 				}
 			} 
+			
 			steal_ev_random_2th_resources = yes
 			steal_ev_random_2th_resources = yes
 			steal_ev_random_2th_resources = yes
+			
 		}
 		else_if = {
 			limit = { 
-				FROM = {
+				from = {
 					has_policy_flag = orbital_bombardment_steal_1th
 					NOT = { has_ascension_perk = ap_orbital_bombardment_steal }
 				}
 			} 
+		
 			steal_ev_random_1th_resources = yes
+			
 		}
 		else_if = {
 			limit = { 
-				FROM = {
+				from = {
 					has_policy_flag = orbital_bombardment_steal_1th
 					has_ascension_perk = ap_orbital_bombardment_steal
 				}
 			} 
+		
 			steal_ev_random_1th_resources = yes
 			steal_ev_random_1th_resources = yes
 			steal_ev_random_1th_resources = yes
+			
 		}
 		else_if = {
 			limit = { 
-				FROM = {
+				from = {
 					has_policy_flag = orbital_bombardment_steal_all
 				}
 			} 
+			
 			steal_ev_random_1th_resources = yes
 			steal_ev_random_2th_resources = yes
 			steal_ev_random_2th_resources = yes
 			steal_ev_random_1th_resources = yes
+			
+			while = {
+				count = base_steal_ev
+				from = { add_resource = { alloys = 5 } }
+				from = { add_resource = { consumer_goods = 10 } }	
+			}
 		}
 		#石头人轰炸
 		if = {
 			limit = { 
-				FROM = {
+				from = {
 					is_lithoid_empire = yes
 				}
 			} 
@@ -274,7 +460,7 @@ planet_event = {
 		if = {
 			limit = { 
 				planet_devastation >= 20
-				FROM = {
+				from = {
 					has_ascension_perk = ap_orbital_predatory_planet
 				}
 			} 
@@ -295,7 +481,7 @@ planet_event = {
 	is_triggered_only = yes
 	
 	trigger = {
-		FROM = {
+		from = {
 			OR = {
 				is_country_type = default_ev
 			}
@@ -307,7 +493,7 @@ planet_event = {
 	
 	immediate = {
 		
-		steal_ev_random_soc_resources = yes
+			steal_ev_random_soc_resources = yes
 		
 		set_timed_planet_flag = { flag = civilization_tested_ev_planet days = 30 }
 	}
@@ -391,7 +577,7 @@ country_event = {
 		owner = { add_modifier = { modifier = "empty_vagrant_landed_planet" days = -1 } }
 		random_owned_fleet = {
 			
-#			FROMFROM = {
+#			fromfrom = {
 				
 				spawn_system = {
 					min_distance = 5
@@ -465,164 +651,180 @@ country_event = {
 			add_monthly_resource_mult = {
 				resource = influence
 				value = 30
-				min = 200
+				min = 400
 				max = 1000
 			}
+			add_modifier = { modifier = "empty_vagrant_landed_planet" days = -1 }
 		}
-		
-		else_if = {
-			limit = {
-				has_technology = tech_galactic_administration
-				has_technology = tech_wahl_system
-				NOT = { has_authority = auth_hive_mind }
-				NOT = { has_authority = auth_machine_intelligence }
-			}
+		else = {
+			
 			change_government = {
-				authority = auth_oligarchic
 				civics = {
-					civic = civic_meritocracy
-					civic = civic_byzantine_bureaucracy
-					civic = civic_efficient_bureaucracy
-					civic = civic_mining_guilds					
-				}
+					civic = random
+				} 
 			}
+			
 		}
-		else_if = {
-			limit = {
-				has_technology = tech_galactic_administration
-				has_technology = tech_wahl_system
-				has_authority = auth_hive_mind
-				NOT = { has_authority = auth_machine_intelligence }
-			}
-			change_government = {
-				authority = auth_oligarchic
-				civics = {
-					civic = civic_hive_subspace_ephapse
-					civic = civic_hive_ascetic
-					civic = civic_hive_divided_attention
-					civic = civic_hive_natural_neural_network
-				}
-			}
+		add_monthly_resource_mult = {
+			resource = influence
+			value = 30
+			min = 400
+			max = 1000
 		}
-		else_if = {
-			limit = {
-				has_technology = tech_galactic_administration
-				has_technology = tech_wahl_system
-				NOT = { has_authority = auth_hive_mind }
-				has_authority = auth_machine_intelligence
-			}
-			change_government = {
-				authority = auth_oligarchic
-				civics = {
-					civic = civic_machine_rockbreakers
-					civic = civic_machine_built_to_last
-					civic = civic_machine_introspective
-					civic = civic_machine_replication
-				}
-			}
-		}
-		else_if = {
-			limit = {
-				OR = {
-					has_technology = tech_galactic_administration
-					has_technology = tech_wahl_system
-				}
-				NOT = { has_authority = auth_hive_mind }
-				NOT = { has_authority = auth_machine_intelligence }
-			}
-			change_government = {
-				authority = auth_oligarchic
-				civics = {
-					civic = civic_meritocracy
-					civic = civic_byzantine_bureaucracy
-					civic = civic_mining_guilds
-				}
-			}
-		}
-		else_if = {
-			limit = {
-				OR = {
-					has_technology = tech_galactic_administration
-					has_technology = tech_wahl_system
-				}
-				has_authority = auth_hive_mind
-				NOT = { has_authority = auth_machine_intelligence }
-			}
-			change_government = {
-				authority = auth_oligarchic
-				civics = {
-					civic = civic_hive_subspace_ephapse
-					civic = civic_hive_ascetic
-					civic = civic_hive_divided_attention
-				}
-			}
-		}
-		else_if = {
-			limit = {
-				OR = {
-					has_technology = tech_galactic_administration
-					has_technology = tech_wahl_system
-				}
-				NOT = { has_authority = auth_hive_mind }
-				has_authority = auth_machine_intelligence
-			}
-			change_government = {
-				authority = auth_oligarchic
-				civics = {
-					civic = civic_machine_rockbreakers
-					civic = civic_machine_built_to_last
-					civic = civic_machine_introspective
-				}
-			}
-		}
-		
-		else_if = {
-			limit = {
-				NOT = { has_authority = auth_hive_mind }
-				NOT = { has_authority = auth_machine_intelligence }
-			}
-			change_government = {
-				authority = auth_oligarchic
-				civics = {
-					civic = civic_byzantine_bureaucracy
-					civic = civic_mining_guilds					
-				}
-			}
-		}
-		else_if = {
-			limit = {
-				NOR = {
-					has_technology = tech_galactic_administration
-					has_technology = tech_wahl_system
-				}
-				has_authority = auth_hive_mind
-				NOT = { has_authority = auth_machine_intelligence }
-			}
-			change_government = {
-				authority = auth_oligarchic
-				civics = {
-					civic = civic_hive_ascetic
-					civic = civic_hive_subspace_ephapse
-				}
-			}
-		}
-		else_if = {
-			limit = {
-				NOR = {
-					has_technology = tech_galactic_administration
-					has_technology = tech_wahl_system
-				}
-				NOT = { has_authority = auth_hive_mind }
-				has_authority = auth_machine_intelligence
-			}
-			change_government = {
-				authority = auth_oligarchic
-				civics = {
-					civic = civic_machine_rockbreakers
-					civic = civic_machine_built_to_last
-				}
-			}
-		}
+
+		#else_if = {
+		#	limit = {
+		#		has_technology = tech_galactic_administration
+		#		has_technology = tech_wahl_system
+		#		NOT = { has_authority = auth_hive_mind }
+		#		NOT = { has_authority = auth_machine_intelligence }
+		#	}
+		#	change_government = {
+		#		authority = auth_oligarchic
+		#		civics = {
+		#			civic = civic_meritocracy
+		#			civic = civic_byzantine_bureaucracy
+		#			civic = civic_efficient_bureaucracy
+		#			civic = civic_mining_guilds					
+		#		}
+		#	}
+		#}
+		#else_if = {
+		#	limit = {
+		#		has_technology = tech_galactic_administration
+		#		has_technology = tech_wahl_system
+		#		has_authority = auth_hive_mind
+		#		NOT = { has_authority = auth_machine_intelligence }
+		#	}
+		#	change_government = {
+		#		authority = auth_oligarchic
+		#		civics = {
+		#			civic = civic_hive_subspace_ephapse
+		#			civic = civic_hive_ascetic
+		#			civic = civic_hive_divided_attention
+		#			civic = civic_hive_natural_neural_network
+		#		}
+		#	}
+		#}
+		#else_if = {
+		#	limit = {
+		#		has_technology = tech_galactic_administration
+		#		has_technology = tech_wahl_system
+		#		NOT = { has_authority = auth_hive_mind }
+		#		has_authority = auth_machine_intelligence
+		#	}
+		#	change_government = {
+		#		authority = auth_oligarchic
+		#		civics = {
+		#			civic = civic_machine_rockbreakers
+		#			civic = civic_machine_built_to_last
+		#			civic = civic_machine_introspective
+		#			civic = civic_machine_replication
+		#		}
+		#	}
+		#}
+		#else_if = {
+		#	limit = {
+		#		OR = {
+		#			has_technology = tech_galactic_administration
+		#			has_technology = tech_wahl_system
+		#		}
+		#		NOT = { has_authority = auth_hive_mind }
+		#		NOT = { has_authority = auth_machine_intelligence }
+		#	}
+		#	change_government = {
+		#		authority = auth_oligarchic
+		#		civics = {
+		#			civic = civic_meritocracy
+		#			civic = civic_byzantine_bureaucracy
+		#			civic = civic_mining_guilds
+		#		}
+		#	}
+		#}
+		#else_if = {
+		#	limit = {
+		#		OR = {
+		#			has_technology = tech_galactic_administration
+		#			has_technology = tech_wahl_system
+		#		}
+		#		has_authority = auth_hive_mind
+		#		NOT = { has_authority = auth_machine_intelligence }
+		#	}
+		#	change_government = {
+		#		authority = auth_oligarchic
+		#		civics = {
+		#			civic = civic_hive_subspace_ephapse
+		#			civic = civic_hive_ascetic
+		#			civic = civic_hive_divided_attention
+		#		}
+		#	}
+		#}
+		#else_if = {
+		#	limit = {
+		#		OR = {
+		#			has_technology = tech_galactic_administration
+		#			has_technology = tech_wahl_system
+		#		}
+		#		NOT = { has_authority = auth_hive_mind }
+		#		has_authority = auth_machine_intelligence
+		#	}
+		#	change_government = {
+		#		authority = auth_oligarchic
+		#		civics = {
+		#			civic = civic_machine_rockbreakers
+		#			civic = civic_machine_built_to_last
+		#			civic = civic_machine_introspective
+		#		}
+		#	}
+		#}
+		#
+		#else_if = {
+		#	limit = {
+		#		NOT = { has_authority = auth_hive_mind }
+		#		NOT = { has_authority = auth_machine_intelligence }
+		#	}
+		#	change_government = {
+		#		authority = auth_oligarchic
+		#		civics = {
+		#			civic = civic_byzantine_bureaucracy
+		#			civic = civic_mining_guilds					
+		#		}
+		#	}
+		#}
+		#else_if = {
+		#	limit = {
+		#		NOR = {
+		#			has_technology = tech_galactic_administration
+		#			has_technology = tech_wahl_system
+		#		}
+		#		has_authority = auth_hive_mind
+		#		NOT = { has_authority = auth_machine_intelligence }
+		#	}
+		#	change_government = {
+		#		authority = auth_oligarchic
+		#		civics = {
+		#			civic = civic_hive_ascetic
+		#			civic = civic_hive_subspace_ephapse
+		#		}
+		#	}
+		#}
+		#else_if = {
+		#	limit = {
+		#		NOR = {
+		#			has_technology = tech_galactic_administration
+		#			has_technology = tech_wahl_system
+		#		}
+		#		NOT = { has_authority = auth_hive_mind }
+		#		has_authority = auth_machine_intelligence
+		#	}
+		#	change_government = {
+		#		authority = auth_oligarchic
+		#		civics = {
+		#			civic = civic_machine_rockbreakers
+		#			civic = civic_machine_built_to_last
+		#		}
+		#	}
+		#}
 		#给资源
 		every_owned_ship = {
 			limit = { 
@@ -692,7 +894,7 @@ country_event = {
 		#生成星系
 		random_owned_fleet = {
 			save_event_target_as = ev_common_ship_location
-#			FROMFROM = {
+#			fromfrom = {
 				spawn_system = {
 					min_distance = 5
 					max_distance = 25
@@ -854,6 +1056,7 @@ planet_event = {
 			limit = { has_job = enforcer }
 			kill_pop = yes
 		}
+		
 		random_owned_pop = { kill_pop = yes }
 		event_target:default_ev_country = {
 			if = {
@@ -883,7 +1086,7 @@ ship_event = {
 
 	trigger = {
 		owner = { has_policy_flag = ev_destructive_mining }
-#		From = {
+#		from = {
 #			OR = {
 #				has_deposit_for = shipclass_mining_station
 #				has_mining_station = yes
@@ -911,8 +1114,8 @@ ship_event = {
 					has_policy_flag = ev_destructive_mining
 				}
 			}
-			From = { add_modifier = { modifier = "ev_destructive_mining_buff" days = -1 } }
-			From = { 
+			from = { add_modifier = { modifier = "ev_destructive_mining_buff" days = -1 } }
+			from = { 
 				planet_event = { id = ev_planet_correct.7001 days = 1800 } 
 				set_timed_planet_flag = { flag = has_mining_station days = 1800 }
 			}
@@ -966,5 +1169,180 @@ country_event = {
 	option = {#不再提醒
 		name = ev_planet_correct.7010.b
 		set_country_flag = already_knows_destructive_mining_over
+	}
+}	
+#你被清算了
+country_event = {
+	id = ev_planet_correct.7100
+	hide_window = yes
+
+	mean_time_to_happen = {
+		months = 1
+	}
+	trigger = {
+		has_civic = civic_ev_god_elect
+		has_country_flag = end_of_the_cycle_reckoning
+	}
+	immediate = {
+		if = {
+			limit = {
+				OR = {
+					has_technology = tech_galactic_administration
+					has_technology = tech_wahl_system
+				}	
+				has_origin = origin_ev_both_choosen
+				has_civic = civic_ev_ship_build_ship
+				has_civic = civic_ev_temporary_habitat
+			}
+			change_government = {
+				civics = {
+					civic = civic_empty_vagrant
+					
+					civic = civic_ev_ship_build_ship
+					civic = civic_ev_temporary_habitat
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				OR = {
+					has_technology = tech_galactic_administration
+					has_technology = tech_wahl_system
+				}	
+				has_civic = civic_ev_ship_build_ship
+				has_origin = origin_ev_both_choosen
+			}
+			change_government = {
+				civics = {
+					civic = civic_empty_vagrant
+					civic = civic_ev_ship_build_ship
+					
+					civic = civic_ev_industrial_production
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				OR = {
+					has_technology = tech_galactic_administration
+					has_technology = tech_wahl_system
+				}	
+				has_civic = civic_ev_temporary_habitat
+				has_origin = origin_ev_both_choosen
+			}
+			change_government = {
+				civics = {
+					civic = civic_empty_vagrant
+					civic = civic_ev_temporary_habitat
+					
+					civic = civic_ev_industrial_production
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				OR = {
+					has_technology = tech_galactic_administration
+					has_technology = tech_wahl_system
+				}	
+				has_civic = civic_ev_temporary_habitat
+				has_civic = civic_ev_ship_build_ship
+			}
+			change_government = {
+				civics = {
+					civic = civic_empty_vagrant
+					civic = civic_ev_temporary_habitat
+					civic = civic_ev_ship_build_ship
+					civic = civic_ev_industrial_production
+				}
+			}
+		}
+
+		else_if = {
+			limit = {
+				OR = {
+					has_technology = tech_galactic_administration
+					has_technology = tech_wahl_system
+				}	
+				has_origin = origin_ev_both_choosen
+			}
+			change_government = {
+				civics = {
+					civic = civic_empty_vagrant
+					
+					civic = civic_ev_homeless_ship
+					civic = civic_ev_industrial_production
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				OR = {
+					has_technology = tech_galactic_administration
+					has_technology = tech_wahl_system
+				}	
+				has_civic = civic_ev_ship_build_ship
+			}
+			change_government = {
+				civics = {
+					civic = civic_empty_vagrant
+					civic = civic_ev_ship_build_ship
+					civic = civic_ev_homeless_ship
+					civic = civic_ev_industrial_production
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				has_technology = tech_galactic_administration
+				has_technology = tech_wahl_system
+				has_civic = civic_ev_temporary_habitat
+			}
+			change_government = {
+				civics = {
+					civic = civic_empty_vagrant
+					civic = civic_ev_temporary_habitat
+					civic = civic_ev_homeless_ship
+					civic = civic_ev_industrial_production
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				has_technology = tech_galactic_administration
+				has_technology = tech_wahl_system
+			}
+			change_government = {
+				civics = {
+					civic = civic_empty_vagrant
+					civic = civic_ev_homeless_ship
+					civic = civic_ev_industrial_production
+					civic = civic_ev_maintenance_add
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				OR = {
+					has_technology = tech_galactic_administration
+					has_technology = tech_wahl_system
+				}	
+			}
+			change_government = {
+				civics = {
+					civic = civic_empty_vagrant
+					civic = civic_ev_homeless_ship
+					civic = civic_ev_industrial_production
+				}
+			}
+		}
+		else = {
+			change_government = {
+				civics = {
+					civic = civic_empty_vagrant
+					civic = civic_ev_industrial_production
+				}
+			}
+		}
 	}
 }	

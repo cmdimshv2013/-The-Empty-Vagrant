@@ -25,12 +25,30 @@ fleet_event = {
 	}
 
 	after = { 
-		from = { set_site_progress_locked = no } 
+		
 	}
 	
 	option = {
 		name = ev_ancient_relics.1.a
+		medium_artifact_reward = yes	
+		custom_tooltip = ev_ancient_relics.1.a.tooltip
+		owner = {
+			add_monthly_resource_mult = {
+				resource = alloys
+				value = 30
+				min = 500
+				max = 5000
+			}
+			
+		}
+		
+	}
+	option = {
+		name = ev_ancient_relics.1.b
 		small_artifact_reward = yes
+		#hidden_effect = {
+		from = { set_site_progress_locked = no } 
+		#}
 	}
 }
 
@@ -61,9 +79,9 @@ fleet_event = {
 		owner = {
 			add_monthly_resource_mult = {
 				resource = engineering_research
-				value = 15
-				min = 50
-				max = 1000
+				value = 25
+				min = 500
+				max = 5000
 			}
 		}
 	}
@@ -86,13 +104,21 @@ fleet_event = {
 	}
 
 	after = { 
-		from = { set_site_progress_locked = no } 
+		
 	}
 	
 	option = {
-		name = CURIOUS
+		name = ev_ancient_relics.3.a
 		medium_artifact_reward = yes
-		leader = { add_experience = 100 }
+		leader = { add_experience = 200 }
+		custom_tooltip = ev_ancient_relics.1.a.tooltip
+	}
+
+	option = {
+		name = ev_ancient_relics.3.b
+		medium_artifact_reward = yes
+		leader = { add_experience = 200 }
+		from = { set_site_progress_locked = no } 
 	}
 }
 
@@ -110,10 +136,13 @@ fleet_event = {
 	
 	immediate = {
 		from = { set_site_progress_locked = yes }
+		hidden_effect = {
+			owner = { country_event = { id = ev_ancient_relics.100 } }
+		}
 	}
 
 	after = { 
-		from = { set_site_progress_locked = no } 
+		#from = { set_site_progress_locked = no } 
 	}
 	
 	option = {
@@ -122,94 +151,94 @@ fleet_event = {
 		owner = {
 			add_monthly_resource_mult = {
 				resource = engineering_research
-				value = 15
+				value = 25
 				min = 500
-				max = 3000
+				max = 10000
 			}
 		}
-		leader = { add_experience = 200 }
+		leader = { add_experience = 300 }
 	}
 }
 
 
 
 # Stage 5 - 
-fleet_event = {
-	id = ev_ancient_relics.5
-	title = "ev_ancient_relics.5.name"
-	desc = "ev_ancient_relics.5.desc"
-	picture = GFX_evt_ev_load_13_small
-	show_sound = event_drilling
-	
-	archaeology = yes
-
-	is_triggered_only = yes
-	
-	immediate = {
-		from = { set_site_progress_locked = yes }
-	}
-
-	after = { 
-		from = { set_site_progress_locked = no } 
-	}
-	
-	option = {
-		name = ev_ancient_relics.5.a
-		medium_artifact_reward = yes
-		owner = {
-			add_monthly_resource_mult = {
-				resource = society_research
-				value = 15
-				min = 500
-				max = 2000
-			}
-			add_monthly_resource_mult = {
-				resource = engineering_research
-				value = 15
-				min = 500
-				max = 2000
-			}
-		}
-		leader = { add_experience = 200 }
-	}
-}
-
+#leet_event = {
+#	id = ev_ancient_relics.5
+#	title = "ev_ancient_relics.5.name"
+#	desc = "ev_ancient_relics.5.desc"
+#	picture = GFX_evt_ev_load_13_small
+#	show_sound = event_drilling
+#	
+#	archaeology = yes
+#
+#	is_triggered_only = yes
+#	
+#	immediate = {
+#		from = { set_site_progress_locked = yes }
+#	}
+#
+#	after = { 
+#		from = { set_site_progress_locked = no } 
+#	}
+#	
+#	option = {
+#		name = ev_ancient_relics.5.a
+#		medium_artifact_reward = yes
+#		owner = {
+#			add_monthly_resource_mult = {
+#				resource = society_research
+#				value = 15
+#				min = 500
+#				max = 2000
+#			}
+#			add_monthly_resource_mult = {
+#				resource = engineering_research
+#				value = 15
+#				min = 500
+#				max = 2000
+#			}
+#		}
+#		leader = { add_experience = 200 }
+#	}
+#
+#
 # Stage 6 - 
+#
+#leet_event = {
+#	id = ev_ancient_relics.6
+#	title = "ev_ancient_relics.6.name"
+#	desc = "ev_ancient_relics.6.desc"
+#	picture = GFX_evt_ev_load_13_small
+#	show_sound = event_drilling
+#	
+#	archaeology = yes
+#
+#	is_triggered_only = yes
+#	
+#	immediate = {
+#		from = { set_site_progress_locked = yes }
+#		hidden_effect = {
+#			owner = { country_event = { id = ev_ancient_relics.100 } }
+#		}
+#	}
+#
+#	after = { 
+#		from = { set_site_progress_locked = no } 
+#	}
+#	
+#	option = {
+#		name = ev_ancient_relics.6.a
+#		medium_artifact_reward = yes
+#		
+#		leader = { add_experience = 400 }
+#	}
+#
+#
+#
+## Archaeology: big homeless ship
 
-fleet_event = {
-	id = ev_ancient_relics.6
-	title = "ev_ancient_relics.6.name"
-	desc = "ev_ancient_relics.6.desc"
-	picture = GFX_evt_ev_load_13_small
-	show_sound = event_drilling
-	
-	archaeology = yes
-
-	is_triggered_only = yes
-	
-	immediate = {
-		from = { set_site_progress_locked = yes }
-		hidden_effect = {
-			owner = { country_event = { id = ev_ancient_relics.100 } }
-		}
-	}
-
-	after = { 
-		from = { set_site_progress_locked = no } 
-	}
-	
-	option = {
-		name = ev_ancient_relics.6.a
-		medium_artifact_reward = yes
-		
-		leader = { add_experience = 400 }
-	}
-}
-
-
-### Archaeology: big homeless ship
-
-# Spawning Event (HIDDEN)
+#Spawning Event (HIDDEN)
 event = {
 	id = ev_ancient_relics.10
 	hide_window = yes
@@ -269,6 +298,13 @@ country_event = {
 			create_archaeological_site = site_ruins_of_big_homeless_ship
 		}
 	}
+
+	option = {
+		name = ev_ancient_relics.11.b
+		add_resource = {
+			influence = 40
+		}
+	}
 }
 
 
@@ -283,9 +319,7 @@ country_event = {
 	is_triggered_only = yes
 	
 	trigger = {
-		OR = {
-			is_country_type = default_ev
-		}
+		
 	}
 	
 	immediate = {
@@ -294,7 +328,7 @@ country_event = {
 			effect = {
 				set_owner = root
 					while = {
-						count = 1 is best
+						count = 1 #is best
 						create_ship = {
 							name = "NAME_ev_xing_cha"
 							design = "NAME_event_homeless_ship"
@@ -327,43 +361,43 @@ country_event = {
 					
 		last_created_country = {
 			save_event_target_as = hate_homeless_ship
-			set_country_type = pirate
+			set_country_type = faction
 			set_country_flag = is_ev_ship_ancient_country
 		}
 		event_target:hate_homeless_ship = {
 			set_faction_hostility = { set_hostile = yes }
 		}
-		create_fleet = {
-			effect = {
-				set_owner = last_created_country
-					while = {
-						count = 12 #is best
-						create_ship = {
-							name = "Ground_Doctrine"
-							design = "NAME_hate_homeless_ship_1"
-						}	
-						create_ship = {
-							name = "Ground_Doctrine"
-							design = "NAME_hate_homeless_ship_2"
-						}
-					}	
-				#set_location = event_target:sol_planet_jupiter
-				set_location = {
-					target = event_target:ev_tomb_planet
-					distance = 260
-					angle = random
-				}
-				set_fleet_stance = aggressive
-				set_aggro_range = 450	
-			}		
-		}
+		#create_fleet = {
+		#	effect = {
+		#		set_owner = last_created_country
+		#			while = {
+		#				count = 12 #is best
+		#				create_ship = {
+		#					name = "Ground_Doctrine"
+		#					design = "NAME_hate_homeless_ship_1"
+		#				}	
+		#				create_ship = {
+		#					name = "Ground_Doctrine"
+		#					design = "NAME_hate_homeless_ship_2"
+		#				}
+		#			}	
+		#		#set_location = event_target:sol_planet_jupiter
+		#		set_location = {
+		#			target = event_target:ev_tomb_planet
+		#			distance = 260
+		#			angle = random
+		#		}
+		#		set_fleet_stance = aggressive
+		#		set_aggro_range = 450	
+		#	}		
+		#}
 		while = {
-			count = 4
+			count = 1
 			create_fleet = {
 				effect = {
 					set_owner = last_created_country
 						while = {
-							count = 6 #is best
+							count = 26 #is best
 							create_ship = {
 								name = "Ground_Doctrine"
 								design = "NAME_hate_homeless_ship_1"
@@ -373,10 +407,11 @@ country_event = {
 								design = "NAME_hate_homeless_ship_2"
 							}
 						}	
+					set_fleet_flag = ev_ancient_relics_fleet
 					#set_location = event_target:sol_planet_jupiter
 					set_location = {
 						target = event_target:ev_tomb_planet
-						distance = 350
+						distance = 250
 						angle = random
 					}
 					set_fleet_stance = aggressive
@@ -392,6 +427,33 @@ country_event = {
 
 	option = {
 		name = ev_ancient_relics.100.a
+	}
+}
+
+
+country_event = {
+	id = ev_ancient_relics.105
+	title = ev_ancient_relics.105.name
+	desc = ev_ancient_relics.105.desc
+	
+	picture = GFX_evt_exploding_ship
+	is_triggered_only = yes
+	
+	trigger = {
+		FromFromFrom = {
+			has_fleet_flag = ev_ancient_relics_fleet
+		}
+	}
+	
+	immediate = {
+	
+	}
+	option = { 
+		name = ev_ancient_relics.105.a
+		add_monthly_resource_mult = {
+			resource = influence
+			value = 10
+		}
 	}
 }
 
@@ -466,7 +528,286 @@ ship_event = {
 	}
 }
 
+###########################??????###################
 
+country_event = {
+	id = ev_ancient_relics.8001
+	title = ev_ancient_relics.8001.name
+	desc = ev_ancient_relics.8001.desc
+	picture = GFX_evt_exploding_ship
+	is_triggered_only = yes
 
+	trigger = {
+		OR = {
+			is_country_type = default_ev
+		}
+	}
+
+	immediate = {
+		save_global_event_target_as = origin_country
+		set_country_flag = ev_fleet_creating_avoid
+		random_planet_within_border = {
+			save_global_event_target_as = ship_create_location
+		}
+		country_event = {
+			id = ev_ancient_relics.8002
+			days = 15000
+		}
+	}
+	option = {
+		name = ev_ancient_relics.8001.a
+	}
+}
+
+country_event = {
+	id = ev_ancient_relics.8002
+	title = ev_ancient_relics.8002.name
+	desc = ev_ancient_relics.8002.desc
+	picture = GFX_evt_cargoship_caravan
+	is_triggered_only = yes
+
+	immediate = {
+		create_species = {
+			name = "NAME_avoidnome"
+			class = HUM
+			portrait = random
+			traits = random
+			immortal = yes
+
+			effect = { save_event_target_as = avoid_speciseler }
+		}
+		create_country = {
+			name = "NAME_avoid_country_walker"
+			type = "ev_exiles_fleet"
+			species = event_target:avoid_speciseler
+			name_list = "MAM3"
+			flag = {
+				icon= {
+					category = "empty_vagrant"
+					file = "ev_logo_1.dds"
+				}
+				background= {
+					category = "backgrounds"
+					file = "horizontal.dds"
+				}
+				colors={
+					"blue"
+					"black"
+					"null"
+					"null"
+				}
+			}		
+		}
+		last_created_country = {
+			save_global_event_target_as = nome_country
+		}
+		country_event = {
+			id = ev_ancient_relics.8003
+			days = 2
+		}
+	}
+	option = {
+		name = ev_ancient_relics.8002.a
+	}
+}
+
+country_event = {
+	id = ev_ancient_relics.8003
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		create_fleet = {
+			name = "Name_sky_walker"
+			effect = {
+				set_owner = event_target:nome_country
+				while = {
+					count = 40
+					create_ship = {
+						name = random
+						random_existing_design = corvette
+						prefix = no
+					}
+				}
+				while = {
+					count = 30
+					create_ship = {
+						name = random
+						random_existing_design = destroyer
+						prefix = no
+					}
+				}
+				while = {
+					count = 30
+					create_ship = {
+						name = random
+						random_existing_design = cruiser
+						prefix = no
+					}
+				}
+				while = {
+					count = 20
+					create_ship = {
+						name = random
+						random_existing_design = battleship
+						prefix = no
+					}
+				}
+				while = {
+					count = 10
+					create_ship = {
+						name = random
+						random_existing_design = titan
+						prefix = no
+					}
+				}
+				while = {
+					count = 3
+					create_ship = {
+						name = random
+						design = NAME_meg_homeless_ship_1
+					}
+				}
+				set_fleet_stance = passive
+				set_location = event_target:ship_create_location
+				set_event_locked = yes
+			}
+			settings = {
+				can_upgrade = no
+				can_disband = no
+				can_change_composition = no
+				can_change_leader = no
+				uses_naval_capacity = no
+			}
+		}
+		country_event = {
+			id = ev_ancient_relics.8004
+			days = 30
+		}
+	}
+}
+
+country_event = {
+	id = ev_ancient_relics.8004
+	title = ev_ancient_relics.8004.name
+	desc = ev_ancient_relics.8004.desc
+	picture = GFX_evt_exploding_ship
+	is_triggered_only = yes
+
+	option = {
+		name = ev_ancient_relics.8004.a
+		country_event = {
+			id = ev_ancient_relics.8005
+			days = 120
+		}
+	}
+}
+
+country_event = {
+	id = ev_ancient_relics.8005
+	title = ev_ancient_relics.8005.name
+	desc = ev_ancient_relics.8005.desc
+	picture = GFX_evt_exploding_ship
+	is_triggered_only = yes
+
+	option = {
+		name = ev_ancient_relics.8005.a
+
+		country_event = {
+			id = ev_ancient_relics.8006
+			days = 3600
+		}
+	}
+
+}
+
+country_event = {
+	id = ev_ancient_relics.8006
+	title = ev_ancient_relics.8006.name
+	desc = ev_ancient_relics.8006.desc
+	picture = GFX_evt_exploding_ship
+	is_triggered_only = yes
+
+	option = {
+		name = ev_ancient_relics.8006.a
+
+		country_event = {
+			id = ev_ancient_relics.80071
+			days = 1200
+		}
+	}
+}
+
+country_event = {
+	id = ev_ancient_relics.80071
+	title = ev_ancient_relics.80071.name
+	desc = ev_ancient_relics.80071.desc
+	diplomatic = yes
+	picture_event_data = {
+		room = no_video_feed_room
+	}
+	is_triggered_only = yes
+
+	immediate = {
+		establish_communication_no_message = event_target:nome_country
+	}
+	option = {
+		name = ev_ancient_relics.80071.a
+		country_event = { 
+			id = ev_ancient_relics.8007
+			days = 10
+		}
+	}
+}
+
+country_event = {
+	id = ev_ancient_relics.8007
+	title = ev_ancient_relics.8007.name
+	desc = ev_ancient_relics.8007.desc
+	picture = GFX_evt_exploding_ship
+	is_triggered_only = yes
+
+	immediate = {
+		remove_country_flag = ev_fleet_creating_avoid
+		create_fleet = {
+			name = Name_sky_ten_fleet
+			effect = {
+				set_owner = event_target:origin_country
+				while = {
+					count = 2
+					create_ship = {
+						name = random
+						design = NAME_meg_homeless_ship_1
+					}
+				}
+				set_location = prev.capital_star
+			}
+		}
+	}
+
+	option = {
+		name = ev_ancient_relics.8007.a
+		country_event = {
+			id = ev_ancient_relics.8008
+		}
+	}
+}
+
+country_event = {
+	id = ev_ancient_relics.8008
+	title = ev_ancient_relics.8008.name
+	desc = ev_ancient_relics.8008.desc
+	picture = GFX_evt_exploding_ship
+	is_triggered_only = yes
+
+	immediate = {
+		every_country = {
+			limit = { 
+				is_country_type = ev_exiles_fleet
+			}
+			destroy_country = yes
+		}
+	}
+}
 
 

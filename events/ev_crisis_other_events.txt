@@ -117,10 +117,15 @@ country_event = {
 	
 	immediate = {
 		set_country_flag = has_trigger_crisis_100
-		effect = {
-			every_playable_country = {
-				establish_communications_no_message = event_target:portal_holder_1
+		every_country = {
+			limit = { 
+				OR = { 
+					is_country_type = extradimensional
+					is_country_type = extradimensional_2
+					is_country_type = extradimensional_3
+				}
 			}
+			establish_communications_no_message = root
 		}
 	}
 }
@@ -203,7 +208,7 @@ country_event = {
 	}
 }
 
-第三波恶魔
+#第三波恶魔
 country_event = {
 	id = ev_crisis_other.7
 	hide_window = yes
@@ -312,6 +317,15 @@ country_event = {
 		begin_event_chain = {
 			event_chain = "ghost_signal_chain"
 			target = ROOT
+		}
+		every_country = {
+			limit = { 
+				OR = { 
+					is_country_type = ai_empire
+					
+				}
+			}
+			establish_communications_no_message = root
 		}
 	}
 }

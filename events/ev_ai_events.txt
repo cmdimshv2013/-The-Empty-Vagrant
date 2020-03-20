@@ -101,10 +101,145 @@ event = {
 				}
 			}
 			
-			#新的判断
-			give_ev_ai_bio_homeless_fleet = yes
-			give_ev_ai_machine_homeless_fleet = yes
-			give_ev_ai_hive_homeless_fleet = yes
+			random_owned_fleet = {
+				limit = {
+					NOT = {
+						any_ship = {
+							OR = {
+								is_ship_class = shipclass_constructor
+								is_ship_class = shipclass_science_ship
+								is_ship_class = shipclass_colonizer
+							}
+						}
+					}
+				}
+				save_event_target_as = ev_ai_onwer_amry_ship_location
+			}
+			
+			
+			
+			random_owned_fleet = {
+				limit = {
+					NOT = {
+						
+					}
+				}
+				save_event_target_as = ev_ai_onwer_amry_ship_location
+			}
+
+			if = {
+				limit = {
+					count_owned_ships = {
+						limit = { 
+							is_ship_size = homeless_ship_starbase
+						} 
+						count < 1
+					}
+				}
+
+				create_fleet = {
+					effect = {
+						set_owner = prev
+						
+						create_ship = {
+							name = random
+							design = NAME_start_homeless_ship_machine_starbase
+						}
+						set_location = {
+							target = event_target:ev_ai_onwer_amry_ship_location
+							distance = 20
+							angle = random
+						}
+					}
+				}
+			}
+			
+			
+			
+			create_fleet = {
+				effect = {
+					set_owner = prev
+					
+					random_list = {
+						1 = {
+							while = {
+								count = 3
+								create_army_transport = {
+									ship_name = random
+									graphical_culture = prev
+									army_type = "ev_assault_army"
+								}
+							}
+						}
+						1 = {
+							while = {
+								count = 2
+								create_army_transport = {
+									ship_name = random
+									graphical_culture = prev
+									army_type = "ev_assault_army"
+								}
+							}
+						}
+						1 = {
+							modifier = {
+								add = 2
+								mid_game_years_passed > 0
+							}
+							while = {
+								count = 5
+								create_army_transport = {
+									ship_name = random
+									graphical_culture = prev
+									army_type = "ev_assault_army"
+								}
+							}
+						}
+						1 = {
+							modifier = {
+								add = 4
+								end_game_years_passed > 0
+							}
+							while = {
+								count = 8
+								create_army_transport = {
+									ship_name = random
+									graphical_culture = prev
+									army_type = "ev_assault_army"
+								}
+							}
+						}
+						
+					}
+					set_location = {
+						target = event_target:ev_ai_onwer_amry_ship_location
+						distance = 20
+						angle = random
+					}
+				}
+			}
+			random_list = {
+				1 = {
+					#新的判断
+					give_ev_ai_bio_homeless_fleet = yes
+					give_ev_ai_machine_homeless_fleet = yes
+					give_ev_ai_hive_homeless_fleet = yes
+				}
+				1 = {
+					modifier = {
+						add = 1
+						mid_game_years_passed < 0
+					}
+					modifier = {
+						add = -1
+						end_game_years_passed > 10
+					}
+				}
+			}
+
+			
+			
+			
 		}
 		
 	}

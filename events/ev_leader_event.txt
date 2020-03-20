@@ -1,20 +1,21 @@
 namespace = ev_leader
 
 #雇佣兵特质
+#生成领袖
 country_event = {
 	id = ev_leader.900
 	hide_window = yes
 	is_triggered_only = yes
 
 	trigger = {
-		is_country_type = default_ev
+		#is_country_type = default_ev
 	}
 	
 	immediate = {
+		#雇佣兵
 		random_list = {
 			33 = { 
 				from = { 
-
 					if = { limit = { leader_class = admiral }
 						add_trait = leader_trait_mercenary_warrior
 					}
@@ -25,6 +26,94 @@ country_event = {
 			}
 			66 = { }
 		}
+		#天选者
+		if = {
+			limit = {
+				has_technology = tech_ultimate_answer
+			}
+			random_list = {
+				20 = { 
+					from = { 
+						add_ruler_trait = leader_trait_ruler_chosen
+						if = { limit = { leader_class = governor}
+							add_trait = leader_trait_governor_chosen 
+						}
+						if = { limit = { leader_class = scientist }
+							add_trait = leader_trait_scientist_chosen 
+						}
+						if = { limit = { leader_class = admiral }
+							add_trait = leader_trait_admiral_chosen 
+						}
+						if = { limit = { leader_class = general }
+							add_trait = leader_trait_general_chosen 
+						}			
+					}
+				}
+				80 = { }
+			}
+		}
+		#科学家等级+3
+		if = {
+			limit = {
+				OR = {
+					has_civic = civic_ev_exploration_of_space
+				}
+				from = { leader_class = scientist }
+			}
+			from = { add_skill = 3 } 
+		}
+		#格式塔传统效果
+		if = {
+			limit = {
+				AND = {
+					has_swapped_tradition = tr_adaptability_finish_ev
+					is_country_type = default_ev
+					OR = {
+						is_hive_empire = yes
+						is_machine_empire = yes
+					}
+				}
+			}
+			from = { add_skill = 3 } 
+		}
+		#特质
+		if = {
+			limit = {
+				any_owned_pop = { has_trait = trait_ev_skills_add }
+			}
+			from = { 
+				if = { limit = { leader_class = admiral }
+					add_skill = 1
+				}			
+			}
+		}
+		#高级特质
+		if = {
+			limit = {
+				any_owned_pop = { has_trait = trait_ev_advanced_research }
+			}
+			from = { add_skill = 3 }
+		}
+		#高级特质
+		if = {
+			limit = {
+				any_owned_pop = { has_trait = trait_ev_advanced_war }
+			}
+			from = { 
+				if = { limit = { leader_class = admiral }
+					add_skill = 4
+				}	
+			}	
+		}
+		if = {
+			limit = {
+				from = {
+					is_same_value = heir
+				}
+			}
+			from = { add_skill = 4 }
+		}
+		
 	}
 }	
 
@@ -33,152 +122,153 @@ country_event = {
 
 
 #生成天选
-country_event = {
-	id = ev_leader.1000
-	hide_window = yes
-	is_triggered_only = yes
-
-	trigger = {
-		has_technology = tech_ultimate_answer
-	}
-	
-	immediate = {
-		random_list = {
-			20 = { 
-				from = { 
-					add_ruler_trait = leader_trait_ruler_chosen
-#					if = { limit = { leader_class = ruler }
-#						add_trait = leader_trait_ruler_chosen 
+#country_event = {
+#	id = ev_leader.1000
+#	hide_window = yes
+#	is_triggered_only = yes
+#
+#	trigger = {
+#		has_technology = tech_ultimate_answer
+#	}
+#	
+#	immediate = {
+#		random_list = {
+#			20 = { 
+#				from = { 
+#					add_ruler_trait = leader_trait_ruler_chosen
+##					if = { limit = { leader_class = ruler }
+##						add_trait = leader_trait_ruler_chosen 
+##					}
+#					if = { limit = { leader_class = governor}
+#						add_trait = leader_trait_governor_chosen 
 #					}
-					if = { limit = { leader_class = governor}
-						add_trait = leader_trait_governor_chosen 
-					}
-					if = { limit = { leader_class = scientist }
-						add_trait = leader_trait_scientist_chosen 
-					}
-					if = { limit = { leader_class = admiral }
-						add_trait = leader_trait_admiral_chosen 
-					}
-					if = { limit = { leader_class = general }
-						add_trait = leader_trait_general_chosen 
-					}			
-				}
-			}
-			80 = { }
-		}
-	}
-}	
+#					if = { limit = { leader_class = scientist }
+#						add_trait = leader_trait_scientist_chosen 
+#					}
+#					if = { limit = { leader_class = admiral }
+#						add_trait = leader_trait_admiral_chosen 
+#					}
+#					if = { limit = { leader_class = general }
+#						add_trait = leader_trait_general_chosen 
+#					}			
+#				}
+#			}
+#			80 = { }
+#		}
+#	}
+#}	
+
 
 #spawn special leader
-country_event = {
-	id = ev_leader.1010
-	hide_window = yes
-	is_triggered_only = yes
-
-	trigger = {
-		OR = {
-			has_civic = civic_ev_exploration_of_space
-		}
-		from = { leader_class = scientist }
-	}
-	
-	immediate = {
-		random_list = {
-			1 = { from = { add_skill = 3 } }
-		}
-	}
-}
+#country_event = {
+#	id = ev_leader.1010
+#	hide_window = yes
+#	is_triggered_only = yes
+#
+#	trigger = {
+#		OR = {
+#			has_civic = civic_ev_exploration_of_space
+#		}
+#		from = { leader_class = scientist }
+#	}
+#	
+#	immediate = {
+#		random_list = {
+#			1 = { from = { add_skill = 3 } }
+#		}
+#	}
+#}
 
 #外交传统闭门，对格式塔
-country_event = {
-	id = ev_leader.1020
-	hide_window = yes
-	is_triggered_only = yes
+#country_event = {
+#	id = ev_leader.1020
+#	hide_window = yes
+#	is_triggered_only = yes
+#
+#	trigger = {
+#		AND = {
+#			has_swapped_tradition = tr_adaptability_finish_ev
+#			is_country_type = default_ev
+#			OR = {
+#				is_hive_empire = yes
+#				is_machine_empire = yes
+#			}
+#		}
+#	}
+#	
+#	immediate = {
+#		random_list = {
+#			1 = { from = { add_skill = 3 } }
+#		}
+#	}
+#}
 
-	trigger = {
-		AND = {
-			has_swapped_tradition = tr_adaptability_finish_ev
-			is_country_type = default_ev
-			OR = {
-				is_hive_empire = yes
-				is_machine_empire = yes
-			}
-		}
-	}
-	
-	immediate = {
-		random_list = {
-			1 = { from = { add_skill = 3 } }
-		}
-	}
-}
-
-country_event = {
-	id = ev_leader.1030
-	hide_window = yes
-	is_triggered_only = yes
-
-	trigger = {
-		any_owned_pop = { has_trait = trait_ev_skills_add }
-	}
-	
-	immediate = {
-		random_list = {
-			100 = { 
-				from = { 
-					if = { limit = { leader_class = admiral }
-						add_skill = 1
-					}			
-				}
-			}
-			0 = { }
-		}
-	}
-}	
+#country_event = {
+#	id = ev_leader.1030
+#	hide_window = yes
+#	is_triggered_only = yes
+#
+#	trigger = {
+#		any_owned_pop = { has_trait = trait_ev_skills_add }
+#	}
+#	
+#	immediate = {
+#		random_list = {
+#			100 = { 
+#				from = { 
+#					if = { limit = { leader_class = admiral }
+#						add_skill = 1
+#					}			
+#				}
+#			}
+#			0 = { }
+#		}
+#	}
+#}	
 
 #高级智能特质
-country_event = {
-	id = ev_leader.1040
-	hide_window = yes
-	is_triggered_only = yes
-
-	trigger = {
-		any_owned_pop = { has_trait = trait_ev_advanced_research }
-	}
-	
-	immediate = {
-		random_list = {
-			100 = { 
-				from = { add_skill = 3 }			
-			}
-			0 = { }
-		}
-	}
-}	
-
-#高级战斗特质
-country_event = {
-	id = ev_leader.1050
-	hide_window = yes
-	is_triggered_only = yes
-
-	trigger = {
-		any_owned_pop = { has_trait = trait_ev_advanced_war }
-	}
-	
-	immediate = {
-		random_list = {
-			100 = { 
-				from = { 
-					if = { limit = { leader_class = admiral }
-						add_skill = 4
-					}	
-				}			
-			}
-			0 = { }
-		}
-	}
-}	
+#country_event = {
+#	id = ev_leader.1040
+#	hide_window = yes
+#	is_triggered_only = yes
+#
+#	trigger = {
+#		any_owned_pop = { has_trait = trait_ev_advanced_research }
+#	}
+#	
+#	immediate = {
+#		random_list = {
+#			100 = { 
+#				from = { add_skill = 3 }			
+#			}
+#			0 = { }
+#		}
+#	}
+#}	
+#
+##高级战斗特质
+#country_event = {
+#	id = ev_leader.1050
+#	hide_window = yes
+#	is_triggered_only = yes
+#
+#	trigger = {
+#		any_owned_pop = { has_trait = trait_ev_advanced_war }
+#	}
+#	
+#	immediate = {
+#		random_list = {
+#			100 = { 
+#				from = { 
+#					if = { limit = { leader_class = admiral }
+#						add_skill = 4
+#					}	
+#				}			
+#			}
+#			0 = { }
+#		}
+#	}
+#}	
 
 #2000-3000领袖叛变事件链
 #前兆1,判定事件链
@@ -218,10 +308,36 @@ country_event = {
 			end_game_years_passed > 60
 		}
 		modifier = {
-			factor = 0.2
+			factor = 0.8
+			years_passed > 40
+		}
+		modifier = {
+			factor = 0.8
+			years_passed > 70
+		}
+		modifier = {
+			factor = 0.8
+			years_passed > 110
+		}
+		modifier = {
+			factor = 0.5
+			check_variable = {
+				which = ev_maintenance_value
+				value < 30
+			}
+		}
+		modifier = {
+			factor = 0.15
 			check_variable = {
 				which = ev_maintenance_value
 				value < 0
+			}
+		}
+		modifier = {
+			factor = 0.05
+			check_variable = {
+				which = ev_maintenance_value
+				value < -20
 			}
 		}
 	}
@@ -416,6 +532,7 @@ country_event = {
 				}
 				#在此触发阻止事件链
 				random_list = {
+					
 					1 = {
 						owner = { country_event = { id = ev_leader.2010 days = 100 random = 50 }  }
 					}
@@ -1450,19 +1567,27 @@ country_event = {
 				set_timed_country_flag = { flag = has_ev_ship_traitor days = 5200 }
 			}
 		}
-		every_country = {
-			limit = { 
-				AND = {
-					has_country_flag = has_ev_ship_traitor
-				}
-			}
-			save_event_target_as = been_ship_traitor_country
+		root = {
+			save_global_event_target_as = been_ship_traitor_country
 		}
+		
+		
+
 		random_list = {
-			1 = {	
+			7 = {	
+				modifier = {
+					factor = 0.1
+					root = {
+						NOT = { has_ethic = ethic_gestalt_consciousness }
+					}
+				}
 				create_country = {
-					name = NAME_EV_Uprising_Country_1
+					species = root.owner_species
 					type = default_ev
+					ethos = {
+						ethic = ethic_gestalt_consciousness
+					}
+					
 					authority = random
 					day_zero_contact = no
 					civics = {
@@ -1470,14 +1595,25 @@ country_event = {
 						civic = random
 					}
 					#species = random	
-					ethos = random
+					
 					flag = random
+					name = random #NAME_EV_Uprising_Country_1
+					effect = {
+						random_list = {
+							1 = { set_graphical_culture = humanoid_01 }
+							1 = { set_graphical_culture = molluscoid_01 }
+							1 = { set_graphical_culture = lithoid_01 }
+							1 = { set_graphical_culture = avian_01 }
+							1 = { set_graphical_culture = fungoid_01 }
+						}
+						
+					}
 				}	
 			}
 			
-			1 = {		
+			2 = {		
 				create_country = {
-					name = NAME_EV_Uprising_Country_2
+					species = root.owner_species
 					type = default_ev
 					authority = random
 					day_zero_contact = no
@@ -1488,28 +1624,45 @@ country_event = {
 					#species = random	
 					ethos = random
 					flag = random
+					name = random #NAME_EV_Uprising_Country_2
+					effect = {
+						random_list = {
+							1 = { set_graphical_culture = humanoid_01 }
+							1 = { set_graphical_culture = molluscoid_01 }
+							1 = { set_graphical_culture = lithoid_01 }
+							1 = { set_graphical_culture = avian_01 }
+							1 = { set_graphical_culture = fungoid_01 }
+							
+						}
+						
+					}
 				}	
 			}
 			
-			1 = {
-				create_country = {
-					name = NAME_EV_Uprising_Country_3
-					type = default_ev
-					authority = random
-					day_zero_contact = no
-					civics = {
-						civic = civic_empty_vagrant
-						civic = random
-					}
-					#species = random	
-					ethos = random
-					flag = random
-				}	
-			}
+			#1 = {
+			#	create_country = {
+			#		species = root.owner_species
+			#		type = default_ev
+			#		authority = random
+			#		day_zero_contact = no
+			#		civics = {
+			#			civic = civic_empty_vagrant
+			#			civic = random
+			#		}
+			#		
+			#		ethos = random
+			#		flag = random
+			#		name = random #NAME_EV_Uprising_Country_3
+			#	}	
+			#}
 			
 		}
 		last_created_country = {
-			country_event = { id = ev_leader.2092 }
+			copy_techs_from = {
+				target = root
+			}
+			
+			country_event = { id = ev_leader.2092 days = 2 }
 			save_event_target_as = is_ev_ship_rebel_country
 			set_country_flag = is_ev_ship_rebel_country
 			
@@ -1603,7 +1756,7 @@ country_event = {
 			}
 			
 			while = {
-				count = 1
+				count = 2
 				create_leader = {
 					skill = 2
 					class = scientist
@@ -1634,6 +1787,10 @@ country_event = {
 						trait = leader_trait_trickster
 					}
 				}
+				create_leader = {
+					class = admiral
+					skill = 2
+				}
 			}
 		}	
 		ROOT = {
@@ -1660,6 +1817,7 @@ country_event = {
 				last_created_fleet = {
 					set_fleet_flag = is_ev_ship_rebel_fleet
 					set_owner = event_target:is_ev_ship_rebel_country
+					set_fleet_bombardment_stance = indiscriminate
 					set_location = {
 						target = event_target:ev_ship_rebel_location
 						distance = 100
@@ -1685,6 +1843,7 @@ country_event = {
 				last_created_fleet = {
 					set_fleet_flag = is_ev_ship_rebel_fleet
 					set_owner = event_target:is_ev_ship_rebel_country
+					set_fleet_bombardment_stance = indiscriminate
 					set_location = {
 						target = event_target:ev_ship_rebel_location
 						distance = 100
@@ -1710,6 +1869,7 @@ country_event = {
 				last_created_fleet = {
 					set_fleet_flag = is_ev_ship_rebel_fleet
 					set_owner = event_target:is_ev_ship_rebel_country
+					set_fleet_bombardment_stance = indiscriminate
 					set_location = {
 						target = event_target:ev_ship_rebel_location
 						distance = 100
@@ -1735,6 +1895,7 @@ country_event = {
 				last_created_fleet = {
 					set_fleet_flag = is_ev_ship_rebel_fleet
 					set_owner = event_target:is_ev_ship_rebel_country
+					set_fleet_bombardment_stance = indiscriminate
 					set_location = {					
 						target = event_target:ev_ship_rebel_location
 						distance = 100
@@ -1760,6 +1921,7 @@ country_event = {
 				last_created_fleet = {
 					set_fleet_flag = is_ev_ship_rebel_fleet
 					set_owner = event_target:is_ev_ship_rebel_country
+					set_fleet_bombardment_stance = indiscriminate
 					set_location = {
 						target = event_target:ev_ship_rebel_location
 						distance = 100
@@ -1788,6 +1950,7 @@ country_event = {
 				last_created_fleet = {
 					set_fleet_flag = is_ev_ship_rebel_fleet
 					set_owner = event_target:is_ev_ship_rebel_country
+					set_fleet_bombardment_stance = indiscriminate
 					set_location = {
 						target = event_target:ev_ship_rebel_location
 						distance = 100
@@ -1813,6 +1976,7 @@ country_event = {
 			create_fleet = {
 				effect = {
 					set_owner = event_target:is_ev_ship_rebel_country
+					set_fleet_bombardment_stance = indiscriminate
 						while = {
 						count = 1
 						create_ship = {
@@ -1859,6 +2023,7 @@ country_event = {
 				last_created_fleet = {
 					set_fleet_flag = is_ev_ship_rebel_fleet
 					set_owner = event_target:is_ev_ship_rebel_country
+					set_fleet_bombardment_stance = indiscriminate
 					set_location = {
 						target = event_target:ev_ship_rebel_location
 						distance = 100
@@ -1885,6 +2050,7 @@ country_event = {
 			create_fleet = {
 				effect = {
 					set_owner = event_target:is_ev_ship_rebel_country
+					set_fleet_bombardment_stance = indiscriminate
 						while = {
 						count = 1
 						create_ship = {
@@ -1932,6 +2098,7 @@ country_event = {
 				last_created_fleet = {
 					set_fleet_flag = is_ev_ship_rebel_fleet
 					set_owner = event_target:is_ev_ship_rebel_country
+					set_fleet_bombardment_stance = indiscriminate
 					set_location = {
 						target = event_target:ev_ship_rebel_location
 						distance = 100
@@ -2043,13 +2210,47 @@ country_event = {
 					}
 				}
 			}
+			event_target:is_ev_ship_rebel_country = {
+				add_opinion_modifier = {
+					who = ROOT
+					modifier = opinion_ev_ship_rebal
+				}
+			}
 			
+			ROOT = {
+				add_opinion_modifier = {
+					who = event_target:is_ev_ship_rebel_country
+					modifier = opinion_ev_ship_rebal
+				}
+			}
 		
+		}
+		
+		every_country = {
+			limit = {
+				OR = {
+					is_country_type = default
+					is_country_type = default_ev
+					is_country_type = awakened_fallen_empire
+					is_country_type = awakened_fallen_empire_ev
+					is_country_type = fallen_empire
+					is_country_type = fallen_empire_ev
+				}
+			}
+			country_event = { id = ev_leader.2093 days = 1 }
 		}
 		
 	}
 	option = { 
 		name = ev_leader.2091.a
+		
+	}	
+	option = { 
+		name = ev_leader.2091.b
+		event_target:is_ev_ship_rebel_country = {
+			set_player = root
+		}
+		
 	}	
 }	
 #给AI叛变国家buff
@@ -2062,8 +2263,10 @@ country_event = {
 	}
 	
 	immediate = {
+		
 		#已经叛变的舰队本身不会再生成叛军舰队
-		set_country_flag = has_ev_ship_traitor
+		set_timed_country_flag = { flag = has_ev_ship_traitor days = 7200 } 
+		set_country_flag = ev_ship_rebel_difficult_2X
 		give_technology = { message = no tech = tech_build_escort }
 		give_technology = { message = no tech = tech_homeless_ship }
 		give_technology = { message = no tech = tech_build_mothership }
@@ -2158,10 +2361,74 @@ country_event = {
 		}
 		
 		
-		
+		country_event = {
+			id = ev_leader.2094 days = 3600
+		}
 		
 	}	
+	after = {
+		clear_global_event_target = been_ship_traitor_country
+	}
 }		
+
+#叛乱发生后给其他帝国的消息
+country_event = {
+	id = ev_leader.2093
+	title = ev_leader.2093.name
+	desc = ev_leader.2093.desc
+		
+	picture = GFX_evt_exploding_ship
+	is_triggered_only = yes
+	
+	trigger = {
+	}
+	
+	immediate = {
+		
+	}	
+	option = { 
+		name = ev_leader.2093.a
+	}		
+}
+
+#10年后如果舰队实力太少就删除，要么就改名称
+country_event = {
+	id = ev_leader.2094
+	hide_window = yes
+
+	is_triggered_only = yes
+	
+	trigger = {
+	}
+	
+	immediate = {
+		if = {
+			limit = {
+				fleet_power < 100
+			}
+			every_owned_ship = {
+				destroy_ship = this
+			}
+			
+		}
+		 
+		else = {
+			
+			change_government = {
+				civics = {
+					civic = civic_empty_vagrant
+					civic = random
+				}
+			}
+			add_resource = {
+				energy = 10000
+				alloys = 2000
+			}
+			create_fleet_from_naval_cap = 0.15
+			create_fleet_from_naval_cap = 0.15
+		}
+	}		
+}
 
 #当击败一支舰队
 country_event = {
@@ -2181,7 +2448,7 @@ country_event = {
 	}	
 	option = { 
 		name = ev_leader.2095.a
-		clear_global_event_target	= is_ev_ship_rebel_fleet
+		clear_global_event_target = is_ev_ship_rebel_fleet
 		add_monthly_resource_mult = {
 			resource = alloys
 			value = 20
@@ -2868,11 +3135,10 @@ country_event = {
 		### Ruler Khan
 		
 		random_owned_leader = {
-			if = {
-				limit = {
-					has_level > 4
-				}
+			limit = {
+				has_level > 4
 			}
+			
 			add_ruler_trait = trait_ruler_ev_da_khan
 			set_skill = 10
 			set_leader_flag = great_khan_ev
@@ -2948,7 +3214,7 @@ country_event = {
 					create_marauder_constructors_ev = yes
 				}
 				while = {
-					count = 9
+					count = 4
 					create_marauder_armies_ev = yes
 				}
 				
@@ -3036,10 +3302,26 @@ country_event = {
 	}
 	
 	immediate = {
+		if = {
+			limit = {
+				fleet_power < 50000
+			}
+			create_marauder_fleet_ev = yes
+			create_marauder_fleet_ev = yes
+		}
 		
-		create_marauder_armies_ev = yes
+		else_if = {
+			limit = {
+				fleet_power > 200000
+			}
+			create_marauder_fleet_low_ev = yes
+		}
+		else = {
+			create_marauder_fleet_ev = yes
+		}
+
+		create_marauder_armies_ev = yes	
 		
-		create_marauder_fleet_ev = yes
 		country_event = { id = ev_leader.5020 days = 310 random = 60 }
 	}
 	option = {
@@ -3535,6 +3817,7 @@ country_event = {
 	
 	immediate = {
 		set_global_flag = great_khan_dead
+		remove_global_flag = marauder_crisis_started
 		#country_event = { id = marauder.600 days = 200 random = 100 }
 		event_target:great_khan_ruler_ev = {
 			kill_leader = { show_notification = no }
@@ -3546,9 +3829,61 @@ country_event = {
 			limit = { has_trait = trait_ruler_ev_da_khan } 
 			kill_leader = { show_notification = no }
 		}
+		random_list = {
+			1 = {
+				owner = { country_event = { id = ev_leader.2010 days = 100 random = 50 }  }
+			}
+			1 = {
+				owner = { country_event = { id = ev_leader.2020 days = 100 random = 50 }  }
+			}
+			1 = {
+				owner = { country_event = { id = ev_leader.2030 days = 100 random = 50 }  }
+			}					
+		}
 	}
 	option = { 
 		name = ev_leader.5111.a
 		add_modifier = { modifier = ev_great_Khan_legacy days = -1 }
+	}
+}
+
+#检测大可汗是不是存在
+event = {
+	id = ev_leader.5120
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		NOT = {
+			has_global_flag = great_khan_dead
+		}
+		NOR = {
+			exists = event_target:great_khan_ruler_ev
+		}
+	}
+	immediate = {
+		set_global_flag = great_khan_dead
+		remove_global_flag = marauder_crisis_started
+		every_country = {
+			limit = {
+				has_ascension_perk = ev_become_da_khan
+				is_same_value = event_target:raider_khanate_ev
+				
+			}
+			owner = {
+				country_event = { id = ev_leader.5111 days = 1 }
+				country_event = { id = ev_leader.2091 days = 150 random = 360 }
+			}
+			random_list = {
+				1 = {
+					owner = { country_event = { id = ev_leader.2010 days = 100 random = 50 }  }
+				}
+				1 = {
+					owner = { country_event = { id = ev_leader.2020 days = 100 random = 50 }  }
+				}
+				1 = {
+					owner = { country_event = { id = ev_leader.2030 days = 100 random = 50 }  }
+				}					
+			}
+		}
 	}
 }

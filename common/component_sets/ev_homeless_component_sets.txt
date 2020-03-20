@@ -391,3 +391,10 @@ component_set = {
 	icon = "GFX_ev_homeless_energy_1"
 	icon_frame = 1	
 }
+
+#Éú²ú½¢´¬
+component_set = {
+	key = "ev_ark_produce_build_ship_1"
+	icon = "GFX_ev_homeless_build_ship_1"
+	icon_frame = 1	
+}

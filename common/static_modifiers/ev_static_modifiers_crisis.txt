@@ -23,6 +23,7 @@ penetrability_leviathans_crisis_weapon_use = {
 	damage_vs_country_type_ev_leviathans_crisis_mult = 0.20
 	ship_armor_damage_mult = 0.20
 	ship_hull_damage_mult = 0.10
+
 }
 
 leviathans_crisis_defeated = {

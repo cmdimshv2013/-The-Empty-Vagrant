@@ -1,9 +1,85 @@
+#经济援助-公共设施
+ev_resolution_economic_aid_1 = {
+	country_energy_produces_mult = 0.15
+	planet_housing_mult = 0.2
+	planet_amenities_mult = 0.2
+	planet_building_build_speed_mult = 0.15
+}
+#经济援助-贸易倾斜
+ev_resolution_economic_aid_2 = {
+	country_energy_produces_mult = 0.15
+	trade_routes_energy_produces_mult = 0.5
+	country_trade_fee = -0.1
+}
+#根据附庸数目给予buff
+ev_give_subject_owner_modifier_1 = {
+	tech_cost_empire_size_mult = -1
+	tradition_cost_empire_size_mult = -1
+}
+
+ev_give_subject_owner_modifier_2 = {
+	tech_cost_empire_size_mult = -2
+	tradition_cost_empire_size_mult = -2
+}
+
+ev_give_subject_owner_modifier_3 = {
+	tech_cost_empire_size_mult = -3
+	tradition_cost_empire_size_mult = -3
+}
+
+ev_give_subject_owner_modifier_4 = {
+	tech_cost_empire_size_mult = -4
+	tradition_cost_empire_size_mult = -4
+}
+
+ev_give_subject_owner_modifier_5 = {
+	tech_cost_empire_size_mult = -5
+	tradition_cost_empire_size_mult = -5
+}
+
+ev_give_subject_owner_modifier_6 = {
+	tech_cost_empire_size_mult = -6
+	tradition_cost_empire_size_mult = -6
+}
+
+ev_give_subject_owner_modifier_7 = {
+	tech_cost_empire_size_mult = -7
+	tradition_cost_empire_size_mult = -7
+}
+
+ev_give_subject_owner_modifier_8 = {
+	tech_cost_empire_size_mult = -8
+	tradition_cost_empire_size_mult = -8
+}
+ev_give_subject_owner_modifier_9 = {
+	tech_cost_empire_size_mult = -9
+	tradition_cost_empire_size_mult = -9
+}
+ev_give_subject_owner_modifier_10 = {
+	tech_cost_empire_size_mult = -10
+	tradition_cost_empire_size_mult = -10
+}
+
+#政府补充，仅针对政体
+ev_government_auth_modifers_1 = {
+	country_admin_cap_add = 5
+}
+
+ev_government_auth_modifers_2 = {
+	country_admin_cap_add = 15
+}
+
+ev_government_auth_modifers_3 = {
+	country_admin_cap_add = 25
+}
+
 ev_great_Khan_fleet = {
 	ships_upkeep_mult = -0.85
 }
 
 ev_great_Khan_legacy = {
-	empire_size_penalty_mult = -10
+	tech_cost_empire_size_mult = -10
+	tradition_cost_empire_size_mult = -10
 }
 
 ev_has_been_expanding_space = {
@@ -35,7 +111,10 @@ ev_ship_produce_10X_modifers = {
 	ship_homeless_ev_produces_mult = -0.3
 	country_naval_cap_mult = -0.3
 }
-
+ev_ship_produce_20X_modifers = {
+	ship_homeless_ev_produces_mult = -0.5
+	country_naval_cap_mult = -0.5
+}
 
 planet_in_other_homeless_ship_1 = {
 	trade_value_mult = 0.1
@@ -85,10 +164,15 @@ tratr_ev_ascension_perks = {
 }
 
 modifier_temporary_residence = {
-	 
-   pop_happiness = 0.1	
-   icon_frame = 1
-  icon = "gfx/interface/icons/planet_modifiers/pm_temporary_residence.dds"
+	pop_happiness = 0.1	
+	icon_frame = 2
+	icon = "gfx/interface/icons/planet_modifiers/pm_mining_station.dds"
+}
+
+modifier_temporary_residence_2 = {
+	planet_jobs_produces_mult = 0.5
+	icon_frame = 1
+	icon = "gfx/interface/icons/planet_modifiers/pm_temporary_residence.dds"
 }
 #资源短缺
 empty_vagrant_no_energy = {
@@ -184,9 +268,8 @@ empty_vagrant_no_influence = {
 }
 
 ev_grow_pop	= {
-	pop_growth_speed_reduction = -0.95
-	planet_pop_assembly_add = 6
-	planet_pop_assembly_mult = 0.8
+	pop_growth_speed_reduction = -9.95
+	planet_pop_assembly_reduction = -9.95
 }
 
 #孤军奋战buff
@@ -294,7 +377,7 @@ ev_government_modifers_5 = {
 	edict_length_mult = 0.33
 	country_base_influence_produces_add = 0.5
 	leaders_upkeep_mult = -0.25
-	country_admin_cap_add = 40
+	country_admin_cap_add = 10
 }
 
 ev_government_modifers_6 = {
@@ -303,7 +386,7 @@ ev_government_modifers_6 = {
 	leader_skill_levels = 2
 	#species_leader_exp_gain = 0.25
 	country_election_influence_cost_mult = -1
-	country_admin_cap_add = 15
+	country_admin_cap_add = 5
 	edict_length_mult = 0.33
 	country_base_influence_produces_add = 0.5
 	country_base_influence_produces_mult = 0.1
@@ -337,6 +420,7 @@ ev_government_modifers_9 = {
 	ship_homeless_ev_food_cost_mult = -10
 	ship_homeless_ev_manpower_upkeep_mult = -10
 	ship_homeless_ev_manpower_produces_mult = -10
+	ship_homeless_ev_manpower_cost_mult = -10
 }
 
 ev_government_modifers_10 = {
@@ -348,62 +432,68 @@ ev_government_modifers_10 = {
 	ship_homeless_ev_alloys_cost_mult = -0.2
 	ship_homeless_ev_manpower_upkeep_mult = -10
 	ship_homeless_ev_manpower_produces_mult = -10
+	ship_homeless_ev_manpower_cost_mult = -10
 }
 
 
 
 
 empty_vagrant_ship_rebel_country_timed = {
-	ship_homeless_ev_produces_mult = 0.25
-	ship_homeless_ev_physics_research_produces_add = 25
-	ship_homeless_ev_society_research_produces_add = 25
-	ship_homeless_ev_engineering_research_produces_add = 25
-	ship_homeless_ev_alloys_produces_add = 5
-	ship_homeless_ev_consumer_goods_produces_add = 15
-	ship_homeless_ev_energy_produces_add = 60
-	ship_homeless_ev_minerals_produces_add = 30
-	ship_homeless_ev_unity_produces_add = 10
-	ship_homeless_ev_food_produces_add = 20
-	ship_homeless_ev_manpower_produces_add = 3
-	ship_homeless_ev_influence_upkeep_mult = -0.35
+	starbase_shipyard_capacity_add = 1
+	ships_upkeep_mult = -0.5
+	ships_alloys_produces_add = 2
+	ships_energy_produces_add = 4
+	ships_food_produces_add = 4
+	ships_minerals_produces_add = 4
 	country_naval_cap_add = 100
 	country_command_limit_add = 60
 }
 
 empty_vagrant_ship_rebel_country = {
-	ship_homeless_ev_produces_mult = 0.25
-	ship_homeless_ev_upkeep_mult = -0.1
-	ship_homeless_ev_alloys_produces_add = 5
-	ship_homeless_ev_consumer_goods_produces_add = 10
-	ship_homeless_ev_energy_produces_add = 40
-	ship_homeless_ev_minerals_produces_add = 20
-	ship_homeless_ev_unity_produces_add = 10
-	ship_homeless_ev_food_produces_add = 20
+	ships_produces_mult = 0.25
 }
 
 empty_vagrant_ship_rebel_country_2X = {
-	country_naval_cap_add = 150
+	country_naval_cap_add = 100
+	country_naval_cap_mult = 0.5
+	ships_alloys_produces_add = 2
+	ships_energy_produces_add = 4
+	ships_food_produces_add = 4
+	ships_minerals_produces_add = 4
+	
 }
 
 empty_vagrant_ship_rebel_country_5X = {
+	starbase_shipyard_capacity_add = 1
+	ships_upkeep_mult = -0.1
 	country_naval_cap_add = 300
+	country_naval_cap_mult = 0.5
+	ships_alloys_produces_add = 4
+	ships_energy_produces_add = 8
+	ships_food_produces_add = 8
+	ships_society_research_produces_add = 2
+	ships_engineering_research_produces_add = 2
+	ships_physics_research_produces_add = 2
+	ships_minerals_produces_add = 8
 }
 
 empty_vagrant_ship_rebel_country_10X = {
-	country_naval_cap_add = 600
+	starbase_shipyard_capacity_add = 2
+	ships_alloys_produces_add = 8
+	ships_energy_produces_add = 12
+	ships_food_produces_add = 12
+	ships_minerals_produces_add = 12
+	ships_society_research_produces_add = 5
+	ships_engineering_research_produces_add = 5
+	ships_physics_research_produces_add = 5
+	ships_upkeep_mult = -0.25
+	country_naval_cap_add = 500
+	country_naval_cap_mult = 0.5
 }
 
 #for ship
 empty_vagrant_ship_rebel_difficult_10X = {
-	ship_shield_mult = 0.30
-	weapon_type_energy_weapon_damage_mult = 1
-	weapon_type_energy_weapon_fire_rate_mult = 1
-	weapon_type_explosive_weapon_damage_mult = 1
-	weapon_type_explosive_weapon_fire_rate_mult = 1
-	weapon_type_kinetic_weapon_damage_mult = 1
-	weapon_type_kinetic_weapon_fire_rate_mult = 1
-	weapon_type_strike_craft_weapon_damage_mult = 1
-	weapon_type_strike_craft_weapon_fire_rate_mult = 1
+	damage_vs_country_type_default_ev_mult = 2.5
 	ship_shield_mult = 2
 	ship_hull_mult = 2
 	ship_armor_mult = 2
@@ -411,16 +501,18 @@ empty_vagrant_ship_rebel_difficult_10X = {
 
 
 empty_vagrant_landed_planet = {
-	planet_pop_assembly_add = 6
-	planet_pop_assembly_mult = 0.9
-	pop_growth_speed_reduction = -1
-	pop_resettlement_cost_mult = 0.5
+	#planet_pop_assembly_add = 6
+	#planet_pop_assembly_mult = 0.9
+	planet_pop_assembly_reduction = -10
+	pop_growth_speed_reduction = -10
+	pop_resettlement_cost_mult = -0.25
 	#planet_colony_development_speed_mult = -60
 	#pop_environment_tolerance = 2
 	#subject_integration_influence_cost_mult = -5
-	country_admin_cap_add = 15
+	##country_admin_cap_add = 15
 	#ship_colonizer_cost_mult = -20
-	empire_size_penalty_mult = -10
+	tech_cost_empire_size_mult = -10
+	tradition_cost_empire_size_mult = -10
 }
 
 empty_vagrant_gaia_planet = {

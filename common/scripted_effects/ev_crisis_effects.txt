@@ -29,7 +29,7 @@ create_ev_leviathans_crisis_move_fleet = {
 					design = "NAME_Grand_Dragon_EV"
 				}
 			}
-			set_fleet_bombardment_stance = ev_crisis
+			#set_fleet_bombardment_stance = ev_crisis
 			set_formation_scale = 2
 			set_fleet_stance = aggressive
 			set_aggro_range_measure_from = self
@@ -108,7 +108,7 @@ create_ev_leviathans_crisis_bio_fleet = {
 					design = "NAME_Grand_Dragon_EV"
 				}
 			}
-			set_fleet_bombardment_stance = ev_crisis
+			#set_fleet_bombardment_stance = ev_crisis
 			set_formation_scale = 2
 			set_fleet_stance = aggressive
 			set_aggro_range_measure_from = self
@@ -147,7 +147,7 @@ create_ev_leviathans_crisis_crystal_fleet = {
 					design = "NAME_Small_Crystal_Entity_Blue_EV"
 				}
 			}
-			set_fleet_bombardment_stance = ev_crisis
+			#set_fleet_bombardment_stance = ev_crisis
 			set_formation_scale = 2
 			set_fleet_stance = aggressive
 			set_aggro_range_measure_from = self

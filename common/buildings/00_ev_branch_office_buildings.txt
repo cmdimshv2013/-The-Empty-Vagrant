@@ -13,6 +13,7 @@ building_public_relations_office_ev = {
 		branch_office_owner = { 
 			is_criminal_syndicate = no 
 			has_civic = civic_ev_indentured_assets_ship
+			is_country_type = default_ev
 		}
 	}
 	
@@ -31,12 +32,12 @@ building_public_relations_office_ev = {
 			unity = 8
 		}	
 		upkeep = {
-			energy = 3
+			energy = 2
 		}
 	}
 	
 	ai_weight = {
-		weight = 1
+		weight = 10
 	}
 }
 
@@ -52,6 +53,7 @@ building_syndicate_outreach_office_ev = {
 		branch_office_owner = { 
 			is_criminal_syndicate = yes 
 			has_civic = civic_ev_indentured_assets_ship
+			is_country_type = default_ev
 		}
 	}
 	
@@ -86,7 +88,7 @@ building_syndicate_outreach_office_ev = {
 	}
 	
 	ai_weight = {
-		weight = 1
+		weight = 10
 	}
 }
 
@@ -98,7 +100,10 @@ building_underground_chemists_ev = {
 	
 	potential = {
 		has_branch_office = yes
-		branch_office_owner = { is_criminal_syndicate = yes }
+		branch_office_owner = { 
+			is_criminal_syndicate = yes 
+			is_country_type = default_ev
+		}
 	}
 	
 	planet_modifier = {
@@ -106,6 +111,9 @@ building_underground_chemists_ev = {
 		job_criminal_drug_per_crime = 0.03
 	}
 	
+	country_modifier = {
+		ship_homeless_ev_consumer_goods_produces_mult = 0.02
+	}
 	
 	resources = {
 		category = planet_branch_office_buildings
@@ -117,7 +125,7 @@ building_underground_chemists_ev = {
 		}
 		
 		upkeep = {
-			energy = 8
+			energy = 2
 		}
 	}
 	
@@ -154,7 +162,7 @@ building_clone_underground_factories = {
 		has_branch_office = yes
 		branch_office_owner = { 
 			is_criminal_syndicate = yes
-			NOT = { is_ai = yes }
+			is_country_type = default_ev
 		}
 		habitable_structure = no
 		NOR = { 
@@ -183,7 +191,7 @@ building_clone_underground_factories = {
 	
 	
 	ai_weight = {
-		factor = 0
+		factor = 10
 	}
 }
 
@@ -196,7 +204,10 @@ building_criminal_boss_office = {
 	
 	potential = {
 		has_branch_office = yes
-		branch_office_owner = { is_criminal_syndicate = yes }
+		branch_office_owner = { 
+			is_criminal_syndicate = yes 
+			is_country_type = default_ev
+		}
 	}
 	
 	planet_modifier = {
@@ -231,7 +242,7 @@ building_criminal_boss_office = {
 	}
 	
 	ai_weight = {
-		weight = 1
+		weight = 10
 	}
 }
 
@@ -246,7 +257,11 @@ building_ev_holotemple_office = {
 	
 	potential = {
 		has_branch_office = yes
-		branch_office_owner = { has_civic = civic_ev_holotemple }
+		branch_office_owner = { 
+			has_civic = civic_ev_holotemple 
+			is_country_type = default_ev
+		}
+
 	}
 	
 	planet_modifier = {
@@ -282,7 +297,7 @@ building_ev_holotemple_office = {
 	}
 	
 	ai_weight = {
-		weight = 1
+		weight = 10
 	}
 }
 

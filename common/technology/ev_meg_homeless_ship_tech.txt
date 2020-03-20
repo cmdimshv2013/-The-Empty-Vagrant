@@ -1,18 +1,18 @@
 #生产科技
 
 tech_megastructures_homeless_ship = {
-	cost = @tier5cost3
+	cost = 65000
 	area = society
 	tier = 5
 	is_rare = yes
 	icon = tech_megastructures_homeless_ship
 	category = { new_worlds }
-	weight = 10
+	weight = 0
 	
 	potential = {
 		is_country_type = default_ev
-		has_ascension_perk = ev_advanced_homeless
-		has_ascension_perk = ev_embrace_universe
+		has_ascension_perk = ev_unlock_megastructures_homeless_ship
+		
 	}
 	
 	prereqfor_desc ={
@@ -20,7 +20,7 @@ tech_megastructures_homeless_ship = {
 	
 	ai_weight = {
 		modifier = {
-			factor = 1
+			factor = 0
 		}
 	}
 }

@@ -24,6 +24,7 @@ r_ev_fleet_maintenance = {
 			NOT = { is_country_type = default_ev }
 		}
 		country_base_engineering_research_produces_add = 500
+		
 	}
 	
 	triggered_country_modifier = {
@@ -129,7 +130,7 @@ r_ev_fleet_influence_mult = {
 	}
 }
 
-#��ά̹
+#ÀûÎ¬Ì¹
 r_ev_dragon_trophy = {
 	activation_duration = @triumph_duration
 	portrait = "GFX_ev_relic_dragon_trophy"

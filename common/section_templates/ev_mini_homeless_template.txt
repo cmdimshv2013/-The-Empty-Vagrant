@@ -10,7 +10,7 @@ ship_section_template = {
 
 	component_slot = {
 		name = "LARGE_GUN_01"
-		slot_size = small
+		template = small_turret
 		slot_type = weapon
 		locatorname = "L06"
 	}
@@ -37,7 +37,7 @@ ship_section_template = {
 
 	component_slot = {
 		name = "LARGE_GUN_01"
-		slot_size = medium
+		template = medium_turret
 		slot_type = weapon
 		locatorname = "L06"
 	}

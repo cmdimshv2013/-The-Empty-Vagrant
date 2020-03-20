@@ -123,36 +123,43 @@ tech_phase_recall = {
 
 #-----------------------------一段飞升科技----------------------------------
 
- tech_temporary_habitat = {
-      area = engineering
-      cost = 15000
-      tier = 2
-      potential = {
-	is_country_type = default_ev
+tech_temporary_habitat = {
+	area = engineering
+	cost = 15000
+	tier = 2
+	potential = {
+		is_country_type = default_ev
+	}
+	is_rare = yes
+	is_reverse_engineerable = no
+	category = { industry }
+	ai_update_type = all
+	weight = 40
+	prereqfor_desc ={
+		ship = {
+			title = "tech_temporary_habitat.title"
+			desc = "tech_temporary_habitat.desc"
 		}
-      is_rare = yes
-      is_reverse_engineerable = no
-      category = { industry }
-      ai_update_type = all
-      weight = 40
-
-     prereqfor_desc ={
-     ship = {
-      title = "tech_temporary_habitat.title"
-      desc = "tech_temporary_habitat.desc"
-        }
-     }
-
-      weight_modifier = {
-            factor = 1
-	modifier = {
-	factor = 0
-	NOR = { has_ascension_perk = ev_stars_for_home }
+	}
+	weight_modifier = {
+		factor = 1
+		modifier = {
+			factor = 0
+			NOR = { 
+				has_ascension_perk = ev_stars_for_home 
+				has_civic = civic_ev_temporary_habitat
+			}
+		}
+		modifier = {
+			factor = 10
+			OR = { 
+				has_civic = civic_ev_temporary_habitat
+			}
 		}
 	}
 }
 
- tech_efficient_building_module = {
+tech_efficient_building_module = {
       icon = "tech_efficient_building_module"    
       area = society
       cost = 20000
@@ -817,7 +824,7 @@ tech_ev_destructive_mining = {
 
 
 
-
+#专门的事件科技，用于充当工具人
 tech_space_ion_cannon = {
 	area = engineering
 	cost = 0
@@ -873,3 +880,29 @@ tech_ev_genetic_trait = {
 }
 
 
+#家园舰生产舰船
+tech_ship_part_homeless_produce_build_ship_1 = {
+	#icon = "tech_bwm_magma_diver"
+	area = society
+	cost = 6000
+	tier = 2
+	category = { new_worlds }
+	
+	weight = 70
+
+	potential = {
+		is_country_type = default_ev
+	}
+
+	weight_modifier = {
+		factor = 1
+	}
+
+	ai_weight = {
+		factor = 100
+	}
+
+	modifier = {
+		
+	}
+}

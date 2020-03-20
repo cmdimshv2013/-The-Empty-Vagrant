@@ -125,20 +125,17 @@ opinion_has_civic_ev_influence_give = {
 	}
 	opinion = {
 		modifier = {
-			add = -30	
-			is_country_type = default
+			add = -60	
+			#is_country_type = default
 			FROM = { 
-				is_country_type = default_ev
 				has_civic = civic_ev_influence_give
 			} 		
 		}
 		modifier = {
-			add = -30	
-			is_country_type = default_ev
+			add = -60	
+			#is_country_type = default_ev
 			has_civic = civic_ev_influence_give
-			FROM = { 
-				is_country_type = default
-			} 		
+					
 		}	
 	}
 }
@@ -225,5 +222,151 @@ opinion_has_civic_ev_civilization_test = {
 				has_civic = civic_ev_civilization_test
 			} 		
 		}	
+	}
+}
+
+
+
+opinion_has_civic_ev_communist = {		
+	trigger = {		
+		OR = {
+			is_country_type = default_ev	
+			is_country_type = default
+		}	
+	}
+	opinion = {
+		modifier = {
+			add = -100
+			OR = {
+				is_country_type = default_ev	
+				is_country_type = default
+			}	
+			has_authority = auth_corporate
+			FROM = { 
+				has_civic = civic_ev_communist
+			} 		
+		}
+		modifier = {
+			add = -40
+			OR = {
+				is_country_type = default_ev	
+				is_country_type = default
+			}	
+			NOT = { has_ethic =  ethic_fanatic_egalitarian }
+			FROM = { 
+				has_civic = civic_ev_communist
+			} 		
+		}
+		modifier = {
+			add = -100
+			OR = {
+				is_country_type = default_ev	
+				is_country_type = default
+			}	
+			OR = { 
+				has_ethic =  ethic_fanatic_authoritarian
+			}
+			FROM = { 
+				has_civic = civic_ev_communist
+			} 		
+		}
+		modifier = {
+			add = -100
+			OR = {
+				is_country_type = default_ev	
+				is_country_type = default
+			}	
+			has_civic = civic_ev_communist
+			FROM = { 
+				has_authority = auth_corporate
+			} 		
+		}
+		modifier = {
+			add = -40
+			OR = {
+				is_country_type = default_ev	
+				is_country_type = default
+			}	
+			has_civic = civic_ev_communist
+			FROM = { 
+				NOT = {  has_ethic =  ethic_fanatic_egalitarian }
+			}
+		}
+		modifier = {
+			add = -100
+			OR = {
+				is_country_type = default_ev	
+				is_country_type = default
+			}	
+			OR = { 
+				has_civic = civic_ev_communist
+			}
+			FROM = { 
+				has_ethic =  ethic_fanatic_authoritarian
+			}
+		}	
+	}
+}
+
+#爆叛军的观点修正
+opinion_ev_ship_rebal = {
+	opinion = {
+		base = -150
+	}
+
+	accumulative = yes
+
+	decay = {
+		base = 2
+	}
+}
+
+#热闹的银河开局的观点修正
+opinion_has_civic_ev_late_start = {
+	trigger = {		
+		OR = {
+			is_country_type = default_ev	
+			is_country_type = default
+		}	
+	}
+	opinion = {
+		modifier = {
+			add = 50
+			OR = {
+				is_country_type = default_ev	
+				is_country_type = default
+			}	
+			FROM = { 
+				#has_civic = civic_ev_late_start
+				has_origin = origin_ev_late_start
+			} 		
+		}
+	}
+}
+
+
+
+#舰队交易失败
+opinion_ev_bug_fleet_fail = {
+	opinion = {
+		base = -50
+	}
+
+	accumulative = yes
+
+	decay = {
+		base = 3
+	}
+}
+
+opinion_ev_bug_fleet_ok = {
+	opinion = {
+		base = 30
+	}
+
+	accumulative = yes
+
+	decay = {
+		base = 3
 	}
 }

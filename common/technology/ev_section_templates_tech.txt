@@ -1,6 +1,6 @@
-#Ä£¿é¿Æ¼¼
+#æ¨¡å—ç§‘æŠ€
     # custom_tooltip = "allow_build_megastructures_temporary_habitat"
-#¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¼ÒÔ°½¢¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª
+#â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”å®¶å›­èˆ°â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”
  tech_homeless_section_templates_1 = {
       #icon = "tech_ev_armor_level_1"    
       area = engineering

@@ -192,7 +192,10 @@ ev_trade_fleet_give_resources_a_energy = {
 				is_robot_pop = no
 			}
 			event_target:ev_welcome_fleet_country = {
-				add_resource = { energy = 6.75 } #+125%
+				while = {
+					count = base_trade_fleet_ev
+					add_resource = { energy = 6.75 } #+125%
+				}
 			}
 		} 
 	}
@@ -208,7 +211,10 @@ ev_trade_fleet_give_resources_a_energy = {
 				is_robot_pop = no
 			}
 			event_target:ev_welcome_fleet_country = {
-				add_resource = { energy = 6 } #+100%
+				while = {
+					count = base_trade_fleet_ev
+					add_resource = { energy = 6 } #+100%
+				}
 			}
 		}
 	}
@@ -224,7 +230,10 @@ ev_trade_fleet_give_resources_a_energy = {
 				is_robot_pop = no
 			}
 			event_target:ev_welcome_fleet_country = {
-				add_resource = { energy = 3.75 } #+25%
+				while = {
+					count = base_trade_fleet_ev
+					add_resource = { energy = 3.75 } #+25%
+				}
 			}
 		} 
 	}
@@ -240,7 +249,10 @@ ev_trade_fleet_give_resources_a_energy = {
 				is_robot_pop = no
 			}
 			event_target:ev_welcome_fleet_country = {
-				add_resource = { energy = 3 } #+0%
+				while = {
+					count = base_trade_fleet_ev
+					add_resource = { energy = 3 } #+0%
+				}
 			}
 		}
 	}
@@ -260,7 +272,10 @@ ev_trade_fleet_give_resources_a_food = {
 				is_robot_pop = no
 			}
 			event_target:ev_welcome_fleet_country = {
+				while = {
+					count = base_trade_fleet_ev
 				add_resource = { energy = 3.38 food = 3.38 } #+125%
+				}
 			}
 		} 
 	}
@@ -276,7 +291,10 @@ ev_trade_fleet_give_resources_a_food = {
 				is_robot_pop = no
 			}
 			event_target:ev_welcome_fleet_country = {
-				add_resource = { energy = 3 food = 3 } #+100%
+				while = {
+					count = base_trade_fleet_ev
+					add_resource = { energy = 3 food = 3 } #+100%
+				}
 			}
 		}
 	}
@@ -292,7 +310,10 @@ ev_trade_fleet_give_resources_a_food = {
 				is_robot_pop = no
 			}
 			event_target:ev_welcome_fleet_country = {
-				add_resource = { energy = 1.9 food = 1.9 } #+25%
+				while = {
+					count = base_trade_fleet_ev
+					add_resource = { energy = 1.9 food = 1.9 } #+25%
+				}
 			}
 		} 
 	}
@@ -308,7 +329,10 @@ ev_trade_fleet_give_resources_a_food = {
 				is_robot_pop = no
 			}
 			event_target:ev_welcome_fleet_country = {
-				add_resource = { energy = 1.5 food = 1.5 } #+0%
+				while = {
+					count = base_trade_fleet_ev
+					add_resource = { energy = 1.5 food = 1.5 } #+0%
+				}
 			}
 		}
 	}
@@ -328,7 +352,10 @@ ev_trade_fleet_give_resources_a_minerals = {
 				is_robot_pop = no
 			}
 			event_target:ev_welcome_fleet_country = {
-				add_resource = { energy = 3.38 minerals = 3.38 } #+125%
+				while = {
+					count = base_trade_fleet_ev
+					add_resource = { energy = 3.38 minerals = 3.38 } #+125%
+				}
 			}
 		} 
 	}
@@ -344,7 +371,10 @@ ev_trade_fleet_give_resources_a_minerals = {
 				is_robot_pop = no
 			}
 			event_target:ev_welcome_fleet_country = {
-				add_resource = { energy = 3 minerals = 3 } #+100%
+				while = {
+					count = base_trade_fleet_ev
+					add_resource = { energy = 3 minerals = 3 } #+100%
+				}
 			}
 		}
 	}
@@ -360,7 +390,10 @@ ev_trade_fleet_give_resources_a_minerals = {
 				is_robot_pop = no
 			}
 			event_target:ev_welcome_fleet_country = {
-				add_resource = { energy = 1.9 minerals = 1.9 } #+25%
+				while = {
+					count = base_trade_fleet_ev
+					add_resource = { energy = 1.9 minerals = 1.9 } #+25%
+				}
 			}
 		} 
 	}
@@ -376,7 +409,10 @@ ev_trade_fleet_give_resources_a_minerals = {
 				is_robot_pop = no
 			}
 			event_target:ev_welcome_fleet_country = {
-				add_resource = { energy = 1.5 minerals = 1.5 } #+0%
+				while = {
+					count = base_trade_fleet_ev
+					add_resource = { energy = 1.5 minerals = 1.5 } #+0%
+				}
 			}
 		}
 	}
@@ -396,10 +432,13 @@ ev_trade_fleet_give_resources_a_research = {
 				is_robot_pop = no
 			}
 			event_target:ev_welcome_fleet_country = {
-				add_resource = { energy = 3.38 } #+125%
-				add_monthly_resource_mult = { resource = physics_research value = 1	max = 0.68 }
-				add_monthly_resource_mult = { resource = society_research value = 1	max = 0.68 }
-				add_monthly_resource_mult = { resource = engineering_research value = 1	max = 0.68 }
+				while = {
+					count = base_trade_fleet_ev
+					add_resource = { energy = 3.38 } #+125%
+					add_monthly_resource_mult = { resource = physics_research value = 1	max = 2 }
+					add_monthly_resource_mult = { resource = society_research value = 1	max = 2 }
+					add_monthly_resource_mult = { resource = engineering_research value = 1	max = 2 }
+				}
 			}
 		} 
 	}
@@ -415,10 +454,13 @@ ev_trade_fleet_give_resources_a_research = {
 				is_robot_pop = no
 			}
 			event_target:ev_welcome_fleet_country = {
-				add_resource = { energy = 3 } #+100%
-				add_monthly_resource_mult = { resource = physics_research value = 1	max = 0.6 }
-				add_monthly_resource_mult = { resource = society_research value = 1	max = 0.6 }
-				add_monthly_resource_mult = { resource = engineering_research value = 1	max = 0.6 }
+				while = {
+					count = base_trade_fleet_ev
+					add_resource = { energy = 3 } #+100%
+					add_monthly_resource_mult = { resource = physics_research value = 1	max = 2 }
+					add_monthly_resource_mult = { resource = society_research value = 1	max = 2 }
+					add_monthly_resource_mult = { resource = engineering_research value = 1	max = 2 }
+				}
 			}
 		}
 	}
@@ -434,10 +476,13 @@ ev_trade_fleet_give_resources_a_research = {
 				is_robot_pop = no
 			}
 			event_target:ev_welcome_fleet_country = {
-				add_resource = { energy = 1.9 physics_research = 0.38 society_research = 0.38 engineering_research = 0.38 } #+25%
-				add_monthly_resource_mult = { resource = physics_research value = 1	max = 0.38 }
-				add_monthly_resource_mult = { resource = society_research value = 1	max = 0.38 }
-				add_monthly_resource_mult = { resource = engineering_research value = 1	max = 0.38 }
+				while = {
+					count = base_trade_fleet_ev
+					add_resource = { energy = 1.9 physics_research = 0.38 society_research = 0.38 engineering_research = 0.38 } #+25%
+					add_monthly_resource_mult = { resource = physics_research value = 1	max = 1 }
+					add_monthly_resource_mult = { resource = society_research value = 1	max = 1 }
+					add_monthly_resource_mult = { resource = engineering_research value = 1	max = 1 }
+				}
 			}
 		} 
 	}
@@ -453,10 +498,13 @@ ev_trade_fleet_give_resources_a_research = {
 				is_robot_pop = no
 			}
 			event_target:ev_welcome_fleet_country = {
-				add_resource = { energy = 1.5 } #+0%
-				add_monthly_resource_mult = { resource = physics_research value = 1	max = 0.3 }
-				add_monthly_resource_mult = { resource = society_research value = 1	max = 0.3 }
-				add_monthly_resource_mult = { resource = engineering_research value = 1	max = 0.3 }
+				while = {
+					count = base_trade_fleet_ev
+					add_resource = { energy = 1.5 } #+0%
+					add_monthly_resource_mult = { resource = physics_research value = 1	max = 1 }
+					add_monthly_resource_mult = { resource = society_research value = 1	max = 1 }
+					add_monthly_resource_mult = { resource = engineering_research value = 1	max = 1 }
+				}
 			}
 		}
 	}
@@ -476,7 +524,10 @@ ev_trade_fleet_give_resources_a_consumer_goods = {
 				is_robot_pop = no
 			}
 			event_target:ev_welcome_fleet_country = {
-				add_resource = { energy = 3.38 consumer_goods = 1.69 } #+125%
+				while = {
+					count = base_trade_fleet_ev
+					add_resource = { energy = 3.38 consumer_goods = 1.69 } #+125%
+				}
 			}
 		} 
 	}
@@ -492,7 +543,10 @@ ev_trade_fleet_give_resources_a_consumer_goods = {
 				is_robot_pop = no
 			}
 			event_target:ev_welcome_fleet_country = {
-				add_resource = { energy = 3 consumer_goods = 1.5 } #+100%
+				while = {
+					count = base_trade_fleet_ev
+					add_resource = { energy = 3 consumer_goods = 1.5 } #+100%
+				}
 			}
 		}
 	}
@@ -508,7 +562,10 @@ ev_trade_fleet_give_resources_a_consumer_goods = {
 				is_robot_pop = no
 			}
 			event_target:ev_welcome_fleet_country = {
-				add_resource = { energy = 1.9 consumer_goods = 0.94 } #+25%
+				while = {
+					count = base_trade_fleet_ev
+					add_resource = { energy = 1.9 consumer_goods = 0.94 } #+25%
+				}
 			}
 		} 
 	}
@@ -524,7 +581,10 @@ ev_trade_fleet_give_resources_a_consumer_goods = {
 				is_robot_pop = no
 			}
 			event_target:ev_welcome_fleet_country = {
-				add_resource = { energy = 1.5 consumer_goods = 0.75 } #+0%
+				while = {
+					count = base_trade_fleet_ev
+					add_resource = { energy = 1.5 consumer_goods = 0.75 } #+0%
+				}
 			}
 		}
 	}
@@ -544,7 +604,10 @@ ev_trade_fleet_give_resources_a_unity = {
 				is_robot_pop = no
 			}
 			event_target:ev_welcome_fleet_country = {
-				add_resource = { energy = 3.38 unity = 1.01 } #+125%
+				while = {
+					count = base_trade_fleet_ev
+					add_resource = { energy = 3.38 unity = 1.01 } #+125%
+				}
 			}
 		} 
 	}
@@ -560,7 +623,10 @@ ev_trade_fleet_give_resources_a_unity = {
 				is_robot_pop = no
 			}
 			event_target:ev_welcome_fleet_country = {
-				add_resource = { energy = 3 unity = 0.9 } #+100%
+				while = {
+					count = base_trade_fleet_ev
+					add_resource = { energy = 3 unity = 0.9 } #+100%
+				}
 			}
 		}
 	}
@@ -576,7 +642,10 @@ ev_trade_fleet_give_resources_a_unity = {
 				is_robot_pop = no
 			}
 			event_target:ev_welcome_fleet_country = {
-				add_resource = { energy = 1.9 unity = 0.56 } #+25%
+				while = {
+					count = base_trade_fleet_ev
+					add_resource = { energy = 1.9 unity = 0.56 } #+25%
+				}
 			}
 		} 
 	}
@@ -592,7 +661,10 @@ ev_trade_fleet_give_resources_a_unity = {
 				is_robot_pop = no
 			}
 			event_target:ev_welcome_fleet_country = {
-				add_resource = { energy = 1.5 unity = 0.45 } #+0%
+				while = {
+					count = base_trade_fleet_ev
+					add_resource = { energy = 1.5 unity = 0.45 } #+0%
+				}
 			}
 		}
 	}
@@ -956,3 +1028,6 @@ ev_trade_fleet_give_resources_pop_sum_2 = {
 		}
 	}
 }
+
+
+add_resource = { physics_research = 15000 }

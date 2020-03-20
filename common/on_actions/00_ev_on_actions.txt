@@ -22,6 +22,7 @@ on_monthly_pulse = {
 		ev_ai.22
 		ev_ai.23
 		ev_investment.1000
+		ev_leader.5120
 	}
 }
 
@@ -68,6 +69,7 @@ on_mid_game_pulse = {
 # No scope, like on_game_start
 on_late_game_pulse = {
 	events = {
+		ev_ancient_relics.8001
 	}
 }
 
@@ -288,7 +290,7 @@ on_survey = {
 		ev_routine.1
 		ev_routine.2
 		#ev_communications_spread.12
-
+		ev_event_mandate.130
 	}
 }
 
@@ -362,7 +364,9 @@ on_entering_battle = {
 on_ship_destroyed_victim = {
 	events = {
 		ev_crisis.310
-		
+		ev_event_mandate.101
+		ev_event_mandate.111
+		ev_event_mandate.121
 	}
 }
 
@@ -438,6 +442,7 @@ on_space_battle_won = {
 		ev_leader.3021
 		ev_leader.5050 #
 		ev_crisis.211
+		ev_ancient_relics.105
 	}
 }
 
@@ -683,7 +688,7 @@ on_post_communications_established = {
 # From = Leader
 on_leader_death = {
 	events = {
-		
+		ev_event_mandate.1001
 	}
 }
 
@@ -700,7 +705,7 @@ on_leader_level_up = {
 # This = Country
 on_ruler_set = {
 	events = {
-		
+		ev_event_mandate.1000
 	}
 }
 
@@ -752,6 +757,9 @@ on_policy_changed = {
 on_ship_built = {
 	events = {
 		ev_maintenance.20
+		ev_event_mandate.100
+		ev_event_mandate.110
+		ev_event_mandate.120
 	}
 }
 
@@ -1203,6 +1211,7 @@ on_leader_spawned = {
 		ev_leader.1030
 		ev_leader.1040
 		ev_leader.1050
+		ev_more_ethic.10 #更多思潮兼容性的
 	}
 	random_events = {
 		

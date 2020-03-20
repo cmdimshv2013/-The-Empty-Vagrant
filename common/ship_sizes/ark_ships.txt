@@ -1,5 +1,5 @@
 
-#Œ¢–Õπ§“µΩ¢
+#ÂæÆÂûãÂ∑•‰∏öËà∞
 mini_homeless_ship = {
 	entity = homeless_small_ship_entity
 	
@@ -20,7 +20,7 @@ mini_homeless_ship = {
 	icon_frame = 6
 	base_buildtime = 100
 
-	combat_disengage_chance = 0.25
+	combat_disengage_chance = 1
 
 	enable_default_design = yes	
 	prerequisites = { "tech_homeless_ship" }
@@ -67,7 +67,7 @@ mini_homeless_ship = {
 
 
 homeless_ship = {
-	entity = "caravaneer_cargoship_01_section_entity_s"
+	entity = homeless_ship_entity #"caravaneer_cargoship_01_section_entity_s"
 	max_speed = 100
 	acceleration = 0.3
 	rotation_speed = 0.2
@@ -78,7 +78,9 @@ homeless_ship = {
 		ship_fire_rate_mult = -0.5
 		ship_weapon_damage = -0.5
 		ship_homeless_ev_unity_produces_mult = -0.3
+		starbase_shipyard_capacity_add = 1
 	}
+	
 	size_multiplier = 30
 	fleet_slot_size = 3
 	section_slots = { 
@@ -92,18 +94,18 @@ homeless_ship = {
 	icon_frame = 6
 	base_buildtime = 1800
 
-	combat_disengage_chance = 0.5
+	combat_disengage_chance = 1
 
-	enable_default_design = yes	
+	#enable_default_design = yes	
 	prerequisites = { "tech_homeless_ship" }
 #	is_civilian = yes
 	is_designable = yes
 	components_add_to_cost = yes
 	class = shipclass_military
 	construction_type = starbase_shipyard
-  valid_target_aggressive_stance = yes
-     
-  required_component_set = "power_core"
+	valid_target_aggressive_stance = yes
+		
+	required_component_set = "power_core"
 	required_component_set = "ftl_components"
 	required_component_set = "thruster_components"
 	required_component_set = "sensor_components"
@@ -135,8 +137,9 @@ homeless_ship = {
 	}
 }
 
-private_homeless_ship = {
-	entity = "caravaneer_cargoship_01_section_entity_s"
+
+homeless_ship_starbase = {
+	entity = homeless_ship_entity #"caravaneer_cargoship_01_section_entity_s"
 	max_speed = 100
 	acceleration = 0.3
 	rotation_speed = 0.2
@@ -147,6 +150,78 @@ private_homeless_ship = {
 		ship_fire_rate_mult = -0.5
 		ship_weapon_damage = -0.5
 		ship_homeless_ev_unity_produces_mult = -0.3
+		starbase_shipyard_capacity_add = 1
+	}
+	
+	size_multiplier = 30
+	fleet_slot_size = 3
+	section_slots = { 
+		"bow" = { locator = "park1" } 
+		"mid" = { locator = "park2" } 
+		"stern" = { locator = "park3" } 
+	}
+#	section_slots = { "mid" = { locator = "part1" } }
+	num_target_locators = 1
+	is_space_station = no
+	icon_frame = 6
+	base_buildtime = 1800
+
+	combat_disengage_chance = 1
+
+	#enable_default_design = yes	
+	prerequisites = { "tech_homeless_ship" }
+#	is_civilian = yes
+	is_designable = yes
+	components_add_to_cost = yes
+	class = shipclass_starbase
+	construction_type = starbase_shipyard
+	valid_target_aggressive_stance = yes
+		
+	required_component_set = "power_core"
+	required_component_set = "ftl_components"
+	required_component_set = "thruster_components"
+	required_component_set = "sensor_components"
+	required_component_set = "combat_computers"
+
+	empire_limit = {
+		base = 3
+		naval_cap_div = 120
+	}
+
+ 	resources = {
+		category = ships
+		cost = {
+			alloys = 1000
+		}
+		upkeep = {
+			energy = 5
+			alloys = 3
+			influence = 0.1
+		}
+	}
+	min_upgrade_cost = {
+		alloys = 100
+	}
+	potential_country = {
+		OR = {
+			is_country_type = default_ev	
+		}
+	}
+}
+
+private_homeless_ship = {
+	entity = homeless_ship_entity #"caravaneer_cargoship_01_section_entity_s"
+	max_speed = 100
+	acceleration = 0.3
+	rotation_speed = 0.2
+	max_hitpoints = 1000
+	modifier = {
+#   ships_upkeep_mult = 0.2
+#	  country_ship_upgrade_cost_mult = -0.20
+		ship_fire_rate_mult = -0.5
+		ship_weapon_damage = -0.5
+		ship_homeless_ev_unity_produces_mult = -0.3
+		
 	}
 	size_multiplier = 30
 	fleet_slot_size = 3
@@ -161,7 +236,7 @@ private_homeless_ship = {
 	icon_frame = 6
 	base_buildtime = 720
 
-	combat_disengage_chance = 0.5
+	combat_disengage_chance = 1
 
 	enable_default_design = yes	
 	prerequisites = { "tech_homeless_ship" }
@@ -205,19 +280,90 @@ private_homeless_ship = {
 }
 
 
+private_homeless_ship_starbase = {
+	entity = homeless_ship_entity #"caravaneer_cargoship_01_section_entity_s"
+	max_speed = 100
+	acceleration = 0.3
+	rotation_speed = 0.2
+	max_hitpoints = 1000
+	modifier = {
+#   ships_upkeep_mult = 0.2
+#	  country_ship_upgrade_cost_mult = -0.20
+		ship_fire_rate_mult = -0.5
+		ship_weapon_damage = -0.5
+		ship_homeless_ev_unity_produces_mult = -0.3
+		starbase_shipyard_capacity_add = 1
+	}
+	size_multiplier = 30
+	fleet_slot_size = 3
+	section_slots = { 
+		"bow" = { locator = "park1" } 
+		"mid" = { locator = "park2" } 
+		"stern" = { locator = "park3" } 
+	}
+#	section_slots = { "mid" = { locator = "part1" } }
+	num_target_locators = 1
+	is_space_station = no
+	icon_frame = 6
+	base_buildtime = 720
+
+	combat_disengage_chance = 1
+
+	enable_default_design = yes	
+	prerequisites = { "tech_homeless_ship" }
+#	is_civilian = yes
+	is_designable = yes
+	components_add_to_cost = yes
+	class = shipclass_starbase
+	construction_type = starbase_shipyard
+  valid_target_aggressive_stance = yes
+     
+  required_component_set = "power_core"
+	required_component_set = "ftl_components"
+	required_component_set = "thruster_components"
+	required_component_set = "sensor_components"
+	required_component_set = "combat_computers"
+
+	empire_limit = {
+		base = 3
+		max = 20
+		naval_cap_div = 140
+	}
+
+ 	resources = {
+		category = ships
+		cost = {
+			energy = 1000
+		}
+		upkeep = {
+			energy = 10
+		}
+	}
+	min_upgrade_cost = {
+		alloys = 1
+	}
+	potential_country = {
+		AND = {
+			is_country_type = default_ev	
+			has_civic = civic_ev_private_homeless
+		}
+	}
+}
+
 megastructures_homeless_ship = {
 	entity = OAK_frem_entity  #entity = "caravaneer_cargoship_01_section_entity_ev_homeless"
 	
 	max_speed = 100
 	acceleration = 0.3
 	rotation_speed = 0.2
-	max_hitpoints = 20000
+	max_hitpoints = 30000
 	modifier = {
 #   ships_upkeep_mult = 0.2
 #	  country_ship_upgrade_cost_mult = -0.20
-		ship_fire_rate_mult = -0.5
-		ship_weapon_damage = -0.5
+		#ship_fire_rate_mult = -0.5
+		#ship_weapon_damage = -0.5
 		ship_homeless_ev_produces_mult = 0.15
+		starbase_shipyard_capacity_add = 4
 	}
 	size_multiplier = 100
 	fleet_slot_size = 20
@@ -232,14 +378,15 @@ megastructures_homeless_ship = {
 	icon_frame = 6
 	base_buildtime = 7200
 
-	combat_disengage_chance = 0.25
-
+	combat_disengage_chance = 0.65
+	default_behavior = colossus
+	
 	enable_default_design = yes	
 	prerequisites = { "tech_megastructures_homeless_ship" }
 #	is_civilian = yes
 	is_designable = yes
 	components_add_to_cost = yes
-	class = shipclass_military
+	class = shipclass_starbase
 	construction_type = starbase_shipyard
 	valid_target_aggressive_stance = yes
      
@@ -251,8 +398,7 @@ megastructures_homeless_ship = {
 
 	empire_limit = {
 		base = 1
-		max = 3
-		naval_cap_div = 2000
+		naval_cap_div = 1000
 	}
 
  	resources = {
@@ -280,10 +426,61 @@ megastructures_homeless_ship = {
 	}
 }
 
+ev_fleet_size_ship = {
+	entity = "fighter_entity" #entity = "pirate_corvette_S3_entity"
+	max_speed = 100
+	acceleration = 0.3
+	rotation_speed = 0.2
+	modifier = {
+		ship_armor_add = 300
+	}
+	build_time = 240
+	max_hitpoints = 1000
+	size_multiplier = 1
+	fleet_slot_size = 1
+	section_slots = { "mid" = { locator = "part1" } }
+	num_target_locators = 0
+	is_space_station = no
+	icon_frame = 9
+	enable_default_design = yes
+	is_civilian = no
+	is_designable = yes
+	class = shipclass_military
+	construction_type = starbase_shipyard
+	
+	default_behavior = colossus
+	
+	required_component_set = "power_core"
+	required_component_set = "ftl_components"
+	required_component_set = "thruster_components"
+	required_component_set = "sensor_components"
+	required_component_set = "combat_computers"
+
+	empire_limit = {
+		base = 1
+		naval_cap_div = 25
+		max = 50
+	}
+
+ 	resources = {
+		category = ships
+		cost = {
+			alloys = 400
+		}
+		upkeep = {
+			energy = 10
+		}
+	}
+	potential_country = {
+		OR = {
+			is_country_type = default_ev	
+		}
+	}
+}
 
 
 
-#¿˚Œ¨ÃπÃÏ‘÷¥¨÷ª
+#Âà©Áª¥Âù¶Â§©ÁÅæËàπÂè™
 ####################
 # CRISES STARBASES #
 ####################
@@ -332,7 +529,7 @@ megastructures_homeless_ship = {
 #	icon_frame = -1
 #}
 #
-# ¿˚Œ¨ÃπΩ®‘Ï¥¨
+# Âà©Áª¥Âù¶Âª∫ÈÄ†Ëàπ
 construction_ship_ev_leviathans = {
 	#graphical_culture = { "swarm_01" }
 	entity = "crystal_ship_small_blue_entity"
@@ -360,7 +557,7 @@ construction_ship_ev_leviathans = {
 	required_component_set = "thruster_components"
 }
 
-# ¿˚Œ¨Ãπ÷≥√Ò¥¨
+# Âà©Áª¥Âù¶ÊÆñÊ∞ëËàπ
 colony_ship_ev_leviathans = {
 	#graphical_culture = { "swarm_01" }
 	entity = "space_amoeba_large_section_entity"
@@ -388,7 +585,7 @@ colony_ship_ev_leviathans = {
 	required_component_set = "thruster_components"
 }
 
-# ¿˚Œ¨Ãπ‘À ‰¥¨
+# Âà©Áª¥Âù¶ËøêËæìËàπ
 #transport_ship_ev_leviathans = {
 #	#graphical_culture = { "swarm_01" }
 #	entity = "space_amoeba_large_section_entity"

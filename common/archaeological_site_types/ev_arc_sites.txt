@@ -47,17 +47,17 @@ site_ruins_of_big_homeless_ship = {
 		event = ev_ancient_relics.4
 	}
 	
-	stage = {
-		difficulty = 12
-		icon = GFX_archaeology_runes_A5
-		event = ev_ancient_relics.5
-	}
-	
-	stage = {
-		difficulty = 13
-		icon = GFX_archaeology_runes_A6
-		event = ev_ancient_relics.6
-	}
+	#stage = {
+	#	difficulty = 12
+	#	icon = GFX_archaeology_runes_A5
+	#	event = ev_ancient_relics.5
+	#}
+	#
+	#stage = {
+	#	difficulty = 13
+	#	icon = GFX_archaeology_runes_A6
+	#	event = ev_ancient_relics.6
+	#}
 
 	on_roll_failed = {
 		from = {

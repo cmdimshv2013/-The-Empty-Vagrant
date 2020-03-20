@@ -263,10 +263,9 @@ criminal_businessman = {
 		weight = 50
 	}
 }
-
-#轨道科研员
-ev_research_worker = {
-	category = worker
+#轨道科研员-专家
+ev_research_specialist = {
+	category = specialist
 	is_capped_by_modifier = no
 	clothes_texture_index = 2
 	building_icon = building_research_lab_1
@@ -274,7 +273,6 @@ ev_research_worker = {
 	possible_pre_triggers = {
 		has_owner = yes
 	}
-
 	possible = {
 		planet = { is_planet_class = pc_habitat }
 		has_citizenship_type = { type = citizenship_full }
@@ -287,8 +285,6 @@ ev_research_worker = {
 		}
 	}
 
-	
-	
 	resources = {
 		category = planet_researchers
 		produces = {
@@ -305,7 +301,7 @@ ev_research_worker = {
 					}
 				}
 			}
-			unity = 2
+			unity = 1
 		}
 		produces = {
 			trigger = {
@@ -352,7 +348,143 @@ ev_research_worker = {
 					}
 				}
 			}
-			influence = 0.01
+			influence = 0.02
+		}
+		
+		upkeep = {
+			consumer_goods = 2
+		}
+		
+	}	
+	
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				OR = {
+					has_civic = civic_ev_indentured_assets_ship
+				}
+			}
+		}
+		modifier = {
+			trade_value_add = 4
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				OR = {
+					has_ethic = ethic_fanatic_egalitarian
+					has_ethic = ethic_egalitarian
+				}
+			}
+		}
+		modifier = {
+			planet_amenities_add = 2
+		}
+	}
+	
+	
+	weight = {
+		weight = 0.1
+		modifier = {
+			factor = 0
+			NOR = { 
+				has_trait = trait_vagrant
+			}
+		}
+	}
+}
+
+#轨道科研员
+ev_research_worker = {
+	category = worker
+	is_capped_by_modifier = no
+	clothes_texture_index = 2
+	building_icon = building_research_lab_1
+	icon = researcher
+	possible_pre_triggers = {
+		has_owner = yes
+	}
+
+	possible = {
+		planet = { is_planet_class = pc_habitat }
+		has_citizenship_type = { type = citizenship_full }
+		owner = {
+			is_country_type = default_ev
+			NOR = {
+				has_authority = auth_machine_intelligence
+				has_authority = auth_hive_mind
+			}
+		}
+	}
+
+	
+	
+	resources = {
+		category = planet_researchers
+		produces = {
+			physics_research = 1
+			society_research = 1
+			engineering_research = 1
+		}
+		produces = {
+			trigger = {
+				owner = {
+					OR = {
+						has_ethic = ethic_fanatic_spiritualist
+						has_ethic = ethic_spiritualist
+					}
+				}
+			}
+			unity = 1
+		}
+		produces = {
+			trigger = {
+				owner = {
+					OR = {
+						has_ethic = ethic_fanatic_materialist
+						has_ethic = ethic_materialist
+					}
+				}
+			}
+			physics_research = 1
+			society_research = 1
+			engineering_research = 1
+		}
+		produces = {
+			trigger = {
+				owner = {
+					OR = {
+						has_ethic = ethic_fanatic_pacifist
+						has_ethic = ethic_pacifist
+					}
+				}
+			}
+			society_research = 2
+		}
+		
+		produces = {
+			trigger = {
+				owner = {
+					OR = {
+						has_civic = civic_ev_industrial_production
+					}
+				}
+			}
+			consumer_goods = 1
+			alloys = 1
+		}
+		
+		produces = {
+			trigger = {
+				owner = {
+					OR = {
+						has_civic = civic_ev_ideal_ship
+					}
+				}
+			}
+			influence = 0.02
 		}
 		
 		upkeep = {
@@ -564,8 +696,16 @@ ev_food_worker = {
 		weight = 1
 		modifier = {
 			factor = 0
-			OR = { 
+			AND = { 
 				has_trait = trait_vagrant
+				
+				owner = {
+					NOR = {
+						has_authority = auth_hive_mind
+						has_authority = auth_machine_intelligence
+					}	
+				}
+				
 			}
 		}
 	}

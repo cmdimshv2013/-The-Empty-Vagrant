@@ -504,11 +504,11 @@ wg_stop_bombardment_steal_ev = {
 	set_defender_wargoal = wg_bombardment_steal_ev
 	surrender_acceptance = -30
 	potential = {
-		has_total_war_cb = no
-		always = no
+		#has_total_war_cb = no
+		always = yes
 	}
 	possible = {
-		always = no
+		always = yes
 	}
 	
 	on_accept = {
@@ -557,7 +557,7 @@ wg_stop_bombardment_steal_ev = {
 	}
 	
 	ai_weight = {
-		weight = 0
+		weight = 3
 	}
 }
 
@@ -607,7 +607,11 @@ wg_bombardment_steal_ev = {
 	}
 	
 	ai_weight = {
-		weight = 10
+		weight = 8
+		modifier = {
+			factor = 0
+			NOT = { is_country_type = default_ev }
+		}
 	}
 }
 
@@ -632,7 +636,7 @@ wg_cleansing_ev = {
 	}
 }
 	
-#̫������ӿ�
+#太虚死灵接口
 wg_end_threat_gestalt_ev = {
 	casus_belli = cb_purification_ev
 	
@@ -724,10 +728,12 @@ wg_holy_war_ev = {
 		is_country_type = default_ev
 		has_civic = civic_ev_fanatic_martyr
 		from = {
-			OR = {
-				is_country_type = default_ev
-				is_country_type = default
-			}		
+			NOR = {
+				is_country_type = fallen_empire
+				is_country_type = fallen_empire_ev
+				is_country_type = awakened_fallen_empire
+				is_country_type = awakened_fallen_empire_ev
+			}			
 		}
 	}
 	possible = {
@@ -754,31 +760,63 @@ wg_pop_over_sovereignty_ev = {
 		is_country_type = default_ev
 		has_civic = civic_ev_pop_over_sovereignty
 		from = {
-			OR = {
-				is_country_type = default_ev
-				is_country_type = default
+			NOR = {
+				is_country_type = fallen_empire
+				is_country_type = fallen_empire_ev
+				is_country_type = awakened_fallen_empire
+				is_country_type = awakened_fallen_empire_ev
 			}		
 			NOT = { has_ethic = ethic_gestalt_consciousness }
+			NOT = { has_ethic = ethic_fanatic_authoritarian }
 		}
+
 	}
 	possible = {
 		always = yes
 	}
-	
+
+	on_status_quo = {
+		from = { 
+			capital_scope = {
+				every_owned_pop = {
+					wipe_pop_ethos = yes
+					#make_intelligent = yes
+					#make_unleashed_messenger = yes
+					pop_change_ethic = ethic_egalitarian
+					set_timed_pop_flag = { flag = changed_pop days = 2 }
+				}
+			}
+		}
+	}
+
 	on_accept = {
 		custom_tooltip = wg_pop_over_sovereignty_ev_accept
-		hidden_effect = {		
+		hidden_effect = {
+			every_country = {
+				limit = {
+					NOR = {
+						is_country_type = fallen_empire
+						is_country_type = fallen_empire_ev
+						is_country_type = awakened_fallen_empire
+						is_country_type = awakened_fallen_empire_ev
+					}	
+				}
+				add_threat = {
+					who = root
+					amount = 0.1
+				}
+			}
+			
 			from = { copy_ethos_and_authority = root }
 			from = { add_modifier = { modifier = recently_liberated days = 7300 } }		
 			add_opinion_modifier = { modifier = opinion_we_liberated who = from }	
 			from = { add_opinion_modifier = { modifier = opinion_liberated_us who = root } }
 			end_rivalry = from
 			from = { end_rivalry = root }
-		
+			
 			from = { 
 				capital_scope = {
 					every_owned_pop = {
-						
 						wipe_pop_ethos = yes
 						make_intelligent = yes
 						make_unleashed_messenger = yes
@@ -792,5 +830,293 @@ wg_pop_over_sovereignty_ev = {
 	
 	ai_weight = {
 		weight = 40
+	}
+}
+
+
+wg_ev_communist = {
+	casus_belli = cb_claim_ev
+	#total_war = yes
+	hide_if_no_cb = no
+	surrender_acceptance = -50
+	threat_multiplier = 0.7
+	
+	#set_defender_wargoal = wg_end_threat
+	
+	potential = {
+		#has_total_war_cb = no
+		is_country_type = default_ev
+		has_civic = civic_ev_communist
+		from = {
+			NOR = {
+				is_country_type = fallen_empire
+				is_country_type = fallen_empire_ev
+				is_country_type = awakened_fallen_empire
+				is_country_type = awakened_fallen_empire_ev
+			}		
+			NOT = { has_ethic = ethic_gestalt_consciousness }
+			NOR = {
+				has_civic = civic_ev_communist
+				has_civic = civic_shared_burden
+			}
+		}
+		
+	}
+	possible = {
+		always = yes
+	}
+	on_status_quo = {
+		from = { 
+			capital_scope = {
+				every_owned_pop = {
+					wipe_pop_ethos = yes
+					#make_intelligent = yes
+					#make_unleashed_messenger = yes
+					pop_change_ethic = ethic_egalitarian
+					set_timed_pop_flag = { flag = changed_pop days = 2 }
+				}
+			}
+		}
+	}
+	
+	on_accept = {
+		custom_tooltip = wg_ev_communist_accept
+		root = {
+			add_resource = {
+				influence = 100
+			}
+		}
+		hidden_effect = {		
+			every_country = {
+				limit = {
+					NOR = {
+						is_country_type = fallen_empire
+						is_country_type = fallen_empire_ev
+						is_country_type = awakened_fallen_empire
+						is_country_type = awakened_fallen_empire_ev
+					}	
+				}
+				add_threat = {
+					who = root
+					amount = 0.1
+				}
+			}	
+			from = { copy_ethos_and_authority = root }
+			from = { add_modifier = { modifier = recently_liberated days = 7300 } }		
+			add_opinion_modifier = { modifier = opinion_we_liberated who = from }	
+			from = { add_opinion_modifier = { modifier = opinion_liberated_us who = root } }
+			end_rivalry = from
+			from = { end_rivalry = root }
+			from = { 
+				capital_scope = {
+					every_owned_pop = {
+						wipe_pop_ethos = yes
+						#make_intelligent = yes
+						#make_unleashed_messenger = yes
+						pop_change_ethic = ethic_egalitarian
+						set_timed_pop_flag = { flag = changed_pop days = 2 }
+					}
+				}
+			}
+			if = {
+				limit = {
+					from = { is_country_type = default }
+					#from = { is_ai = yes }
+				}
+				from = {
+					change_government = {
+						civics = {
+							civic = civic_shared_burden
+							civic = random
+						}
+					}
+				}
+			}
+		
+			if = {
+				limit = {
+					from = { is_country_type = default_ev }
+					#from = { is_ai = yes }
+				}
+				from = {
+					change_government = {
+						civics = {
+							civic = civic_empty_vagrant
+							civic = civic_ev_communist
+							civic = random
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	ai_weight = {
+		weight = 40
+		modifier = {
+			factor = 0
+			AND = {
+				root = { is_ai = yes }
+				from = { is_ai = no }
+			}
+		}
+	}
+}
+
+#对太虚的全面战争
+wg_end_country_ev = {
+	casus_belli = cb_end_country_ev
+	
+	hide_if_no_cb = yes
+	total_war = yes
+	set_defender_wargoal = wg_end_threat
+	
+	surrender_acceptance = -1000
+
+	potential = {
+		is_country_type = default
+	}
+	possible = {
+		always = yes
+	}
+	on_status_quo = {
+		every_country = {
+			limit = {
+				OR = {
+					is_country_type = default_ev
+				}	
+			}
+			add_threat = {
+				who = root
+				amount = 0.06
+			}
+		}	
+	}
+	on_accept = {
+		every_country = {
+			limit = {
+				OR = {
+					is_country_type = default_ev
+				}	
+			}
+			add_threat = {
+				who = root
+				amount = 0.15
+			}
+		}	
+	}
+	ai_weight = {
+		weight = 15
+	}
+}
+#太虚游牧之间的争霸战争
+wg_ev_scramble_hegemony = {
+	casus_belli = cb_ev_scramble_hegemony
+	#total_war = yes
+	hide_if_no_cb = no
+	surrender_acceptance = -75
+	threat_multiplier = 0.55
+	
+	set_defender_wargoal = wg_ev_scramble_hegemony
+	
+	potential = {
+		#has_total_war_cb = no
+		is_country_type = default_ev
+		from = {	
+			is_country_type = default_ev
+		}
+	}
+	possible = {
+		always = yes
+	}
+	on_status_quo = {
+		
+	}
+	
+	on_accept = {
+		#custom_tooltip = wg_ev_scramble_hegemony_accept
+		root = {
+			add_resource = {
+				influence = 50
+			}
+			end_rivalry = from
+			if = {
+				limit = {
+					has_origin = origin_ev_subjects_owner
+					
+				}
+				add_resource = {
+					influence = 100
+				}
+				from = {
+					add_trust = {
+						amount = 100
+						who = root
+					}
+				}
+			}
+		}
+		
+		
+		from = {
+			if = {
+				limit = { is_overlord = yes }
+				every_subject = {
+					set_subject_of = {
+						who = root
+						subject_type = ev_satrapy
+					}
+				}
+			}
+			set_subject_of = {
+				who = root
+				subject_type = ev_satrapy
+			}
+			end_rivalry = root
+		}
+		hidden_effect = {
+			every_country = {
+				limit = {
+					OR = {
+						is_country_type = default_ev
+					}	
+				}
+				add_threat = {
+					who = root
+					amount = 0.02
+				}
+			}	
+		}
+		
+	}
+	
+	ai_weight = {
+		weight = 20
+		modifier = {
+			factor = 10
+			has_ai_personality = ev_empty_vagrant_ev_subjects_owner
+		}
+	}
+}
+
+#正统性之战
+wg_ev_orthodoxy = {
+	casus_belli = cb_ev_orthodoxy
+	
+	hide_if_no_cb = yes
+	total_war = yes
+	set_defender_wargoal = wg_ev_orthodoxy
+	
+	surrender_acceptance = -1000
+
+	potential = {
+		always = yes
+	}
+	possible = {
+		always = yes
+	}
+	
+	ai_weight = {
+		weight = 100
 	}
 }

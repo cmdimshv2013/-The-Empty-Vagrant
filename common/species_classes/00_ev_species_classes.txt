@@ -19,7 +19,7 @@ EMPTY_VAGRANT = {
 LEVIATHANS_CRISIS = {
 	archetype = OTHER
 
-	playable = { always = yes }
+	playable = { always = no }
 	randomized = no
 
 	gender = no

@@ -237,8 +237,6 @@ cb_containment_ev = {
 			}
 		}
 	}
-	
-
 }
 
 cb_subject_ev = {
@@ -309,8 +307,93 @@ cb_stop_bombardment_steal_ev = {
 		is_subject = no
 	}
 	is_valid = {
-		has_total_war_cb = no
 		NOT = { is_overlord_to = FROM }
+		from = {
+			OR = {
+				is_country_type = default_ev	
+			}
+		}
+	}
+}
+
+cb_end_country_ev = {
+	show_in_diplomacy = yes
+	show_notification = yes
+	potential = {
+		OR = {
+			is_country_type = default
+			#is_country_type = default
+		}
+	}
+	
+	
+	is_valid = {
+		OR = {
+			is_subject = no
+			overlord = { NOT = { is_same_value = from } }
+		}
+		NOT = { is_overlord_to = FROM }
+		this = {
+			NOR = {
+				is_country_type = awakened_fallen_empire
+				has_valid_civic = civic_fanatic_purifiers
+				has_valid_civic = civic_hive_devouring_swarm
+				has_valid_civic = civic_machine_assimilator
+				has_valid_civic = civic_machine_terminator	
+			}
+		}
+		from = {
+			OR = {
+				is_country_type = default_ev	
+			}
+		}
+	}
+}
+
+#游牧争霸
+cb_ev_scramble_hegemony = {
+	show_in_diplomacy = yes
+	show_notification = yes
+	potential = {
+		OR = {
+			is_country_type = default_ev
+		}
+	}
+	
+	
+	is_valid = {
+		OR = {
+			is_subject = no
+			overlord = { NOT = { is_same_value = from } }
+		}
+		NOT = { is_overlord_to = FROM }
+		from = {
+			OR = {
+				is_country_type = default_ev	
+			}
+		}
+	}
+}
+
+#正统性之战
+cb_ev_orthodoxy = {
+	show_in_diplomacy = yes
+	show_notification = yes
+	potential = {
+
+	}
+	
+	
+	is_valid = {
+		OR = {
+			is_subject = no
+			overlord = { NOT = { is_same_value = from } }
+		}
+		NOT = { is_overlord_to = FROM }
+		has_opinion_modifier = {
+			who = from
+			modifier = opinion_ev_ship_rebal
+		}
 	}
 }
 

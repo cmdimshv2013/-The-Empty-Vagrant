@@ -15,7 +15,7 @@ tech_physics_1 = {
 				is_country_type = default_ev
 				OR = {
 					has_country_flag = has_ev_to_planets
-					has_civic = civic_ev_both_choosen
+					has_origin = origin_ev_both_choosen
 				}
 			}
 			NOT = { is_country_type = default_ev }
@@ -82,7 +82,7 @@ tech_power_plant_1 = {
 				is_country_type = default_ev
 				OR = {
 					has_country_flag = has_ev_to_planets
-					has_civic = civic_ev_both_choosen
+					has_origin = origin_ev_both_choosen
 				}
 			}
 			NOT = { is_country_type = default_ev }
@@ -132,7 +132,7 @@ tech_industrial_farming = {
 				is_country_type = default_ev
 				OR = {
 					has_country_flag = has_ev_to_planets
-					has_civic = civic_ev_both_choosen
+					has_origin = origin_ev_both_choosen
 				}
 			}
 			NOT = { is_country_type = default_ev }
@@ -218,7 +218,7 @@ tech_colonization_2 = {
 				is_country_type = default_ev
 				OR = {
 					has_country_flag = has_ev_to_planets
-					has_civic = civic_ev_both_choosen
+					has_origin = origin_ev_both_choosen
 				}
 			}
 			NOT = { is_country_type = default_ev }
@@ -281,7 +281,7 @@ tech_society_1 = {
 				is_country_type = default_ev
 				OR = {
 					has_country_flag = has_ev_to_planets
-					has_civic = civic_ev_both_choosen
+					has_origin = origin_ev_both_choosen
 				}
 			}
 			NOT = { is_country_type = default_ev }
@@ -349,7 +349,7 @@ tech_society_2 = {
 				is_country_type = default_ev
 				OR = {
 					has_country_flag = has_ev_to_planets
-					has_civic = civic_ev_both_choosen
+					has_origin = origin_ev_both_choosen
 				}
 			}
 			NOT = { is_country_type = default_ev }
@@ -413,7 +413,7 @@ tech_society_3 = {
 				is_country_type = default_ev
 				OR = {
 					has_country_flag = has_ev_to_planets
-					has_civic = civic_ev_both_choosen
+					has_origin = origin_ev_both_choosen
 				}
 			}
 			NOT = { is_country_type = default_ev }
@@ -496,7 +496,7 @@ tech_engineering_1 = {
 				is_country_type = default_ev
 				OR = {
 					has_country_flag = has_ev_to_planets
-					has_civic = civic_ev_both_choosen
+					has_origin = origin_ev_both_choosen
 				}
 			}
 			NOT = { is_country_type = default_ev }
@@ -572,7 +572,7 @@ tech_basic_industry = {
 				is_country_type = default_ev
 				OR = {
 					has_country_flag = has_ev_to_planets
-					has_civic = civic_ev_both_choosen
+					has_origin = origin_ev_both_choosen
 				}
 			}
 			NOT = { is_country_type = default_ev }

@@ -355,6 +355,10 @@ ev_advanced_homeless = {
 	
 	on_enabled = {
 		custom_tooltip = "allow_ev_advanced_homeless"
+		enable_special_project = {
+			name = EV_ADVANCED_HOMELESS_PROJECT
+			location = this.capital_scope
+		}
 	}
 	
 	possible = {			
@@ -395,19 +399,27 @@ ev_land_planets = {
 		custom_tooltip = "allow_ev_land_planets"		
 		hidden_effect = {
 			country_event = { id = ev_planet_correct.5000  }
+			every_owned_planet = {
+				remove_modifier = "ev_grow_pop" 
+			}
+			
+			
 		}
 	}
 	
 	possible = {			
 		is_country_type = default_ev	
-		NOT = { has_civic =civic_ev_both_choosen }
+		NOT = { has_origin = origin_ev_subjects_owner }
+		NOT = { has_origin = origin_ev_both_choosen }
 		NOT = { has_civic = civic_ev_god_elect }
 		NOT = { has_ascension_perk = ev_advanced_homeless }
 		NOT = { has_ascension_perk = ev_ask_the_void }
+		NOT = { has_ascension_perk = ev_stars_for_home }
 		custom_tooltip = {
 			fail_text = "requires_ascension_perks_2"
 			num_ascension_perks > 1
 		}	
+		num_starbases >= 1
 	}
 	
 	ai_weight = {
@@ -425,8 +437,8 @@ ev_ask_the_void = {
 		country_command_limit_add = 20
 		
 	}
-  on_enabled = {
-  	custom_tooltip = "allow_ev_ask_the_void"		
+	on_enabled = {
+		custom_tooltip = "allow_ev_ask_the_void"		
 		hidden_effect = {
 			country_event = { id = ev_resource.9  }
 			set_country_flag = has_ap_ev_ask_the_void
@@ -453,10 +465,11 @@ ev_ask_the_void = {
 }
 #大可汗
 ev_become_da_khan = {
-  potential = {
+	potential = {
 		is_country_type = default_ev 
-		
+		is_ai = no
 		NOR = {
+			
 			has_authority = auth_machine_intelligence
 			has_authority = auth_hive_mind
 		}
@@ -464,29 +477,34 @@ ev_become_da_khan = {
 	modifier = {
 		
 	}
-  on_enabled = {
-  	custom_tooltip = "allow_ev_become_da_khan"		
+	on_enabled = {
+		custom_tooltip = "allow_ev_become_da_khan"		
 		hidden_effect = {
 			country_event = { id = ev_leader.5000 }
 		}
-  }
+	}
 
-  possible = {
-  	OR = {
-			is_country_type = default_ev
-		}
+	possible = {
+		NOT = { has_origin = origin_ev_subjects_owner }
+  
+		is_country_type = default_ev
+		
 		any_owned_leader = {
 			has_level > 4
 		}
 		NOT = { has_ascension_perk = ev_land_planets }
-#    custom_tooltip = {
-#      fail_text = "requires_ev_stars_for_home"
-     	 has_ascension_perk = ev_ask_the_void
-#    }
-  }
-  ai_weight = {
-    factor = 0
-  }
+		num_starbases >= 1
+
+		has_ascension_perk = ev_ask_the_void
+
+		custom_tooltip = {
+			fail_text = "requires_no_great_khan_ruler_ev"
+			NOT = { exists = event_target:great_khan_ruler_ev }
+		}	
+	}
+	ai_weight = {
+		factor = 0
+	}
 }
 
 
@@ -509,10 +527,10 @@ ev_very_great_fleet = {
 				add_modifier = { modifier = ev_very_great_fleet_ai days = -1 }  
 			}
 		}
-  }
+	}
 
-  possible = {
-  	OR = {
+	possible = {
+		OR = {
 			is_country_type = default_ev
 		}
 		OR = { 
@@ -560,3 +578,68 @@ ev_starbase_manpower = {
     factor = 30
   }
 }
+
+
+
+#解锁巨型家园舰
+ev_unlock_megastructures_homeless_ship = {
+	potential = {
+		is_country_type = default_ev  
+		NOT = { has_ascension_perk = ev_unlock_megastructures_homeless_ship }
+	}
+	modifier = {
+		country_resource_max_add = 10000
+		#starbase_shipyard_capacity_add = 1
+	}
+	on_enabled = {
+		add_research_option = tech_megastructures_homeless_ship
+		add_tech_progress = { tech = tech_megastructures_homeless_ship progress = 0.25 }
+	}
+
+	possible = {
+		has_ascension_perk = ev_advanced_homeless
+		has_ascension_perk = ev_embrace_universe
+	}
+	ai_weight = {
+		factor = 10
+	}
+}
+
+
+#兼容三大飞升
+#ev_three_ascension_compatible = {
+#	potential = {
+#		is_country_type = default_ev  
+#		NOT = { has_ascension_perk = ev_three_ascension_compatible }
+#	}
+#	modifier = {
+#		BIOLOGICAL_species_trait_points_add = 1
+#		ROBOT_species_trait_points_add = 1
+#		LITHOID_species_trait_points_add = 1
+#		MACHINE_species_trait_points_add = 1
+#	}
+#	on_enabled = {
+#		hidden_effect = {
+#			#every_owned_leader = {
+#			#	limit = {
+#			#		species = { has_trait = trait_cybernetic }
+#			#		NOR = {
+#			#			has_trait = leader_trait_ev_ruler_cyborg
+#			#			
+#			#		}
+#			#	}
+##
+#			#	add_ruler_trait = leader_trait_ev_ruler_cyborg
+#			#	
+#			#}
+#		}
+#	}
+#
+#	possible = {
+#		has_ascension_perk = ev_advanced_homeless
+#		has_ascension_perk = ev_embrace_universe
+#	}
+#	ai_weight = {
+#		factor = 10
+#	}
+#}

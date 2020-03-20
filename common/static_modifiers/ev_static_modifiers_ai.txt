@@ -1,5 +1,5 @@
 ev_very_great_fleet_ai = {
-	country_naval_cap_mult = 0.3
+	country_naval_cap_mult = 0.25
 }
 
 

@@ -23,6 +23,7 @@ can_be_ev_investment_country = {
 	is_machine_empire = no
 	num_owned_planets > 0
 	opinion = { who = root value > -99 } 
+	NOT = { is_at_war_with = root }
 	NOR = {
 		has_ethic = ethic_fanatic_xenophobe
 		has_civic = civic_fanatic_purifiers
@@ -30,6 +31,40 @@ can_be_ev_investment_country = {
 		has_civic = civic_machine_terminator
 	}
 	has_communications = ROOT
-	NOT  = { has_country_flag = ev_received_an_investment }
+	NOT = { has_country_flag = ev_received_an_investment }
 	is_ai = yes
 }
+
+
+
+is_ev_need_fleet_country_base_1 = {
+	is_ai = yes
+	
+	NOR = {
+		is_at_war_with = ROOT 
+		is_hostile_to = ROOT
+		is_domineering_to = ROOT
+		is_unfriendly_to = ROOT
+		is_rival = ROOT
+		ROOT = { is_rival = THIS }
+	}
+	has_communications = ROOT
+	
+
+}
+
+is_ev_need_fleet_country_base_3 = {
+	OR = {
+		AND = {	
+			is_at_war = yes
+			defender_war_exhaustion > 0.05
+		}
+		AND = {	
+			is_at_war = yes
+			attacker_war_exhaustion > 0.2
+		}
+		used_naval_capacity_percent < 0.8
+		
+	}
+}
+

@@ -118,7 +118,7 @@ trait_ev_homeless_build_modifier = {
 }
 trait_ev_homeless_build_2_modifier = {
 	icon = "gfx/interface/icons/modifiers/mod_starbase_ship_build_cost_mult.dds"
-	ship_homeless_ev_cost_mult = -0.075
+	ship_homeless_ev_cost_mult = -0.1
 }
 #½µµÍÈ«²ú
 trait_ev_homeless_produces_modifier = {

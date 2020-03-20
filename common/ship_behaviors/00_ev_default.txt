@@ -20,7 +20,7 @@ ship_behavior = {
 }
 
 ship_behavior = {
-	name = "sniping"
+	name = "sniping_ev"
 	preferred_attack_range = 110
 	formation_distance = 110
 	return_to_formation_distance = 120
@@ -37,17 +37,16 @@ ship_behavior = {
 }
 
 ship_behavior = {
-	name = "guerrilla_warfare"
+	name = "guerrilla_warfare_ev"
 	preferred_attack_range = max
-	formation_distance = 100
-	return_to_formation_distance = 110
+	formation_distance = 150
+	return_to_formation_distance = 140
 	
 	collision_awareness = 1
-	collision_radius = 6				
-	collision_strafe =2				
-
-	attack_move_pattern = stationary
-	passive_move_pattern = charge
+	collision_radius = 20
+	collision_strafe = 10
+	attack_move_pattern = follow #stationary
+	passive_move_pattern = stay_at_range #follow #charge
 }
 
 

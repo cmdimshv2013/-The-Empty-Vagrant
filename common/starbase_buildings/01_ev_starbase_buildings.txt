@@ -43,7 +43,7 @@ ev_manpower_station = {
 			alloys = 200
 		}
 		produces = {
-			manpower = 8
+			manpower = 10
 		}
 
 		upkeep = {
@@ -52,7 +52,7 @@ ev_manpower_station = {
 	}
 
 	orbit_modifier = {
-		ship_homeless_ev_manpower_produces_mult = 0.25
+		ship_homeless_ev_manpower_produces_mult = 0.33
 	}
 
 	#ai_build_at_chokepoint = yes

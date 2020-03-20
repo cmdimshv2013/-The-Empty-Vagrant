@@ -380,3 +380,68 @@ create_marauder_constructors_ev = {
 		}
 	}
 }
+
+create_marauder_fleet_low_ev = {
+	create_leader = {
+		class = admiral
+		species = owner_main_species
+		name = random
+		skill = 2
+		leader_age_min = 25
+		leader_age_max = 45
+		traits = {
+			trait = leader_trait_mercenary_warrior
+			trait = random_trait
+		}
+	}
+	create_fleet = {
+		effect = {
+			
+			set_owner = event_target:raider_khanate_ev
+			while = {
+				count = 10
+				create_ship = {
+					name = random
+					random_existing_design = corvette
+				}
+			}
+			while = {
+				count = 5
+				create_ship = {
+					name = random
+					random_existing_design = destroyer
+				}
+			}
+			
+			while = {
+				count = 3
+				create_ship = {
+					name = random
+					random_existing_design = cruiser
+				}
+			}
+			
+			while = {
+				count = 1
+				create_ship = {
+					name = random
+					random_existing_design = battleship
+				}
+			}
+			
+			add_modifier = { modifier = ev_great_Khan_fleet days = -1 }
+			
+			assign_leader = last_created_leader
+			set_location = {
+				target = event_target:marauder_rally_point_ev
+				distance = 45
+				angle = random
+			}
+		}
+		settings = { 
+			uses_naval_capacity = no
+			can_upgrade = no 
+			can_change_composition = no
+		}
+	}
+}

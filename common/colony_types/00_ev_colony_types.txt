@@ -8,7 +8,7 @@ col_ev_capital = {
 	potential = {
 		is_capital = yes
 		#is_planet_class = pc_habitat
-		has_planet_flag = flag_ev_capital_scope_habitat
+		#has_planet_flag = flag_ev_capital_scope_habitat
 		exists = owner
 		owner = { is_country_type = default_ev }
 	}
@@ -17,6 +17,7 @@ col_ev_capital = {
 		planet_stability_add = 10
 		planet_amenities_add = 20
 		pop_government_ethic_attraction = 1
+		planet_max_districts_mult = 0.15
 	}
 
 	weight_modifier = {

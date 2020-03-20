@@ -4,9 +4,11 @@
 @homeless_power_4 = 6000
 @homeless_power_5 = 10500
 @homeless_power_6 = 14500
+@homeless_power_7 = 18000
 
-@homeless_meg_power_5 = 45000
-@homeless_meg_power_6 = 70000
+@homeless_meg_power_5 = 70000
+@homeless_meg_power_6 = 90000
+@homeless_meg_power_7 = 140000
 
 @cost1 = 3
 @cost2 = 6
@@ -102,7 +104,7 @@ utility_component_template = {
 	
 	prerequisites = { "tech_fission_power" }
 	component_set = "power_core"
-	size_restriction = { "homeless_ship" "private_homeless_ship" "mini_homeless_ship" }
+	size_restriction = {  "ev_fleet_size_ship" "homeless_ship" "homeless_ship_starbase" "private_homeless_ship" "private_homeless_ship_starbase" "mini_homeless_ship"  }
 	upgrades_to = "HOMELESS_FUSION_REACTOR"
 	
 	ai_weight = {
@@ -129,7 +131,7 @@ utility_component_template = {
 	
 	prerequisites = { "tech_fusion_power" }
 	component_set = "power_core"
-	size_restriction = { "homeless_ship" "private_homeless_ship" "mini_homeless_ship" }
+	size_restriction = {  "ev_fleet_size_ship" "homeless_ship" "homeless_ship_starbase" "private_homeless_ship" "private_homeless_ship_starbase" "mini_homeless_ship"  }
 	upgrades_to = "HOMELESS_COLD_FUSION_REACTOR"
 	
 	ai_weight = {
@@ -157,7 +159,7 @@ utility_component_template = {
 	
 	prerequisites = { "tech_cold_fusion_power" }
 	component_set = "power_core"
-	size_restriction = { "homeless_ship" "private_homeless_ship" "mini_homeless_ship" }
+	size_restriction = {  "ev_fleet_size_ship" "homeless_ship" "homeless_ship_starbase" "private_homeless_ship" "private_homeless_ship_starbase" "mini_homeless_ship"  }
 	upgrades_to = "HOMELESS_ANTIMATTER_REACTOR"
 	
 	ai_weight = {
@@ -185,7 +187,7 @@ utility_component_template = {
 	
 	prerequisites = { "tech_antimatter_power" }
 	component_set = "power_core"
-	size_restriction = { "homeless_ship" "private_homeless_ship" "mini_homeless_ship" }
+	size_restriction = {  "ev_fleet_size_ship" "homeless_ship" "homeless_ship_starbase" "private_homeless_ship" "private_homeless_ship_starbase" "mini_homeless_ship"  }
 	upgrades_to = "HOMELESS_ZERO_POINT_REACTOR"
 	
 	ai_weight = {
@@ -213,7 +215,7 @@ utility_component_template = {
 	
 	prerequisites = { "tech_zero_point_power" }
 	component_set = "power_core"
-	size_restriction = { "homeless_ship" "private_homeless_ship" "mini_homeless_ship" }
+	size_restriction = {  "ev_fleet_size_ship" "homeless_ship" "homeless_ship_starbase" "private_homeless_ship" "private_homeless_ship_starbase" "mini_homeless_ship"  }
 	upgrades_to = "HOMELESS_DARK_MATTER_REACTOR"
 	
 	ai_weight = {
@@ -242,7 +244,7 @@ utility_component_template = {
 	
 	prerequisites = { "tech_dark_matter_power_core" }
 	component_set = "power_core"
-	size_restriction = { "homeless_ship" "private_homeless_ship" "mini_homeless_ship" }
+	size_restriction = {  "ev_fleet_size_ship" "homeless_ship" "homeless_ship_starbase" "private_homeless_ship" "private_homeless_ship_starbase" "mini_homeless_ship"  }
 	
 	ai_weight = {
 		weight = 6
@@ -335,7 +337,7 @@ utility_component_template = {
 		
 	prerequisites = { "tech_thrusters_1" }
 	component_set = "thruster_components"
-	size_restriction = { "homeless_ship" "private_homeless_ship" "mini_homeless_ship" "megastructures_homeless_ship" }
+	size_restriction = { "homeless_ship" "ev_fleet_size_ship" "private_homeless_ship" "mini_homeless_ship" "megastructures_homeless_ship"  "homeless_ship_starbase" "private_homeless_ship_starbase"}
 	upgrades_to = "HOMELESS_SHIP_THRUSTER_2"
 	
 	ai_weight = {
@@ -364,7 +366,7 @@ utility_component_template = {
 		
 	prerequisites = { "tech_thrusters_2" }
 	component_set = "thruster_components"
-	size_restriction = { "homeless_ship" "private_homeless_ship" "mini_homeless_ship" "megastructures_homeless_ship" }
+	size_restriction = { "homeless_ship" "ev_fleet_size_ship" "private_homeless_ship" "mini_homeless_ship" "megastructures_homeless_ship"  "homeless_ship_starbase" "private_homeless_ship_starbase"}
 	upgrades_to = "HOMELESS_SHIP_THRUSTER_3"
 	
 	ai_weight = {
@@ -392,7 +394,7 @@ utility_component_template = {
 
 	prerequisites = { "tech_thrusters_3" }
 	component_set = "thruster_components"
-	size_restriction = { "homeless_ship" "private_homeless_ship" "mini_homeless_ship" "megastructures_homeless_ship" }
+	size_restriction = { "homeless_ship" "ev_fleet_size_ship" "private_homeless_ship" "mini_homeless_ship" "megastructures_homeless_ship"  "homeless_ship_starbase" "private_homeless_ship_starbase"}
 	upgrades_to = "HOMELESS_SHIP_THRUSTER_4"
 	
 	ai_weight = {
@@ -419,7 +421,7 @@ utility_component_template = {
 
 	prerequisites = { "tech_thrusters_4" }
 	component_set = "thruster_components"
-	size_restriction = { "homeless_ship" "private_homeless_ship" "mini_homeless_ship" "megastructures_homeless_ship" }
+	size_restriction = { "homeless_ship" "ev_fleet_size_ship" "private_homeless_ship" "mini_homeless_ship" "megastructures_homeless_ship"  "homeless_ship_starbase" "private_homeless_ship_starbase"}
 	upgrades_to = "HOMELESS_SHIP_THRUSTER_5"
 	
 	ai_weight = {
@@ -447,7 +449,7 @@ utility_component_template = {
 
 	prerequisites = { "tech_dark_matter_propulsion" }
 	component_set = "thruster_components"
-	size_restriction = { "homeless_ship" "private_homeless_ship" "mini_homeless_ship" "megastructures_homeless_ship" }
+	size_restriction = { "homeless_ship" "ev_fleet_size_ship" "private_homeless_ship" "mini_homeless_ship" "megastructures_homeless_ship"  "homeless_ship_starbase" "private_homeless_ship_starbase"}
 	
 	ai_weight = {
 		weight = 5
@@ -472,13 +474,46 @@ utility_component_template = {
 			alloys = 10
 		}
 	}
-	ship_behavior = "colossus"
+	ship_behavior = "colossus" #"guerrilla_warfare_ev" #"colossus"
 	
-	#size_restriction = { "homeless_ship" "private_homeless_ship" "mini_homeless_ship" }
+	#size_restriction = {  "ev_fleet_size_ship" "homeless_ship" "homeless_ship_starbase" "private_homeless_ship" "private_homeless_ship_starbase" "mini_homeless_ship"  }
 	component_set = "combat_computers"
 	
 
 	ai_weight = {
 		weight = 1
+	}
+}
+
+
+#
+utility_component_template = {
+	key = "HOMELESS_SHIP_THRUSTER_5"
+	size = aux
+	icon = "GFX_ship_part_thruster_5"
+	icon_frame = 1
+	power = -200
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = 15
+			sr_dark_matter = 4
+		}
+	}
+	modifier = {
+		ship_base_speed_mult = 1.25
+		ship_evasion_add = 12
+	}
+
+	prerequisites = { "tech_dark_matter_propulsion" }
+	component_set = "thruster_components"
+	size_restriction = { "homeless_ship" "ev_fleet_size_ship" "private_homeless_ship" "mini_homeless_ship" "megastructures_homeless_ship"  "homeless_ship_starbase" "private_homeless_ship_starbase"}
+	
+	ai_weight = {
+		weight = 5
+		modifier = {
+			factor = 0.0
+			has_monthly_income = { resource = sr_dark_matter value <= 0 }
+		}
 	}
 }

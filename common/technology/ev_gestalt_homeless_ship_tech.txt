@@ -442,7 +442,7 @@ tech_homeless_production_resources_1_machine = {
       is_reverse_engineerable = no
       category = { new_worlds }
       ai_update_type = all
-      weight = 30
+      weight = 0
       modifier = {
            country_resource_max_add = 2500
        }
